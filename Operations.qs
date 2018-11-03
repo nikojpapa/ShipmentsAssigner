@@ -10,9 +10,19 @@
 
     // each node consists of registers: |id>|shipmentId>|time>|coordinates>
 
+    newtype DatabaseEntry = (Int, Int, Int); // [shipmentId, time, coordinates]
+    newtype Database = DatabaseEntry[];
     newtype NodeRegisterLengths = (Int, Int, Int, Int);
     newtype Node = (Qubit[], Int, Int, Int);
     newtype Window = (Int, Int);
+
+    function GetDatabase(): Database {
+        return Database([
+            DatabaseEntry(1, 1, 1),
+            DatabaseEntry(2, 2, 2),
+            DatabaseEntry(3, 3, 3)
+        ]);
+    }
 
     operation TimesAreValid (nodes: Node[], target: Qubit): Unit {  // flips target if invalid
         body (...) {
@@ -64,19 +74,20 @@
         controlled adjoint distribute;
     }
 
-    // operation _GetQuantumIndexImpl(control: Qubit, window: Window, recursiveCall: ((Window) => Unit: Controlled, Adjoint)): Unit {
+    // operation _GetQuantumIndexImpl(control: Qubit, window: Window, seenIndex: Int, qIndexLength: Int, recursiveCall: ((Window, Int) => Unit: Controlled, Adjoint)): Unit {
     //     body (...) {
     //         let (windowMin, windowMax) = window!;
     //         let testIndex = (windowMin + windowMax) / 2;
     //         let windowIsEven = (windowMax - windowMax) % 2 == 1;
+    //         let addToIndex = 2 ^ (qIndexLength - 1);
 
-    //         recursiveCall(Window(testIndex + 1, windowMax));
+    //         recursiveCall(Window(testIndex + 1, windowMax), seenIndex + addToIndex);
     //         X(control);
-    //         if (windowIsEven) {
-    //             recursiveCall(Window(windowMin, testIndex));
-    //         } else {
-    //             recursiveCall(Window(windowMin, testIndex - 1));
-    //         }
+    //         // if (windowIsEven) {
+    //         //     recursiveCall(Window(windowMin, testIndex), seenIndex);
+    //         // } else {
+    //             recursiveCall(Window(windowMin, testIndex - 1), seenIndex);
+    //         // }
     //         X(control);
     //     }
 
@@ -99,18 +110,20 @@
             // let (windowMin, windowMax) = window!;
             // let testIndex = (windowMin + windowMax) / 2;
             
-            // if (Length(qIndex) == 0) {
-            //     QFTAdder(target, [database[testIndex]]);
+            // Message($"windowMin: {windowMin}, windowMax: {windowMax}, testIndex: {testIndex}, seenIndex: {seenIndex}");
+            // if (seenIndex == testIndex) {
+            //     Message($"setting {database[testIndex]} from index {testIndex}");
+            //     QFTAdderInt(target, database[testIndex]);
             // } else {
-            //     Message($"windowMin: {windowMin}, windowMax: {windowMax}, testIndex: {testIndex}");
             //     let control = qIndex[0];
+            //     let qIndexLength = Length(qIndex);
 
-            //     let recursiveCall = Controlled GetQuantumIndex([control], (_, database, target, _, currentDepth + 1, maxDepth));
+            //     let recursiveCall = Controlled GetElementUsingQuantumIndex([control], (_, database, target, _, _));
             //     if (Length(qIndex) > 1) {
-            //         _GetQuantumIndexImpl(control, window, recursiveCall(qIndex[1..Length(qIndex) - 1], _));
+            //         _GetQuantumIndexImpl(control, window, seenIndex, qIndexLength, recursiveCall(qIndex[1..Length(qIndex) - 1], _, _));
             //         // Adjoint _GetQuantumIndexImpl(control, qIndex, target, window, recursiveCall(qIndex[1..Length(qIndex) - 1], _));
             //     } else {
-            //         _GetQuantumIndexImpl(control, window, recursiveCall(new Qubit[0], _));
+            //         _GetQuantumIndexImpl(control, window, seenIndex, qIndexLength, recursiveCall(new Qubit[0], _, _));
             //         // Adjoint _GetQuantumIndexImpl(control, qIndex, target, window, recursiveCall(new Qubit[0], _));
             //     }
             // }
@@ -128,12 +141,13 @@
         Message($"index: {cIndex}");
 
         mutable cDatabase = new Int[dbLength];
-        mutable databaseStr = "";
+        // mutable databaseStr = "";
         for (i in 0..dbLength - 1) {
             set cDatabase[i] = i;
             // set cDatabase[i] = RandomInt(2);
             // set databaseStr = databaseStr + ToStringI(cDatabase[i]);
         }
+        Message($"{cDatabase}");
 
         using (target = Qubit[BitSize(dbLength)]) {
             GetElementUsingQuantumIndex(qIndex, cDatabase, target);
@@ -150,6 +164,71 @@
 
     operation _TestGetQuantumIndex(length: Int): Unit {
         RunOnAllBinariesOfLength(length, _TestGetQuantumIndexImpl(_, length));
+    }
+
+    function _DatabaseEntryToArray(databaseEntry: DatabaseEntry): Int[] {
+        let (shipmentId, time, coordinates) = databaseEntry!;
+        return [shipmentId, time, coordinates];
+    }
+
+    function GetShipmentIdFromDatabaseEntry(databaseEntry: DatabaseEntry): Int {
+        return (_DatabaseEntryToArray(databaseEntry))[0];
+    }
+
+    function GetTimeFromDatabaseEntry(databaseEntry: DatabaseEntry): Int {
+        return (_DatabaseEntryToArray(databaseEntry))[1];
+    }
+
+    function GetCoordinatesFromDatabaseEntry(databaseEntry: DatabaseEntry): Int {
+        return (_DatabaseEntryToArray(databaseEntry))[2];
+    }
+
+    function GetCategorizedEntries(database: Database): Int[][] {
+        let databaseEntriesInArr = Map(_DatabaseEntryToArray, database!);
+        let numProperties = Length(databaseEntriesInArr);
+
+        mutable categorized = new Int[][numProperties];
+        for (i in 0..Length(databaseEntriesInArr)) {
+            let entry = databaseEntriesInArr[i];
+            for (j in 0..numProperties - 1) {
+                set categorized[j] = categorized[j] + [entry[j]];
+            }
+        }
+
+        return categorized;
+    }
+
+    function GetElementLengths(database: Database): Int[] {
+        let databaseEntriesInArr = Map(_DatabaseEntryToArray, database!);
+        let numProperties = Length(databaseEntriesInArr);
+
+        let categorized = GetCategorizedEntries(database);
+
+        mutable lengths = new Int[numProperties];
+        for (i in 0..numProperties - 1) {
+            set lengths[i] = BitSize(Max(categorized[i]));
+        }
+
+        return lengths;
+    }
+
+    operation LoadStopsInSpecifiedOrder(qIndices: Qubit[][], database: Database, target: Qubit[][]): Unit {
+        let elementLengths = GetElementLengths(database);
+        let categorized = GetCategorizedEntries(database);
+        for (i in 0..Length(qIndices) - 1) {
+            let qIndex = qIndices[i];
+            let entryTarget = target[i];
+
+            mutable startIndex = 0;
+            for (j in 0..Length(elementLengths) - 1) {
+                let endIndex = startIndex + elementLengths[j] - 1;
+                let elementTarget = entryTarget[startIndex..endIndex];
+
+                GetElementUsingQuantumIndex(qIndex, categorized[j], elementTarget);
+
+                set startIndex = endIndex + 1;
+            }
+        }
     }
 
     // operation GetElement (startIndex: Qubit[], length: Int, target: Qubit[]): () {

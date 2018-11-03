@@ -13,7 +13,7 @@ namespace ShipmentsAssigner
             using (var qsim = new QuantumSimulator())
             {
                 // _TestXIfQubitEqualToInt.Run(qsim, 4).Wait();
-                _TestGetQuantumIndex.Run(qsim, 5).Wait();
+                _TestGetQuantumIndex.Run(qsim, 3).Wait();
             }
         }
     }

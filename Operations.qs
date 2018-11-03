@@ -6,11 +6,13 @@
     open Utils.General;
     open Utils.Compare;
     open Utils.Math;
+    open Utils.Testing;
 
     // each node consists of registers: |id>|shipmentId>|time>|coordinates>
 
     newtype NodeRegisterLengths = (Int, Int, Int, Int);
     newtype Node = (Qubit[], Int, Int, Int);
+    newtype Window = (Int, Int);
 
     operation TimesAreValid (nodes: Node[], target: Qubit): Unit {  // flips target if invalid
         body (...) {
@@ -62,77 +64,79 @@
         controlled adjoint distribute;
     }
 
-    operation _GetQuantumIndexImpl(control: Qubit, database: LittleEndian, qubits: Qubit[]): Unit {
+    // operation _GetQuantumIndexImpl(control: Qubit, window: Window, recursiveCall: ((Window) => Unit: Controlled, Adjoint)): Unit {
+    //     body (...) {
+    //         let (windowMin, windowMax) = window!;
+    //         let testIndex = (windowMin + windowMax) / 2;
+    //         let windowIsEven = (windowMax - windowMax) % 2 == 1;
+
+    //         recursiveCall(Window(testIndex + 1, windowMax));
+    //         X(control);
+    //         if (windowIsEven) {
+    //             recursiveCall(Window(windowMin, testIndex));
+    //         } else {
+    //             recursiveCall(Window(windowMin, testIndex - 1));
+    //         }
+    //         X(control);
+    //     }
+
+    //     adjoint auto;
+    //     controlled auto;
+    //     controlled adjoint auto;
+    // }
+
+    operation GetElementUsingQuantumIndex(qIndex: Qubit[], database: Int[], target: Qubit[]): Unit {
         body (...) {
-            let windowSize = Length(database!);
-            let halfWindowSize = windowSize / 2;
-            let isEven = windowSize % 2 == 0;
-
-            let sliceFunc = Slice(database!, _, _, _);
-            let sliceLower = Controlled sliceFunc(_, (0, halfWindowSize - 1, _));
-            let sliceUpper = Controlled sliceFunc(_, (halfWindowSize, windowSize - 1, _));
-
-            sliceLower([control], Most(qubits));
-            X(control);
-            if (isEven) {
-                sliceUpper([control], Most(qubits));
-            } else {
-                sliceUpper([control], qubits);
+            for (i in 0..2 ^ Length(qIndex) - 1) {
+                using(qubits = Qubit[1]) {
+                    let toggle = qubits[0];
+                    XIfQubitEqualToInt(qIndex, i, toggle);
+                    Controlled QFTAdderInt([toggle], (target, database[i]));
+                    XIfQubitEqualToInt(qIndex, i, toggle);
+                }
             }
-            X(control);
+
+            // let (windowMin, windowMax) = window!;
+            // let testIndex = (windowMin + windowMax) / 2;
+            
+            // if (Length(qIndex) == 0) {
+            //     QFTAdder(target, [database[testIndex]]);
+            // } else {
+            //     Message($"windowMin: {windowMin}, windowMax: {windowMax}, testIndex: {testIndex}");
+            //     let control = qIndex[0];
+
+            //     let recursiveCall = Controlled GetQuantumIndex([control], (_, database, target, _, currentDepth + 1, maxDepth));
+            //     if (Length(qIndex) > 1) {
+            //         _GetQuantumIndexImpl(control, window, recursiveCall(qIndex[1..Length(qIndex) - 1], _));
+            //         // Adjoint _GetQuantumIndexImpl(control, qIndex, target, window, recursiveCall(qIndex[1..Length(qIndex) - 1], _));
+            //     } else {
+            //         _GetQuantumIndexImpl(control, window, recursiveCall(new Qubit[0], _));
+            //         // Adjoint _GetQuantumIndexImpl(control, qIndex, target, window, recursiveCall(new Qubit[0], _));
+            //     }
+            // }
         }
 
-        adjoint invert;
-    }
-
-    operation GetQuantumIndex(qIndex: Qubit[], database: LittleEndian, target: Qubit[], depth: Int): Unit {
-        Message($"depth: {depth}");
-        if (Length(qIndex) == depth) {
-            CNOT(database![0], target[0]);
-        } else {
-            let windowSize = Length(database!);
-            let halfWindowSize = windowSize / 2;
-            let isEven = windowSize % 2 == 0;
-            let control = qIndex[depth];
-
-            using (qubits = Qubit[halfWindowSize + 1]) {
-                let qubitsLength = Length(qubits);
-                Message($"qubits length: {qubitsLength}");
-                _GetQuantumIndexImpl(control, database, qubits);
-                // let sliceFunc = Slice(arr!, _, _, qubits);
-                // Controlled sliceFunc([control], (0, halfWindowSize - 1));
-                // X(control);
-                // Controlled sliceFunc([control], (halfWindowSize, windowSize - 1));
-                // X(control);
-
-                GetQuantumIndex(qIndex, LittleEndian(qubits), target, depth + 1);
-
-                Adjoint _GetQuantumIndexImpl(control, database, qubits);
-                // X(control);
-                // Adjoint Controlled sliceFunc([control], (halfWindowSize, windowSize - 1));
-                // X(control);
-                // Adjoint Controlled sliceFunc([control], (0, halfWindowSize - 1));
-            }
-        }
+        adjoint auto;
+        controlled auto;
+        controlled adjoint auto;
     }
 
     operation _TestGetQuantumIndexImpl(qIndex: Qubit[], length: Int): Unit {
         let cIndex = QubitsToInt(qIndex);
         let maxIndex = 2 ^ Length(qIndex) - 1;
+        let dbLength = maxIndex + 1;
         Message($"index: {cIndex}");
 
-        mutable cDatabase = new Int[maxIndex];
+        mutable cDatabase = new Int[dbLength];
         mutable databaseStr = "";
-        for (i in 0..maxIndex - 1) {
-            set cDatabase[i] = RandomInt(2);
-            set databaseStr = databaseStr + ToStringI(cDatabase[i]);
+        for (i in 0..dbLength - 1) {
+            set cDatabase[i] = i;
+            // set cDatabase[i] = RandomInt(2);
+            // set databaseStr = databaseStr + ToStringI(cDatabase[i]);
         }
-        Message($"database: {databaseStr}");
 
-        using ((qDatabase, target) = (Qubit[maxIndex], Qubit[1])) {
-            SetQubits(qDatabase, cDatabase);
-
-            GetQuantumIndex(qIndex, LittleEndian(qDatabase), target, 0);
+        using (target = Qubit[BitSize(dbLength)]) {
+            GetElementUsingQuantumIndex(qIndex, cDatabase, target);
 
             let calcAns = QubitsToInt(target);
             let trueAns = cDatabase[cIndex];
@@ -140,7 +144,7 @@
             Message($"{calcAns} == {trueAns}");
             Message("");
 
-            ResetAll(qDatabase + target);
+            ResetAll(target);
         }
     }
 

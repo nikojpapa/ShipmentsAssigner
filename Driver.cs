@@ -2,6 +2,7 @@
 
 using Microsoft.Quantum.Simulation.Core;
 using Microsoft.Quantum.Simulation.Simulators;
+using Utils.Compare;
 
 namespace ShipmentsAssigner
 {
@@ -11,7 +12,8 @@ namespace ShipmentsAssigner
         {
             using (var qsim = new QuantumSimulator())
             {
-                _TestGetQuantumIndex.Run(qsim, 3).Wait();
+                // _TestXIfQubitEqualToInt.Run(qsim, 4).Wait();
+                _TestGetQuantumIndex.Run(qsim, 5).Wait();
             }
         }
     }

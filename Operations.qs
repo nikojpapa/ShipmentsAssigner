@@ -13,10 +13,11 @@
     newtype Database = DatabaseEntry[];
     newtype NodeRegisterLengths = (Int, Int, Int, Int);
     newtype Node = (Qubit[], Int, Int, Int);
-    newtype Window = (Int, Int);
+    // newtype Window = (Int, Int);
 
     function GetDatabase(): Database {
         return Database([
+            DatabaseEntry(0, 0, 0),
             DatabaseEntry(1, 1, 1),
             DatabaseEntry(2, 2, 2),
             DatabaseEntry(3, 3, 3),
@@ -183,49 +184,49 @@
     }
 
     operation LoadStop(qIndex: Qubit[], database: Database, target: Qubit[]): Unit {
-        let categorized = GetCategorizedEntries(database);
-        let numCategories = Length(categorized);
-        let elementLengths = GetPropertyLengths(database);
+        body (...) {
+            let categorized = GetCategorizedEntries(database);
+            let numCategories = Length(categorized);
+            let elementLengths = GetPropertyLengths(database);
 
-        mutable startIndex = 0;
-        for (i in 0..Length(elementLengths) - 1) {
-            let endIndex = startIndex + elementLengths[i] - 1;
-            let elementTarget = target[startIndex..endIndex];
+            mutable startIndex = 0;
+            for (i in 0..Length(elementLengths) - 1) {
+                let endIndex = startIndex + elementLengths[i] - 1;
+                let elementTarget = target[startIndex..endIndex];
 
-            GetElementUsingQuantumIndex(qIndex, categorized[i], elementTarget);
+                GetElementUsingQuantumIndex(qIndex, categorized[i], elementTarget);
 
-            set startIndex = endIndex + 1;
+                set startIndex = endIndex + 1;
+            }
+        }
+
+        adjoint (...) {
+            let categorized = GetCategorizedEntries(database);
+            let numCategories = Length(categorized);
+            let elementLengths = GetPropertyLengths(database);
+
+            mutable endIndex = ClassicalSum(elementLengths) - 1;
+            for (i in Length(elementLengths) - 1..-1..0) {
+                let startIndex = endIndex - elementLengths[i] + 1;
+                let elementTarget = target[startIndex..endIndex];
+
+                Adjoint GetElementUsingQuantumIndex(qIndex, categorized[i], elementTarget);
+
+                set endIndex = startIndex - 1;
+            }
         }
     }
 
-    operation LoadStopsInSpecifiedOrder(qIndices: Qubit[][], database: Database, target: Qubit[][]): Unit {
-        let elementLengths = GetPropertyLengths(database);
-        let categorized = GetCategorizedEntries(database);
-        for (i in 0..Length(qIndices) - 1) {
-            let qIndex = qIndices[i];
-            let entryTarget = target[i];
-            Message("qIndex: " + RegisterToString(qIndex));
+    // operation LoadStopsInSpecifiedOrder(qIndices: Qubit[][], database: Database, target: Qubit[][]): Unit {
+    //     let elementLengths = GetPropertyLengths(database);
+    //     let categorized = GetCategorizedEntries(database);
+    //     for (i in 0..Length(qIndices) - 1) {
+    //         let qIndex = qIndices[i];
+    //         let entryTarget = target[i];
+    //         Message("qIndex: " + RegisterToString(qIndex));
 
-            LoadStop(qIndex, database, entryTarget);
-        }
-    }
-
-    // operation GetElement (startIndex: Qubit[], length: Int, target: Qubit[]): () {
-
-    // }
-
-    // operation _TestTimesAreValidImpl(qubits: Qubit[], numLocations: Int): Unit {
-    //     let locationIndexBitSize = BitSize(numLocations);
-
-    //     mutable nodes = new Node[numLocations];
-    //     for (i in 0..numLocations - 1) {
-    //         let indexStart = locationIndexBitSize * i;
-    //         let indexEnd = indexStart + locationIndexBitSize;
-    //         set nodes[i] = Node(qubits[indexStart..indexEnd], i, i, i);
+    //         LoadStop(qIndex, database, entryTarget);
     //     }
-    // }
-    // operation _TestTimesAreValid(numLocations: Int): Unit {
-    //     RunOnAllBinariesOfLength(BitSize(numLocations) * numLocations, _TestTimesAreValidImpl(_, numLocations));
     // }
 
     // operation PhysicallyValid (nodes: Node[], lengths: NodeRegisterLengths) : Unit {
@@ -243,11 +244,49 @@
     //     }
     // }
 
-    // operation Oracle (pickups: Qubit[], deliveries: Qubit[]): Unit {
-    //     body (...) {
+    operation Oracle (qubits: Qubit[], database: Database): Unit {
+        body (...) {
+            let numStops = Length(database!);
+            let lenIndex = Length(qubits) / numStops;
 
-    //     }
-    // }
+            let propertyLengths = GetPropertyLengths(database);
+            let numProperties = Length(propertyLengths);
+            let shipmentIdLength = propertyLengths[0];
+            let timeLength = propertyLengths[1];
+            let coordinatesLength = propertyLengths[2];
+
+            mutable qIndices = new Qubit[][numStops];
+            for (i in 0..numStops - 1) {
+                let startIndex = i * lenIndex;
+                let endIndex = startIndex + lenIndex - 1;
+
+                set qIndices[i] = qubits[startIndex..endIndex];
+            }
+
+            mutable targetLength = 0;
+            for (i in 0..numProperties - 1) {
+                set targetLength = targetLength + propertyLengths[i];
+            }
+
+            using ((lastTime, isValid) = (Qubit[timeLength], Qubit[BitSize(numStops)])) {
+                let isValidLE = LittleEndian(isValid);
+                
+                for (i in 0..numStops - 1) {
+                    using ((target, toggles) = (Qubit[targetLength], Qubit[0])) {
+                        let toggle = toggles[0];
+                        let qIndex = qIndices[i];
+                        let time = target[shipmentIdLength..timeLength - 1];
+                        LoadStop(qIndex, database, target);
+
+                        XIfLessThan(time, lastTime, toggle);
+                        Controlled IntegerIncrementLE ([toggle], (1, isValidLE));
+                        XIfLessThan(time, lastTime, toggle);
+                        Adjoint LoadStop(qIndex, database, target);
+                    }
+                }
+            }
+        }
+    }
 
     // operation Entry () : Unit {
     //     let numPickups = 3;

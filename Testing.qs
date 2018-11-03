@@ -92,58 +92,58 @@ namespace ShipmentsAssigner {
     }
 
 
-    // LoadStopsInSpecifiedOrder
-    operation _TestLoadStopsInSpecifiedOrderImpl(database: Database, elementLength: Int, a: Qubit[]): Unit {
-        let lenA = Length(a);
-        let numCategories = Length(GetCategorizedEntries(database));
-        let numElements = Length(database!);
-        let lenIndex = lenA / numElements;
-        Message($"lenA: {lenA}; numCategories: {numCategories}; numElements: {numElements}; lenIndex: {lenIndex}");
+    // // LoadStopsInSpecifiedOrder
+    // operation _TestLoadStopsInSpecifiedOrderImpl(database: Database, elementLength: Int, a: Qubit[]): Unit {
+    //     let lenA = Length(a);
+    //     let numCategories = Length(GetCategorizedEntries(database));
+    //     let numElements = Length(database!);
+    //     let lenIndex = lenA / numElements;
+    //     Message($"lenA: {lenA}; numCategories: {numCategories}; numElements: {numElements}; lenIndex: {lenIndex}");
 
-        mutable qIndices = new Qubit[][numElements];
-        for (i in 0..numElements - 1) {
-            let startIndex = i * lenIndex;
-            let endIndex = startIndex + lenIndex - 1;
+    //     mutable qIndices = new Qubit[][numElements];
+    //     for (i in 0..numElements - 1) {
+    //         let startIndex = i * lenIndex;
+    //         let endIndex = startIndex + lenIndex - 1;
 
-            set qIndices[i] = a[startIndex..endIndex];
-        }
+    //         set qIndices[i] = a[startIndex..endIndex];
+    //     }
 
-        let elementLengths = GetPropertyLengths(database);
-        let targetQubitsNeeded = numElements * elementLength;
-        let lenTarget = targetQubitsNeeded / numElements;
+    //     let elementLengths = GetPropertyLengths(database);
+    //     let targetQubitsNeeded = numElements * elementLength;
+    //     let lenTarget = targetQubitsNeeded / numElements;
 
-        using(targetQubits = Qubit[targetQubitsNeeded]) {
-            mutable targets = new Qubit[][numElements];
-            for (i in 0..numElements - 1) {
-                let startIndex = i * lenTarget;
-                let endIndex = startIndex + lenTarget - 1;
-                set targets[i] = targetQubits[startIndex..endIndex];
-            }
+    //     using(targetQubits = Qubit[targetQubitsNeeded]) {
+    //         mutable targets = new Qubit[][numElements];
+    //         for (i in 0..numElements - 1) {
+    //             let startIndex = i * lenTarget;
+    //             let endIndex = startIndex + lenTarget - 1;
+    //             set targets[i] = targetQubits[startIndex..endIndex];
+    //         }
 
-            mutable indexOrder = "";
-            for (i in 0..numElements - 1) {
-                set indexOrder = indexOrder + ToStringI(QubitsToInt(qIndices[i]));
-            }
-            Message($"Index order: {indexOrder}");
+    //         mutable indexOrder = "";
+    //         for (i in 0..numElements - 1) {
+    //             set indexOrder = indexOrder + ToStringI(QubitsToInt(qIndices[i]));
+    //         }
+    //         Message($"Index order: {indexOrder}");
 
-            LoadStopsInSpecifiedOrder(qIndices, database, targets);
+    //         LoadStopsInSpecifiedOrder(qIndices, database, targets);
 
-            ResetAll(targetQubits);
-        }
-    }
-    operation _TestLoadStopsInSpecifiedOrder(): Unit {
-        let database = GetDatabase();
-        let numCategories = Length(GetCategorizedEntries(database));
-        let numElements = Length(database!);
-        let elementLengths = GetPropertyLengths(database);
+    //         ResetAll(targetQubits);
+    //     }
+    // }
+    // operation _TestLoadStopsInSpecifiedOrder(): Unit {
+    //     let database = GetDatabase();
+    //     let numCategories = Length(GetCategorizedEntries(database));
+    //     let numElements = Length(database!);
+    //     let elementLengths = GetPropertyLengths(database);
 
-        mutable totalElementLength = 0;
-        for (i in 0..numElements - 1) {
-            set totalElementLength = totalElementLength + elementLengths[i];
-        }
+    //     mutable totalElementLength = 0;
+    //     for (i in 0..numElements - 1) {
+    //         set totalElementLength = totalElementLength + elementLengths[i];
+    //     }
 
-        let totalIndiceQubitsNeeded = BitSize(numElements) * numElements;
+    //     let totalIndiceQubitsNeeded = BitSize(numElements) * numElements;
 
-        RunOnAllBinariesOfLength(totalIndiceQubitsNeeded, _TestLoadStopsInSpecifiedOrderImpl(database, totalElementLength, _));
-    }
+    //     RunOnAllBinariesOfLength(totalIndiceQubitsNeeded, _TestLoadStopsInSpecifiedOrderImpl(database, totalElementLength, _));
+    // }
 }

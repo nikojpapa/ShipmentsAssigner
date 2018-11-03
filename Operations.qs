@@ -6,7 +6,6 @@
     open Utils.General;
     open Utils.Compare;
     open Utils.Math;
-    open Utils.Testing;
 
     // each node consists of registers: |id>|shipmentId>|time>|coordinates>
 
@@ -20,7 +19,10 @@
         return Database([
             DatabaseEntry(1, 1, 1),
             DatabaseEntry(2, 2, 2),
-            DatabaseEntry(3, 3, 3)
+            DatabaseEntry(3, 3, 3),
+            DatabaseEntry(4, 4, 4),
+            DatabaseEntry(5, 2, 9),
+            DatabaseEntry(9, 15, 13)
         ]);
     }
 
@@ -98,7 +100,7 @@
 
     operation GetElementUsingQuantumIndex(qIndex: Qubit[], database: Int[], target: Qubit[]): Unit {
         body (...) {
-            for (i in 0..2 ^ Length(qIndex) - 1) {
+            for (i in 0..Length(database) - 1) {
                 using(qubits = Qubit[1]) {
                     let toggle = qubits[0];
                     XIfQubitEqualToInt(qIndex, i, toggle);
@@ -134,61 +136,29 @@
         controlled adjoint auto;
     }
 
-    operation _TestGetQuantumIndexImpl(qIndex: Qubit[], length: Int): Unit {
-        let cIndex = QubitsToInt(qIndex);
-        let maxIndex = 2 ^ Length(qIndex) - 1;
-        let dbLength = maxIndex + 1;
-        Message($"index: {cIndex}");
-
-        mutable cDatabase = new Int[dbLength];
-        // mutable databaseStr = "";
-        for (i in 0..dbLength - 1) {
-            set cDatabase[i] = i;
-            // set cDatabase[i] = RandomInt(2);
-            // set databaseStr = databaseStr + ToStringI(cDatabase[i]);
-        }
-        Message($"{cDatabase}");
-
-        using (target = Qubit[BitSize(dbLength)]) {
-            GetElementUsingQuantumIndex(qIndex, cDatabase, target);
-
-            let calcAns = QubitsToInt(target);
-            let trueAns = cDatabase[cIndex];
-            AssertIntEqual(calcAns, trueAns, $"{calcAns} != {trueAns}");
-            Message($"{calcAns} == {trueAns}");
-            Message("");
-
-            ResetAll(target);
-        }
-    }
-
-    operation _TestGetQuantumIndex(length: Int): Unit {
-        RunOnAllBinariesOfLength(length, _TestGetQuantumIndexImpl(_, length));
-    }
-
-    function _DatabaseEntryToArray(databaseEntry: DatabaseEntry): Int[] {
+    function DatabaseEntryToArray(databaseEntry: DatabaseEntry): Int[] {
         let (shipmentId, time, coordinates) = databaseEntry!;
         return [shipmentId, time, coordinates];
     }
 
     function GetShipmentIdFromDatabaseEntry(databaseEntry: DatabaseEntry): Int {
-        return (_DatabaseEntryToArray(databaseEntry))[0];
+        return (DatabaseEntryToArray(databaseEntry))[0];
     }
 
     function GetTimeFromDatabaseEntry(databaseEntry: DatabaseEntry): Int {
-        return (_DatabaseEntryToArray(databaseEntry))[1];
+        return (DatabaseEntryToArray(databaseEntry))[1];
     }
 
     function GetCoordinatesFromDatabaseEntry(databaseEntry: DatabaseEntry): Int {
-        return (_DatabaseEntryToArray(databaseEntry))[2];
+        return (DatabaseEntryToArray(databaseEntry))[2];
     }
 
     function GetCategorizedEntries(database: Database): Int[][] {
-        let databaseEntriesInArr = Map(_DatabaseEntryToArray, database!);
-        let numProperties = Length(databaseEntriesInArr);
+        let databaseEntriesInArr = Map(DatabaseEntryToArray, database!);
+        let numProperties = Length(databaseEntriesInArr[0]);
 
         mutable categorized = new Int[][numProperties];
-        for (i in 0..Length(databaseEntriesInArr)) {
+        for (i in 0..Length(databaseEntriesInArr) - 1) {
             let entry = databaseEntriesInArr[i];
             for (j in 0..numProperties - 1) {
                 set categorized[j] = categorized[j] + [entry[j]];
@@ -198,9 +168,9 @@
         return categorized;
     }
 
-    function GetElementLengths(database: Database): Int[] {
-        let databaseEntriesInArr = Map(_DatabaseEntryToArray, database!);
-        let numProperties = Length(databaseEntriesInArr);
+    function GetPropertyLengths(database: Database): Int[] {
+        let databaseEntriesInArr = Map(DatabaseEntryToArray, database!);
+        let numProperties = Length(databaseEntriesInArr[0]);
 
         let categorized = GetCategorizedEntries(database);
 
@@ -212,22 +182,31 @@
         return lengths;
     }
 
+    operation LoadStop(qIndex: Qubit[], database: Database, target: Qubit[]): Unit {
+        let categorized = GetCategorizedEntries(database);
+        let numCategories = Length(categorized);
+        let elementLengths = GetPropertyLengths(database);
+
+        mutable startIndex = 0;
+        for (i in 0..Length(elementLengths) - 1) {
+            let endIndex = startIndex + elementLengths[i] - 1;
+            let elementTarget = target[startIndex..endIndex];
+
+            GetElementUsingQuantumIndex(qIndex, categorized[i], elementTarget);
+
+            set startIndex = endIndex + 1;
+        }
+    }
+
     operation LoadStopsInSpecifiedOrder(qIndices: Qubit[][], database: Database, target: Qubit[][]): Unit {
-        let elementLengths = GetElementLengths(database);
+        let elementLengths = GetPropertyLengths(database);
         let categorized = GetCategorizedEntries(database);
         for (i in 0..Length(qIndices) - 1) {
             let qIndex = qIndices[i];
             let entryTarget = target[i];
+            Message("qIndex: " + RegisterToString(qIndex));
 
-            mutable startIndex = 0;
-            for (j in 0..Length(elementLengths) - 1) {
-                let endIndex = startIndex + elementLengths[j] - 1;
-                let elementTarget = entryTarget[startIndex..endIndex];
-
-                GetElementUsingQuantumIndex(qIndex, categorized[j], elementTarget);
-
-                set startIndex = endIndex + 1;
-            }
+            LoadStop(qIndex, database, entryTarget);
         }
     }
 

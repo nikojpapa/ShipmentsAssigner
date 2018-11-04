@@ -244,7 +244,18 @@
     //     }
     // }
 
-    operation _OracleImpl (numStops: Int, targetLength: Int, qIndices: Qubit[][], database: Database, shipmentIdLength: Int, timeLength: Int, lastTime: Qubit[], isValidLE: LittleEndian, lastTarget: Qubit[]): Unit {
+    operation _OracleImpl (
+            numStops        : Int, 
+            targetLength    : Int, 
+            qIndices        : Qubit[][], 
+            database        : Database, 
+            shipmentIdLength: Int, 
+            timeLength      : Int, 
+            lastTime        : Qubit[], 
+            isValidLE       : LittleEndian, 
+            lastTarget      : Qubit[])
+                            : Unit {
+
         body (...) {
             for (i in 0..numStops - 1) {
                 using ((target, toggles) = (Qubit[targetLength], Qubit[0])) {

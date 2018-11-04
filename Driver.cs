@@ -15,7 +15,7 @@ namespace ShipmentsAssigner
                 // _TestXIfQubitEqualToInt.Run(qsim, 4).Wait();
                 // _TestGetQuantumIndex.Run(qsim, 3).Wait();
                 // _TestLoadStop.Run(qsim).Wait();
-                _TestOracle.Run(qsim).Wait();
+                _TestOracle.Run(qsim, 4).Wait();
             }
         }
     }

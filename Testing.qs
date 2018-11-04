@@ -121,12 +121,15 @@ namespace ShipmentsAssigner {
             let times = categorized[1];
             mutable valid = true;
             mutable lastTime = -1;
-            for (i in 0..Length(times) - 1) {
-                let time = times[i];
-                if (time > 0 && time <= lastTime) {
-                    set valid = false;
+            for (i in 0..Length(cIndices) - 1) {
+                let cIndex = cIndices[i];
+                if (cIndex < Length(times)) {
+                    let time = times[cIndex];
+                    if (time > 0 && time <= lastTime) {
+                        set valid = false;
+                    }
+                    set lastTime = time;
                 }
-                set lastTime = time;
             }
 
             let trueAns = ResultFromBool(valid);
@@ -144,9 +147,10 @@ namespace ShipmentsAssigner {
         // RunOnAllBinariesOfLength(BitSize(maxDbIndex) * numElements, _TestOracleImpl(database, numElements, _));
 
         // using (qubits = Qubit[BitSize(maxDbIndex) * numElements]) {
-        //     IntegerIncrementLE(16, LittleEndian(qubits));
+        //     IntegerIncrementLE(48, LittleEndian(qubits));
         //     SwapReverseRegister(qubits);
         //     _TestOracleImpl(database, numElements, qubits);
+        //     ResetAll(qubits);
         // }
 
         using (qubits = Qubit[BitSize(maxDbIndex) * numElements]) {

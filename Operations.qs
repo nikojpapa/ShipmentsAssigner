@@ -248,7 +248,6 @@
     // }
 
     operation _OracleImplImpl (
-            qIndex  : Qubit[],
             zeroTest: Qubit,
             time    : Qubit[],
             lastTime: Qubit[],
@@ -258,7 +257,7 @@
         body (...) {
             X(zeroTest);
 
-            XIfAllZero(qIndex, zeroTest);
+            XIfAllZero(time, zeroTest);
 
             XIfLessThanOrEqual(time, lastTime, toggle);
         }
@@ -286,6 +285,7 @@
                     let qIndex = qIndices[i];
                     let time = target[shipmentIdLength..shipmentIdLength + timeLength - 1];
 
+                    // Message("Loading");
                     let loadFunc = LoadStop(_, database, _);
                     loadFunc(qIndex, target);
 
@@ -293,14 +293,14 @@
                     // Message("last time: " + RegisterToString(lastTime));
                     // Message("current time: " + RegisterToString(time));
 
-                    _OracleImplImpl(qIndex, zeroTest, time, lastTime, toggle);
+                    _OracleImplImpl(zeroTest, time, lastTime, toggle);
                     
                     // Message("isZero: " + RegisterToString([zeroTest]));
                     // Message("toggle: " + RegisterToString([toggle]));
 
                     Controlled IntegerIncrementLE ([zeroTest, toggle], (1, isValidLE));
 
-                    Adjoint _OracleImplImpl(qIndex, zeroTest, time, lastTime, toggle);
+                    Adjoint _OracleImplImpl(zeroTest, time, lastTime, toggle);
 
                     if (i > 0) {
                         Adjoint loadFunc(qIndices[i - 1], lastTarget);

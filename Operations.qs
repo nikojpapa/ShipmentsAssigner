@@ -244,7 +244,33 @@
     //     }
     // }
 
-    operation Oracle (qubits: Qubit[], database: Database): Unit {
+    operation _OracleImpl (numStops: Int, targetLength: Int, qIndices: Qubit[][], database: Database, shipmentIdLength: Int, timeLength: Int, lastTime: Qubit[], isValidLE: LittleEndian, lastTarget: Qubit[]): Unit {
+        body (...) {
+            for (i in 0..numStops - 1) {
+                using ((target, toggles) = (Qubit[targetLength], Qubit[0])) {
+                    let toggle = toggles[0];
+                    let qIndex = qIndices[i];
+                    let time = target[shipmentIdLength..timeLength - 1];
+                    LoadStop(qIndex, database, target);
+
+                    XIfLessThan(time, lastTime, toggle);
+                    Controlled IntegerIncrementLE ([toggle], (1, isValidLE));
+                    XIfLessThan(time, lastTime, toggle);
+
+                    if (i > 0) {
+                        Adjoint LoadStop(qIndices[i - 1], database, lastTarget);
+                    }
+                    for (j in 0..targetLength - 1) {
+                        SWAP(lastTarget[j], target[j]);
+                    }
+                }
+            }
+        }
+
+        adjoint invert;
+    }
+
+    operation Oracle (qubits: Qubit[], database: Database, ancilla: Qubit): Unit {
         body (...) {
             let numStops = Length(database!);
             let lenIndex = Length(qubits) / numStops;
@@ -268,22 +294,34 @@
                 set targetLength = targetLength + propertyLengths[i];
             }
 
-            using ((lastTime, isValid) = (Qubit[timeLength], Qubit[BitSize(numStops)])) {
+            using ((lastTarget, isValid) = (Qubit[targetLength], Qubit[BitSize(numStops)])) {
+                let lastTime = lastTarget[shipmentIdLength..timeLength - 1];
                 let isValidLE = LittleEndian(isValid);
                 
-                for (i in 0..numStops - 1) {
-                    using ((target, toggles) = (Qubit[targetLength], Qubit[0])) {
-                        let toggle = toggles[0];
-                        let qIndex = qIndices[i];
-                        let time = target[shipmentIdLength..timeLength - 1];
-                        LoadStop(qIndex, database, target);
+                _OracleImpl(numStops, targetLength, qIndices, database, shipmentIdLength, timeLength, lastTime, isValidLE, lastTarget);
+                // for (i in 0..numStops - 1) {
+                //     using ((target, toggles) = (Qubit[targetLength], Qubit[0])) {
+                //         let toggle = toggles[0];
+                //         let qIndex = qIndices[i];
+                //         let time = target[shipmentIdLength..timeLength - 1];
+                //         LoadStop(qIndex, database, target);
 
-                        XIfLessThan(time, lastTime, toggle);
-                        Controlled IntegerIncrementLE ([toggle], (1, isValidLE));
-                        XIfLessThan(time, lastTime, toggle);
-                        Adjoint LoadStop(qIndex, database, target);
-                    }
-                }
+                //         XIfLessThan(time, lastTime, toggle);
+                //         Controlled IntegerIncrementLE ([toggle], (1, isValidLE));
+                //         XIfLessThan(time, lastTime, toggle);
+
+                //         if (i > 0) {
+                //             Adjoint LoadStop(qIndices[i - 1], database, lastTarget);
+                //         }
+                //         for (j in 0..targetLength - 1) {
+                //             SWAP(lastTarget[j], target[j]);
+                //         }
+                //     }
+                // }
+
+                Controlled X(isValid, ancilla);
+
+                Adjoint _OracleImpl(numStops, targetLength, qIndices, database, shipmentIdLength, timeLength, lastTime, isValidLE, lastTarget);
             }
         }
     }

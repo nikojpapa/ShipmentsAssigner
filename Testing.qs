@@ -91,6 +91,73 @@ namespace ShipmentsAssigner {
         RunOnAllBinariesOfLength(BitSize(maxDbIndex), _TestLoadStopImpl(GetDatabase(), _));
     }
 
+    operation _TestOracleImpl(
+            database   : Database,
+            numElements: Int,
+            qubits     : Qubit[])
+                       : Unit {
+
+        let qIndexLength = Length(qubits) / numElements;
+
+        using (ancillas = Qubit[1]) {
+            let ancilla = ancillas[0];
+            Oracle(qubits, database, ancilla);
+
+            let calcAns = M(ancilla);
+
+            mutable cIndices = new Int[numElements];
+            // mutable qIndices = new Qubit[][numElements];
+            mutable startIndex = 0;
+            for (i in 0..numElements - 1) {
+                let endIndex = startIndex + qIndexLength - 1;
+                set cIndices[i] = QubitsToInt(qubits[startIndex..endIndex]);
+                // set qIndices[i] = qubits[startIndex..endIndex];
+                set startIndex = endIndex + 1;
+            }
+
+            Message(IntArrrayToString(cIndices));
+
+            let categorized = GetCategorizedEntries(database);
+            let times = categorized[1];
+            mutable valid = true;
+            mutable lastTime = -1;
+            for (i in 0..Length(times) - 1) {
+                let time = times[i];
+                if (time > 0 && time <= lastTime) {
+                    set valid = false;
+                }
+                set lastTime = time;
+            }
+
+            let trueAns = ResultFromBool(valid);
+
+            AssertResultEqual(calcAns, trueAns, "Incorrect. Correct answer is " + ToStringB(valid));
+
+            ResetAll(ancillas);
+        }        
+    }
+    operation _TestOracle(numTests: Int): Unit {
+        let database = GetDatabase();
+        let numElements = Length(database!);
+        let maxDbIndex = numElements - 1;
+
+        // RunOnAllBinariesOfLength(BitSize(maxDbIndex) * numElements, _TestOracleImpl(database, numElements, _));
+
+        // using (qubits = Qubit[BitSize(maxDbIndex) * numElements]) {
+        //     IntegerIncrementLE(16, LittleEndian(qubits));
+        //     SwapReverseRegister(qubits);
+        //     _TestOracleImpl(database, numElements, qubits);
+        // }
+
+        using (qubits = Qubit[BitSize(maxDbIndex) * numElements]) {
+            for (i in 0..numTests - 1) {
+                QFT(BigEndian(qubits));
+                _TestOracleImpl(database, numElements, qubits);
+                ResetAll(qubits);
+            }
+        }
+    }
+
 
     // // LoadStopsInSpecifiedOrder
     // operation _TestLoadStopsInSpecifiedOrderImpl(database: Database, elementLength: Int, a: Qubit[]): Unit {

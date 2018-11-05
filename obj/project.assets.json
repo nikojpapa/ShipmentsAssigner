@@ -250,19 +250,18 @@
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
       },
-      "Utils/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v2.0",
+      "nikojpapa.Quantum.Utils/0.3.0": {
+        "type": "package",
         "dependencies": {
           "Microsoft.NETCore.App": "2.0.0",
           "Microsoft.Quantum.Canon": "0.3.1810.2508-preview",
           "Microsoft.Quantum.Development.Kit": "0.3.1810.2508-preview"
         },
         "compile": {
-          "bin/placeholder/Utils.dll": {}
+          "lib/netcoreapp2.0/Utils.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Utils.dll": {}
+          "lib/netcoreapp2.0/Utils.dll": {}
         }
       }
     }
@@ -906,10 +905,16 @@
         "netstandard.library.nuspec"
       ]
     },
-    "Utils/1.0.0": {
-      "type": "project",
-      "path": "../../Utils/Utilsv0.3/Utils.csproj",
-      "msbuildProject": "../../Utils/Utilsv0.3/Utils.csproj"
+    "nikojpapa.Quantum.Utils/0.3.0": {
+      "sha512": "jY2mqjt3vkKVE/FJbBcvGeFbTiWB5rZ8pZPOqCa3bfjmU/Kcwcj+NeOjQWmrbduPAg/5acz3LdKtizDx7aZTCA==",
+      "type": "package",
+      "path": "nikojpapa.quantum.utils/0.3.0",
+      "files": [
+        "lib/netcoreapp2.0/Utils.dll",
+        "lib/netcoreapp2.0/Utils.runtimeconfig.json",
+        "nikojpapa.quantum.utils.0.3.0.nupkg.sha512",
+        "nikojpapa.quantum.utils.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -917,7 +922,7 @@
       "Microsoft.NETCore.App >= 2.0.0",
       "Microsoft.Quantum.Canon >= 0.3.1810.2508-preview",
       "Microsoft.Quantum.Development.Kit >= 0.3.1810.2508-preview",
-      "Utils >= 1.0.0"
+      "nikojpapa.quantum.utils >= 0.3.0"
     ]
   },
   "packageFolders": {
@@ -947,11 +952,7 @@
       },
       "frameworks": {
         "netcoreapp2.0": {
-          "projectReferences": {
-            "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Utils/Utilsv0.3/Utils.csproj": {
-              "projectPath": "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Utils/Utilsv0.3/Utils.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
@@ -975,6 +976,10 @@
           "Microsoft.Quantum.Development.Kit": {
             "target": "Package",
             "version": "[0.3.1810.2508-preview, )"
+          },
+          "nikojpapa.quantum.utils": {
+            "target": "Package",
+            "version": "[0.3.0, )"
           }
         },
         "imports": [

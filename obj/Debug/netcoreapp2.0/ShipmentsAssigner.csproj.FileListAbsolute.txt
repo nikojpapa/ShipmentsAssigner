@@ -3,12 +3,9 @@
 /Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/bin/Debug/netcoreapp2.0/ShipmentsAssigner.runtimeconfig.dev.json
 /Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/bin/Debug/netcoreapp2.0/ShipmentsAssigner.dll
 /Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/bin/Debug/netcoreapp2.0/ShipmentsAssigner.pdb
-/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/bin/Debug/netcoreapp2.0/Utils.dll
-/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/bin/Debug/netcoreapp2.0/Utils.pdb
 /Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/obj/Debug/netcoreapp2.0/ShipmentsAssigner.csprojAssemblyReference.cache
 /Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/obj/Debug/netcoreapp2.0/ShipmentsAssigner.csproj.CoreCompileInputs.cache
 /Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/obj/Debug/netcoreapp2.0/ShipmentsAssigner.AssemblyInfoInputs.cache
 /Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/obj/Debug/netcoreapp2.0/ShipmentsAssigner.AssemblyInfo.cs
-/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/obj/Debug/netcoreapp2.0/ShipmentsAssigner.csproj.CopyComplete
 /Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/obj/Debug/netcoreapp2.0/ShipmentsAssigner.dll
 /Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/obj/Debug/netcoreapp2.0/ShipmentsAssigner.pdb

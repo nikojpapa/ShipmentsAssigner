@@ -23,7 +23,7 @@ namespace ShipmentsAssigner {
         Message($"{cDatabase}");
 
         using (target = Qubit[BitSize(dbLength)]) {
-            GetElementUsingQuantumIndex(qIndex, cDatabase, target);
+            GetElementUsingQuantumIndex(qIndex, cDatabase, BigEndian(target));
 
             let calcAns = QubitsToInt(target);
             let trueAns = cDatabase[cIndex];
@@ -61,7 +61,7 @@ namespace ShipmentsAssigner {
         Message($"target length: {targetLength}");
 
         using (target = Qubit[targetLength]) {
-            LoadStop(qIndex, database, target);
+            LoadStop(qIndex, database, BigEndian(target));
 
             if (nullStop) {
                 AssertAllZero(target);
@@ -99,6 +99,18 @@ namespace ShipmentsAssigner {
 
         let qIndexLength = Length(qubits) / numElements;
 
+        // mutable cIndices = new Int[numElements];
+        // // mutable qIndices = new Qubit[][numElements];
+        // mutable startIndex = 0;
+        // for (i in 0..numElements - 1) {
+        //     let endIndex = startIndex + qIndexLength - 1;
+        //     set cIndices[i] = QubitsToInt(qubits[startIndex..endIndex]);
+        //     // set qIndices[i] = qubits[startIndex..endIndex];
+        //     set startIndex = endIndex + 1;
+        // }
+
+        // Message(IntArrrayToString(cIndices));
+
         using (ancillas = Qubit[1]) {
             let ancilla = ancillas[0];
             Oracle(qubits, database, ancilla);
@@ -125,16 +137,21 @@ namespace ShipmentsAssigner {
                 let cIndex = cIndices[i];
                 if (cIndex < Length(times)) {
                     let time = times[cIndex];
-                    if (time > 0 && time <= lastTime) {
+                    // Message($"cIndex: {cIndex}; time: {time}, lastTime: {lastTime}");
+                    if (cIndex > 0 && time <= lastTime) {
+                        // Message("setting invalid");
                         set valid = false;
                     }
                     set lastTime = time;
+                } else {
+                    set valid = false;
                 }
             }
 
             let trueAns = ResultFromBool(valid);
 
             AssertResultEqual(calcAns, trueAns, "Incorrect. Correct answer is " + ToStringB(valid));
+            Message("Correctly " + ToStringB(valid));
 
             ResetAll(ancillas);
         }        
@@ -146,12 +163,12 @@ namespace ShipmentsAssigner {
 
         // RunOnAllBinariesOfLength(BitSize(maxDbIndex) * numElements, _TestOracleImpl(database, numElements, _));
 
-        // using (qubits = Qubit[BitSize(maxDbIndex) * numElements]) {
-        //     IntegerIncrementLE(48, LittleEndian(qubits));
-        //     SwapReverseRegister(qubits);
-        //     _TestOracleImpl(database, numElements, qubits);
-        //     ResetAll(qubits);
-        // }
+        using (qubits = Qubit[BitSize(maxDbIndex) * numElements]) {
+            IntegerIncrementLE(44, LittleEndian(qubits));
+            SwapReverseRegister(qubits);
+            _TestOracleImpl(database, numElements, qubits);
+            ResetAll(qubits);
+        }
 
         using (qubits = Qubit[BitSize(maxDbIndex) * numElements]) {
             for (i in 0..numTests - 1) {
@@ -161,60 +178,4 @@ namespace ShipmentsAssigner {
             }
         }
     }
-
-
-    // // LoadStopsInSpecifiedOrder
-    // operation _TestLoadStopsInSpecifiedOrderImpl(database: Database, elementLength: Int, a: Qubit[]): Unit {
-    //     let lenA = Length(a);
-    //     let numCategories = Length(GetCategorizedEntries(database));
-    //     let numElements = Length(database!);
-    //     let lenIndex = lenA / numElements;
-    //     Message($"lenA: {lenA}; numCategories: {numCategories}; numElements: {numElements}; lenIndex: {lenIndex}");
-
-    //     mutable qIndices = new Qubit[][numElements];
-    //     for (i in 0..numElements - 1) {
-    //         let startIndex = i * lenIndex;
-    //         let endIndex = startIndex + lenIndex - 1;
-
-    //         set qIndices[i] = a[startIndex..endIndex];
-    //     }
-
-    //     let elementLengths = GetPropertyLengths(database);
-    //     let targetQubitsNeeded = numElements * elementLength;
-    //     let lenTarget = targetQubitsNeeded / numElements;
-
-    //     using(targetQubits = Qubit[targetQubitsNeeded]) {
-    //         mutable targets = new Qubit[][numElements];
-    //         for (i in 0..numElements - 1) {
-    //             let startIndex = i * lenTarget;
-    //             let endIndex = startIndex + lenTarget - 1;
-    //             set targets[i] = targetQubits[startIndex..endIndex];
-    //         }
-
-    //         mutable indexOrder = "";
-    //         for (i in 0..numElements - 1) {
-    //             set indexOrder = indexOrder + ToStringI(QubitsToInt(qIndices[i]));
-    //         }
-    //         Message($"Index order: {indexOrder}");
-
-    //         LoadStopsInSpecifiedOrder(qIndices, database, targets);
-
-    //         ResetAll(targetQubits);
-    //     }
-    // }
-    // operation _TestLoadStopsInSpecifiedOrder(): Unit {
-    //     let database = GetDatabase();
-    //     let numCategories = Length(GetCategorizedEntries(database));
-    //     let numElements = Length(database!);
-    //     let elementLengths = GetPropertyLengths(database);
-
-    //     mutable totalElementLength = 0;
-    //     for (i in 0..numElements - 1) {
-    //         set totalElementLength = totalElementLength + elementLengths[i];
-    //     }
-
-    //     let totalIndiceQubitsNeeded = BitSize(numElements) * numElements;
-
-    //     RunOnAllBinariesOfLength(totalIndiceQubitsNeeded, _TestLoadStopsInSpecifiedOrderImpl(database, totalElementLength, _));
-    // }
 }

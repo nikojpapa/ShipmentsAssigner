@@ -2,6 +2,7 @@
 {
     open Microsoft.Quantum.Canon;
     open Microsoft.Quantum.Extensions.Convert;
+    open Microsoft.Quantum.Extensions.Diagnostics;
     open Microsoft.Quantum.Primitive;
     open Utils.General;
     open Utils.Compare;
@@ -27,87 +28,18 @@
         ]);
     }
 
-    // operation TimesAreValid (nodes: Node[], target: Qubit): Unit {  // flips target if invalid
-    //     body (...) {
-    //         let numNodes = Length(nodes);
-    //         using (control = Qubit[BitSize(numNodes)]) {
-    //             X(Tail(control));
-
-    //             mutable lastTime = -1;
-    //             for (node in nodes) {
-    //                 let (nodeId, shipmentId, time, coordinates) = node!;
-    //                 if (lastTime <= time) {
-    //                     QFTAdderInt(control, -1);
-    //                 }
-
-    //                 ApplyToEachCA(X, control);
-    //                 Controlled X(control, target);
-    //                 ApplyToEachCA(X, control);
-
-    //                 set lastTime = time;
-    //             }
-
-    //             set lastTime = -1;
-    //             for (node in nodes) {
-    //                 let (nodeId, shipmentId, time, coordinates) = node!;
-    //                 if (lastTime <= time) {
-    //                     QFTAdderInt(control, 1);
-    //                 }
-
-    //                 set lastTime = time;
-    //             }
-    //         }
-    //     }
-    // }
-
-    // operation Slice(arr: Qubit[], startIndex: Int, endIndex: Int, target: Qubit[]): Unit {
-    //     body (...) {
-    //         let targetLength = Length(target);
-    //         let sliceLength = endIndex - startIndex + 1;
-    //         AssertIntEqual(Length(target), endIndex - startIndex + 1, $"target not correct length; targetLength: {targetLength}, sliceLength: {sliceLength}");
-            
-    //         let slicedArr = arr[startIndex..endIndex];
-    //         for (i in 0..Length(slicedArr) - 1) {
-    //             CNOT(slicedArr[i], target[i]);
-    //         }
-    //     }
-
-    //     adjoint invert;
-    //     controlled distribute;
-    //     controlled adjoint distribute;
-    // }
-
-    // operation _GetQuantumIndexImpl(control: Qubit, window: Window, seenIndex: Int, qIndexLength: Int, recursiveCall: ((Window, Int) => Unit: Controlled, Adjoint)): Unit {
-    //     body (...) {
-    //         let (windowMin, windowMax) = window!;
-    //         let testIndex = (windowMin + windowMax) / 2;
-    //         let windowIsEven = (windowMax - windowMax) % 2 == 1;
-    //         let addToIndex = 2 ^ (qIndexLength - 1);
-
-    //         recursiveCall(Window(testIndex + 1, windowMax), seenIndex + addToIndex);
-    //         X(control);
-    //         // if (windowIsEven) {
-    //         //     recursiveCall(Window(windowMin, testIndex), seenIndex);
-    //         // } else {
-    //             recursiveCall(Window(windowMin, testIndex - 1), seenIndex);
-    //         // }
-    //         X(control);
-    //     }
-
-    //     adjoint auto;
-    //     controlled auto;
-    //     controlled adjoint auto;
-    // }
-
-    operation GetElementUsingQuantumIndex(qIndex: Qubit[], database: Int[], target: Qubit[]): Unit {
+    operation GetElementUsingQuantumIndex(qIndex: Qubit[], database: Int[], target: BigEndian): Unit {
         body (...) {
             for (i in 0..Length(database) - 1) {
-                using(qubits = Qubit[1]) {
-                    let toggle = qubits[0];
-                    XIfQubitEqualToInt(qIndex, i, toggle);
-                    Controlled QFTAdderInt([toggle], (target, database[i]));
-                    XIfQubitEqualToInt(qIndex, i, toggle);
-                }
+                SwapReverseRegister(target!);
+                (ControlledOnInt(i, IntegerIncrementLE(database[i], _)))(qIndex, LittleEndian(target!));
+                SwapReverseRegister(target!);
+                // using(qubits = Qubit[1]) {
+                //     let toggle = qubits[0];
+                //     XIfQubitEqualToInt(qIndex, i, toggle);
+                //     Controlled QFTAdderInt([toggle], (target, database[i]));
+                //     XIfQubitEqualToInt(qIndex, i, toggle);
+                // }
             }
 
             // let (windowMin, windowMax) = window!;
@@ -183,7 +115,7 @@
         return lengths;
     }
 
-    operation LoadStop(qIndex: Qubit[], database: Database, target: Qubit[]): Unit {
+    operation LoadStop(qIndex: Qubit[], database: Database, target: BigEndian): Unit {
         body (...) {
             let categorized = GetCategorizedEntries(database);
             let numCategories = Length(categorized);
@@ -192,9 +124,9 @@
             mutable startIndex = 0;
             for (i in 0..Length(elementLengths) - 1) {
                 let endIndex = startIndex + elementLengths[i] - 1;
-                let elementTarget = target[startIndex..endIndex];
+                let elementTarget = target![startIndex..endIndex];
 
-                GetElementUsingQuantumIndex(qIndex, categorized[i], elementTarget);
+                GetElementUsingQuantumIndex(qIndex, categorized[i], BigEndian(elementTarget));
 
                 set startIndex = endIndex + 1;
             }
@@ -208,9 +140,9 @@
             mutable endIndex = ClassicalSum(elementLengths) - 1;
             for (i in Length(elementLengths) - 1..-1..0) {
                 let startIndex = endIndex - elementLengths[i] + 1;
-                let elementTarget = target[startIndex..endIndex];
+                let elementTarget = target![startIndex..endIndex];
 
-                Adjoint GetElementUsingQuantumIndex(qIndex, categorized[i], elementTarget);
+                Adjoint GetElementUsingQuantumIndex(qIndex, categorized[i], BigEndian(elementTarget));
 
                 set endIndex = startIndex - 1;
             }
@@ -220,50 +152,24 @@
         controlled adjoint distribute;
     }
 
-    // operation LoadStopsInSpecifiedOrder(qIndices: Qubit[][], database: Database, target: Qubit[][]): Unit {
-    //     let elementLengths = GetPropertyLengths(database);
-    //     let categorized = GetCategorizedEntries(database);
-    //     for (i in 0..Length(qIndices) - 1) {
-    //         let qIndex = qIndices[i];
-    //         let entryTarget = target[i];
-    //         Message("qIndex: " + RegisterToString(qIndex));
+    // operation _OracleImplImpl (
+    //         isNotZero: Qubit,
+    //         qIndex   : Qubit[],
+    //         time     : Qubit[],
+    //         lastTime : Qubit[],
+    //         toggle   : Qubit)
+    //                  : Unit {
 
-    //         LoadStop(qIndex, database, entryTarget);
-    //     }
-    // }
-
-    // operation PhysicallyValid (nodes: Node[], lengths: NodeRegisterLengths) : Unit {
     //     body (...) {
-    //         let (idLength, shipmentIdLength, timeLength, coordinateLength) = lengths!;
-    //         let totalNodeLength = idLength + shipmentIdLength + timeLength + coordinateLength;
-    //         let numNodes = Length(nodes);
+    //         X(isNotZero);
 
-    //         mutable lastTime = ();
-    //         mutable lastCoordinates = ();
-    //         for (node in nodes) {
-    //             let (nodeId, shipmentId, time, coordinates) = node!;
-    //             set lastTime = time;
-    //         }
+    //         XIfAllZero(qIndex, isNotZero);
+
+    //         XIfLessThanOrEqual(time, lastTime, toggle);
     //     }
+
+    //     adjoint invert;
     // }
-
-    operation _OracleImplImpl (
-            zeroTest: Qubit,
-            time    : Qubit[],
-            lastTime: Qubit[],
-            toggle  : Qubit)
-                    : Unit {
-
-        body (...) {
-            X(zeroTest);
-
-            XIfAllZero(time, zeroTest);
-
-            XIfLessThanOrEqual(time, lastTime, toggle);
-        }
-
-        adjoint invert;
-    }
 
     operation _OracleImpl (
             numStops        : Int, 
@@ -272,42 +178,78 @@
             database        : Database, 
             shipmentIdLength: Int, 
             timeLength      : Int, 
-            lastTime        : Qubit[], 
-            isValidLE       : LittleEndian, 
+            lastTime        : BigEndian, 
+            isInvalidLE     : LittleEndian, 
             lastTarget      : Qubit[]
             )               : Unit {
 
         body (...) {
             for (i in 0..numStops - 1) {
                 using ((target, toggles, zeroTests) = (Qubit[targetLength], Qubit[1], Qubit[1])) {
-                    let toggle = toggles[0];
-                    let zeroTest = zeroTests[0];
+                    let invalidToggle = toggles[0];
+                    let isNotZero = zeroTests[0];
                     let qIndex = qIndices[i];
-                    let time = target[shipmentIdLength..shipmentIdLength + timeLength - 1];
+                    let time = BigEndian(target[shipmentIdLength..shipmentIdLength + timeLength - 1]);
 
-                    // Message("Loading");
                     let loadFunc = LoadStop(_, database, _);
-                    loadFunc(qIndex, target);
+                    loadFunc(qIndex, BigEndian(target));
 
-                    // Message("loaded: " + RegisterToString(target));
-                    // Message("last time: " + RegisterToString(lastTime));
-                    // Message("current time: " + RegisterToString(time));
+                    // Message("");
+                    // Message("loaded: ");
+                    // DumpRegister((), target);
 
-                    _OracleImplImpl(zeroTest, time, lastTime, toggle);
+                    // Message("");
+                    // Message("last time: ");
+                    // DumpRegister((), lastTime!);
+
+                    // Message("");
+                    // Message("current time: ");
+                    // DumpRegister((), time!);
+
+                    X(isNotZero);
+                    XIfAllZero(qIndex, isNotZero);
+
+                    X(invalidToggle);
+                    ApplyRippleCarryComparatorBE(time, lastTime, invalidToggle);
+
                     
-                    // Message("isZero: " + RegisterToString([zeroTest]));
-                    // Message("toggle: " + RegisterToString([toggle]));
+                    // Message("");
+                    // Message("is not null: ");
+                    // DumpRegister((), [isNotZero]);
+                    
+                    // Message("");
+                    // Message("invalidToggle: ");
+                    // DumpRegister((), [invalidToggle]);
 
-                    Controlled IntegerIncrementLE ([zeroTest, toggle], (1, isValidLE));
+                    Controlled IntegerIncrementLE ([isNotZero, invalidToggle], (1, isInvalidLE));
 
-                    Adjoint _OracleImplImpl(zeroTest, time, lastTime, toggle);
+                    Adjoint ApplyRippleCarryComparatorBE(time, lastTime, invalidToggle);
+                    X(invalidToggle);
 
                     if (i > 0) {
-                        Adjoint loadFunc(qIndices[i - 1], lastTarget);
+                        X(isNotZero);
+                        for (j in 0..i - 1) {
+                            let qIndicesToTest = ConcatArrays(qIndices[i - j..i - 1]);
+                            let fullControlReg = qIndicesToTest + [isNotZero];
+                            // Message("");
+                            // Message($"i: {i}, j: {j}");
+                            // Message("qIndicesToTest: ");
+                            // if (Length(qIndicesToTest) > 0) {
+                            //     DumpRegister((), qIndicesToTest);
+                            // }
+                            // Message("");
+                            // Message("full control reg: ");
+                            // DumpRegister((), fullControlReg);
+                            (ControlledOnInt(0, Adjoint loadFunc(qIndices[i - j - 1], _)))(fullControlReg, BigEndian(lastTarget));
+                        }
+                        X(isNotZero);
                     }
                     for (j in 0..targetLength - 1) {
-                        SWAP(lastTarget[j], target[j]);
+                        Controlled SWAP([isNotZero], (lastTarget[j], target[j]));
                     }
+
+                    XIfAllZero(qIndex, isNotZero);
+                    X(isNotZero);
                 }
             }
         }
@@ -345,7 +287,7 @@
             }
 
             using ((lastTarget, isValid) = (Qubit[targetLength], Qubit[BitSize(numStops)])) {
-                let lastTime = lastTarget[shipmentIdLength..shipmentIdLength + timeLength - 1];
+                let lastTime = BigEndian(lastTarget[shipmentIdLength..shipmentIdLength + timeLength - 1]);
                 let isValidLE = LittleEndian(isValid);
                 
                 _OracleImpl(numStops, targetLength, qIndices, database, shipmentIdLength, timeLength, lastTime, isValidLE, lastTarget);

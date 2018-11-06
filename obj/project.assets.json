@@ -250,7 +250,7 @@
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
       },
-      "nikojpapa.Quantum.Utils/0.3.0": {
+      "nikojpapa.Quantum.Utils/0.3.1": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.App": "2.0.0",
@@ -905,14 +905,14 @@
         "netstandard.library.nuspec"
       ]
     },
-    "nikojpapa.Quantum.Utils/0.3.0": {
-      "sha512": "jY2mqjt3vkKVE/FJbBcvGeFbTiWB5rZ8pZPOqCa3bfjmU/Kcwcj+NeOjQWmrbduPAg/5acz3LdKtizDx7aZTCA==",
+    "nikojpapa.Quantum.Utils/0.3.1": {
+      "sha512": "VPSq2XQB1AIwEUmUqJJzanTNV0CKlQ8a5EN6vF+GO66WNSjqA737wvLGrs6nHK+5f1sKwQvET1Q4DgPzHCiDRA==",
       "type": "package",
-      "path": "nikojpapa.quantum.utils/0.3.0",
+      "path": "nikojpapa.quantum.utils/0.3.1",
       "files": [
         "lib/netcoreapp2.0/Utils.dll",
         "lib/netcoreapp2.0/Utils.runtimeconfig.json",
-        "nikojpapa.quantum.utils.0.3.0.nupkg.sha512",
+        "nikojpapa.quantum.utils.0.3.1.nupkg.sha512",
         "nikojpapa.quantum.utils.nuspec"
       ]
     }
@@ -922,7 +922,7 @@
       "Microsoft.NETCore.App >= 2.0.0",
       "Microsoft.Quantum.Canon >= 0.3.1810.2508-preview",
       "Microsoft.Quantum.Development.Kit >= 0.3.1810.2508-preview",
-      "nikojpapa.quantum.utils >= 0.3.0"
+      "nikojpapa.quantum.utils >= 0.3.1"
     ]
   },
   "packageFolders": {
@@ -979,7 +979,7 @@
           },
           "nikojpapa.quantum.utils": {
             "target": "Package",
-            "version": "[0.3.0, )"
+            "version": "[0.3.1, )"
           }
         },
         "imports": [

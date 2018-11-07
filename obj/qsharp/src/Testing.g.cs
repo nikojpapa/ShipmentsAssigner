@@ -16,6 +16,8 @@ using Microsoft.Quantum.Simulation.Core;
 [assembly: Microsoft.Quantum.QsCompiler.Attributes.SpecializationDeclaration("{\"Kind\":{\"Case\":\"QsBody\"},\"Parent\":{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"_TestOracleImpl\"},\"SourceFile\":\"/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs\",\"Position\":{\"Item1\":93,\"Item2\":4},\"HeaderRange\":{\"Item1\":{\"Line\":1,\"Column\":11},\"Item2\":{\"Line\":1,\"Column\":26}},\"Documentation\":[]}")]
 [assembly: Microsoft.Quantum.QsCompiler.Attributes.CallableDeclaration("{\"Kind\":{\"Case\":\"Operation\"},\"QualifiedName\":{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"_TestOracle\"},\"SourceFile\":\"/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs\",\"Position\":{\"Item1\":158,\"Item2\":4},\"SymbolRange\":{\"Item1\":{\"Line\":1,\"Column\":11},\"Item2\":{\"Line\":1,\"Column\":22}},\"ArgumentTuple\":{\"Case\":\"QsTuple\",\"Fields\":[[{\"Case\":\"QsTupleItem\",\"Fields\":[{\"VariableName\":{\"Case\":\"ValidName\",\"Fields\":[\"numTests\"]},\"Type\":{\"Case\":\"Int\"},\"IsMutable\":false,\"HasLocalQuantumDependency\":false,\"Position\":{\"Case\":\"Null\"},\"Range\":{\"Item1\":{\"Line\":1,\"Column\":23},\"Item2\":{\"Line\":1,\"Column\":31}}}]}]]},\"Signature\":{\"TypeParameters\":[],\"ArgumentType\":{\"Case\":\"Int\"},\"ReturnType\":{\"Case\":\"UnitType\"},\"SupportedFunctors\":[]},\"Documentation\":[]}")]
 [assembly: Microsoft.Quantum.QsCompiler.Attributes.SpecializationDeclaration("{\"Kind\":{\"Case\":\"QsBody\"},\"Parent\":{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"_TestOracle\"},\"SourceFile\":\"/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs\",\"Position\":{\"Item1\":158,\"Item2\":4},\"HeaderRange\":{\"Item1\":{\"Line\":1,\"Column\":11},\"Item2\":{\"Line\":1,\"Column\":22}},\"Documentation\":[]}")]
+[assembly: Microsoft.Quantum.QsCompiler.Attributes.CallableDeclaration("{\"Kind\":{\"Case\":\"Operation\"},\"QualifiedName\":{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"_TestCountSolutions\"},\"SourceFile\":\"/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs\",\"Position\":{\"Item1\":181,\"Item2\":4},\"SymbolRange\":{\"Item1\":{\"Line\":1,\"Column\":11},\"Item2\":{\"Line\":1,\"Column\":30}},\"ArgumentTuple\":{\"Case\":\"QsTuple\",\"Fields\":[[{\"Case\":\"QsTupleItem\",\"Fields\":[{\"VariableName\":{\"Case\":\"ValidName\",\"Fields\":[\"maxError\"]},\"Type\":{\"Case\":\"Double\"},\"IsMutable\":false,\"HasLocalQuantumDependency\":false,\"Position\":{\"Case\":\"Null\"},\"Range\":{\"Item1\":{\"Line\":1,\"Column\":31},\"Item2\":{\"Line\":1,\"Column\":39}}}]}]]},\"Signature\":{\"TypeParameters\":[],\"ArgumentType\":{\"Case\":\"Double\"},\"ReturnType\":{\"Case\":\"UnitType\"},\"SupportedFunctors\":[]},\"Documentation\":[]}")]
+[assembly: Microsoft.Quantum.QsCompiler.Attributes.SpecializationDeclaration("{\"Kind\":{\"Case\":\"QsBody\"},\"Parent\":{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"_TestCountSolutions\"},\"SourceFile\":\"/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs\",\"Position\":{\"Item1\":181,\"Item2\":4},\"HeaderRange\":{\"Item1\":{\"Line\":1,\"Column\":11},\"Item2\":{\"Line\":1,\"Column\":30}},\"Documentation\":[]}")]
 #line hidden
 namespace ShipmentsAssigner
 {
@@ -546,7 +548,7 @@ namespace ShipmentsAssigner
             set;
         }
 
-        protected ICallable<(QArray<Qubit>,Database,Qubit), QVoid> Oracle
+        protected IUnitary<(QArray<Qubit>,Database,Qubit)> Oracle
         {
             get;
             set;
@@ -662,7 +664,7 @@ namespace ShipmentsAssigner
             this.Release = this.Factory.Get<Release>(typeof(Microsoft.Quantum.Primitive.Release));
             this.ResetAll = this.Factory.Get<ICallable<QArray<Qubit>, QVoid>>(typeof(Microsoft.Quantum.Primitive.ResetAll));
             this.GetCategorizedEntries = this.Factory.Get<ICallable<Database, QArray<QArray<Int64>>>>(typeof(GetCategorizedEntries));
-            this.Oracle = this.Factory.Get<ICallable<(QArray<Qubit>,Database,Qubit), QVoid>>(typeof(Oracle));
+            this.Oracle = this.Factory.Get<IUnitary<(QArray<Qubit>,Database,Qubit)>>(typeof(Oracle));
             this.UtilsGeneralIntArrrayToString = this.Factory.Get<ICallable<QArray<Int64>, String>>(typeof(Utils.General.IntArrrayToString));
             this.UtilsGeneralQubitsToInt = this.Factory.Get<ICallable<QArray<Qubit>, Int64>>(typeof(Utils.General.QubitsToInt));
         }
@@ -689,43 +691,7 @@ namespace ShipmentsAssigner
             set;
         }
 
-        protected IUnitary<(Int64,Microsoft.Quantum.Canon.LittleEndian)> MicrosoftQuantumCanonIntegerIncrementLE
-        {
-            get;
-            set;
-        }
-
-        protected IUnitary<Microsoft.Quantum.Canon.BigEndian> MicrosoftQuantumCanonQFT
-        {
-            get;
-            set;
-        }
-
-        protected IUnitary<QArray<Qubit>> MicrosoftQuantumCanonSwapReverseRegister
-        {
-            get;
-            set;
-        }
-
         protected ICallable Length
-        {
-            get;
-            set;
-        }
-
-        protected Allocate Allocate
-        {
-            get;
-            set;
-        }
-
-        protected Release Release
-        {
-            get;
-            set;
-        }
-
-        protected ICallable<QArray<Qubit>, QVoid> ResetAll
         {
             get;
             set;
@@ -743,6 +709,12 @@ namespace ShipmentsAssigner
             set;
         }
 
+        protected ICallable<(Int64,ICallable), QVoid> UtilsTestingRunOnAllBinariesOfLength
+        {
+            get;
+            set;
+        }
+
         public override Func<Int64, QVoid> Body => (__in) =>
         {
             var numTests = __in;
@@ -752,42 +724,8 @@ namespace ShipmentsAssigner
             var numElements = database.Data.Length;
 #line 162 "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
             var maxDbIndex = (numElements - 1L);
-#line hidden
-            {
-#line 166 "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-                var qubits = Allocate.Apply((MicrosoftQuantumCanonBitSize.Apply(maxDbIndex) * numElements));
-#line 167 "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-                MicrosoftQuantumCanonIntegerIncrementLE.Apply((44L, new Microsoft.Quantum.Canon.LittleEndian(qubits?.Copy())));
-#line 168 "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-                MicrosoftQuantumCanonSwapReverseRegister.Apply(qubits?.Copy());
-#line 169 "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-                _TestOracleImpl.Apply((database, numElements, qubits?.Copy()));
-#line 170 "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-                ResetAll.Apply(qubits?.Copy());
-#line hidden
-                Release.Apply(qubits);
-            }
-
-#line hidden
-            {
-#line 173 "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-                var qubits = Allocate.Apply((MicrosoftQuantumCanonBitSize.Apply(maxDbIndex) * numElements));
-#line 174 "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-                foreach (var i in new Range(0L, (numTests - 1L)))
-#line hidden
-                {
-#line 175 "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-                    MicrosoftQuantumCanonQFT.Apply(new Microsoft.Quantum.Canon.BigEndian(qubits?.Copy()));
-#line 176 "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-                    _TestOracleImpl.Apply((database, numElements, qubits?.Copy()));
-#line 177 "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-                    ResetAll.Apply(qubits?.Copy());
-                }
-
-#line hidden
-                Release.Apply(qubits);
-            }
-
+#line 164 "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
+            UtilsTestingRunOnAllBinariesOfLength.Apply(((MicrosoftQuantumCanonBitSize.Apply(maxDbIndex) * numElements), _TestOracleImpl.Partial(new Func<QArray<Qubit>, (Database,Int64,QArray<Qubit>)>((_arg1) => (database, numElements, _arg1)))));
 #line hidden
             return QVoid.Instance;
         }
@@ -796,15 +734,10 @@ namespace ShipmentsAssigner
         public override void Init()
         {
             this.MicrosoftQuantumCanonBitSize = this.Factory.Get<ICallable<Int64, Int64>>(typeof(Microsoft.Quantum.Canon.BitSize));
-            this.MicrosoftQuantumCanonIntegerIncrementLE = this.Factory.Get<IUnitary<(Int64,Microsoft.Quantum.Canon.LittleEndian)>>(typeof(Microsoft.Quantum.Canon.IntegerIncrementLE));
-            this.MicrosoftQuantumCanonQFT = this.Factory.Get<IUnitary<Microsoft.Quantum.Canon.BigEndian>>(typeof(Microsoft.Quantum.Canon.QFT));
-            this.MicrosoftQuantumCanonSwapReverseRegister = this.Factory.Get<IUnitary<QArray<Qubit>>>(typeof(Microsoft.Quantum.Canon.SwapReverseRegister));
             this.Length = this.Factory.Get<ICallable>(typeof(Microsoft.Quantum.Core.Length<>));
-            this.Allocate = this.Factory.Get<Allocate>(typeof(Microsoft.Quantum.Primitive.Allocate));
-            this.Release = this.Factory.Get<Release>(typeof(Microsoft.Quantum.Primitive.Release));
-            this.ResetAll = this.Factory.Get<ICallable<QArray<Qubit>, QVoid>>(typeof(Microsoft.Quantum.Primitive.ResetAll));
             this.GetDatabase = this.Factory.Get<ICallable<QVoid, Database>>(typeof(GetDatabase));
             this._TestOracleImpl = this.Factory.Get<ICallable<(Database,Int64,QArray<Qubit>), QVoid>>(typeof(_TestOracleImpl));
+            this.UtilsTestingRunOnAllBinariesOfLength = this.Factory.Get<ICallable<(Int64,ICallable), QVoid>>(typeof(Utils.Testing.RunOnAllBinariesOfLength));
         }
 
         public override IApplyData __dataIn(Int64 data) => new QTuple<Int64>(data);
@@ -812,6 +745,50 @@ namespace ShipmentsAssigner
         public static System.Threading.Tasks.Task<QVoid> Run(IOperationFactory __m__, Int64 numTests)
         {
             return __m__.Run<_TestOracle, Int64, QVoid>(numTests);
+        }
+    }
+
+    public class _TestCountSolutions : Operation<Double, QVoid>, ICallable
+    {
+        public _TestCountSolutions(IOperationFactory m) : base(m)
+        {
+        }
+
+        String ICallable.Name => "_TestCountSolutions";
+        String ICallable.FullName => "ShipmentsAssigner._TestCountSolutions";
+        protected ICallable<(Double,Database), QVoid> CountSolutions
+        {
+            get;
+            set;
+        }
+
+        protected ICallable<QVoid, Database> GetDatabase
+        {
+            get;
+            set;
+        }
+
+        public override Func<Double, QVoid> Body => (__in) =>
+        {
+            var maxError = __in;
+#line 183 "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
+            CountSolutions.Apply((maxError, GetDatabase.Apply(QVoid.Instance)));
+#line hidden
+            return QVoid.Instance;
+        }
+
+        ;
+        public override void Init()
+        {
+            this.CountSolutions = this.Factory.Get<ICallable<(Double,Database), QVoid>>(typeof(CountSolutions));
+            this.GetDatabase = this.Factory.Get<ICallable<QVoid, Database>>(typeof(GetDatabase));
+        }
+
+        public override IApplyData __dataIn(Double data) => new QTuple<Double>(data);
+        public override IApplyData __dataOut(QVoid data) => data;
+        public static System.Threading.Tasks.Task<QVoid> Run(IOperationFactory __m__, Double maxError)
+        {
+            return __m__.Run<_TestCountSolutions, Double, QVoid>(maxError);
         }
     }
 }

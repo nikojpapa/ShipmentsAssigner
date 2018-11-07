@@ -255,6 +255,27 @@
         }
 
         adjoint invert;
+        controlled distribute;
+        controlled adjoint distribute;
+    }
+
+    function CreateIndices(
+            qubits         : Qubit[],
+            numStops       : Int, 
+            lenIndex       : Int, 
+            numProperties  : Int, 
+            propertyLengths: Int[]
+            )              : Qubit[][] {
+
+        mutable qIndices = new Qubit[][numStops];
+        for (i in 0..numStops - 1) {
+            let startIndex = i * lenIndex;
+            let endIndex = startIndex + lenIndex - 1;
+
+            set qIndices[i] = qubits[startIndex..endIndex];
+        }
+
+        return qIndices;
     }
 
     operation Oracle (
@@ -273,18 +294,20 @@
             let timeLength = propertyLengths[1];
             let coordinatesLength = propertyLengths[2];
 
-            mutable qIndices = new Qubit[][numStops];
-            for (i in 0..numStops - 1) {
-                let startIndex = i * lenIndex;
-                let endIndex = startIndex + lenIndex - 1;
+            let qIndices = CreateIndices(qubits, numStops, lenIndex, numProperties, propertyLengths);
+            // mutable qIndices = new Qubit[][numStops];
+            // for (i in 0..numStops - 1) {
+            //     let startIndex = i * lenIndex;
+            //     let endIndex = startIndex + lenIndex - 1;
 
-                set qIndices[i] = qubits[startIndex..endIndex];
-            }
+            //     set qIndices[i] = qubits[startIndex..endIndex];
+            // }
 
-            mutable targetLength = 0;
-            for (i in 0..numProperties - 1) {
-                set targetLength = targetLength + propertyLengths[i];
-            }
+            let targetLength = SumIntArray(propertyLengths);
+            // mutable targetLength = 0;
+            // for (i in 0..numProperties - 1) {
+            //     set targetLength = targetLength + propertyLengths[i];
+            // }
 
             using ((lastTarget, isValid) = (Qubit[targetLength], Qubit[BitSize(numStops)])) {
                 let lastTime = BigEndian(lastTarget[shipmentIdLength..shipmentIdLength + timeLength - 1]);
@@ -296,6 +319,76 @@
 
                 Adjoint _OracleImpl(numStops, targetLength, qIndices, database, shipmentIdLength, timeLength, lastTime, isValidLE, lastTarget);
             }
+        }
+
+        adjoint invert;
+        controlled distribute;
+        controlled adjoint distribute;
+    }
+
+    operation OracleAugmented (
+            qubits  : Qubit[], 
+            database: Database, 
+            ancilla : Qubit,
+            aug     : Qubit
+            )       : Unit {
+
+        body (...) {
+            using (toggles = Qubit[1]) {
+                let toggle = toggles[0];
+                Oracle(qubits, database, toggle);
+
+                Controlled X([aug, toggle], ancilla);
+            }
+        }
+
+        adjoint invert;
+        controlled distribute;
+        controlled adjoint distribute;
+    }
+
+    operation StateAugmentedOracle(flagIndex: Int, qubits: Qubit[], database: Database): Unit {
+        body (...) {
+            let flag = qubits[flagIndex];
+            let stateQubits = Exclude([flagIndex], qubits);
+            OracleAugmented(Most(stateQubits), database, flag, Tail(stateQubits));
+        }
+
+        adjoint invert;
+        controlled distribute;
+        controlled adjoint distribute;
+    }
+
+    operation OraclePow(power: Int, qubits: Qubit[], database: Database): Unit {
+        body (...) {
+            let stateOracle = StateOracle(StateAugmentedOracle(_, _, database));
+            let groverIteration = AmpAmpByOracle(1, stateOracle, 0);
+            (OperationPowCA(groverIteration, power))(qubits);
+        }
+
+        adjoint invert;
+        controlled distribute;
+        controlled adjoint distribute;
+    }
+
+    operation CountSolutions(maxError: Double, database: Database): Unit {
+        let numElements = Length(database!);
+        let maxDbIndex = numElements - 1;
+        let bitsForMaxDbIndex = BitSize(maxDbIndex);
+        let lenT = bitsForMaxDbIndex * 2 + 1 + CeilLogBase2(2.0 + 1.0 / (2.0 * maxError));
+        Message($"t: {lenT}");
+
+        using ((control, target) = (Qubit[lenT], Qubit[bitsForMaxDbIndex * numElements + 2])) {
+            let controlBE = BigEndian(control);
+            let discreteOracle = DiscreteOracle(OraclePow(_, _, database));
+
+            QFT(BigEndian(target));
+            QuantumPhaseEstimation(discreteOracle, target, controlBE);
+
+            let fi = MeasureIntegerBE(controlBE);
+            Message("fi: "+ ToStringI(fi));
+
+            ResetAll(control + target);
         }
     }
 

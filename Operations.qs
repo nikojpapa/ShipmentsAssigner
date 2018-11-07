@@ -30,38 +30,22 @@
 
     operation GetElementUsingQuantumIndex(qIndex: Qubit[], database: Int[], target: BigEndian): Unit {
         body (...) {
+            // Message("qIndex:");
+            // DumpRegister((), qIndex);
             for (i in 0..Length(database) - 1) {
-                SwapReverseRegister(target!);
+                SwapReverseRegister(target!);  // this is much faster than below block of home grown functions, but the rest of the code is implemented assuming qIndex is BigEndian, even though dump register prints it as LittleEndian
+                SwapReverseRegister(qIndex);
                 (ControlledOnInt(i, IntegerIncrementLE(database[i], _)))(qIndex, LittleEndian(target!));
+                SwapReverseRegister(qIndex);
                 SwapReverseRegister(target!);
+
                 // using(qubits = Qubit[1]) {
                 //     let toggle = qubits[0];
                 //     XIfQubitEqualToInt(qIndex, i, toggle);
-                //     Controlled QFTAdderInt([toggle], (target, database[i]));
+                //     Controlled QFTAdderInt([toggle], (target!, database[i]));
                 //     XIfQubitEqualToInt(qIndex, i, toggle);
                 // }
             }
-
-            // let (windowMin, windowMax) = window!;
-            // let testIndex = (windowMin + windowMax) / 2;
-            
-            // Message($"windowMin: {windowMin}, windowMax: {windowMax}, testIndex: {testIndex}, seenIndex: {seenIndex}");
-            // if (seenIndex == testIndex) {
-            //     Message($"setting {database[testIndex]} from index {testIndex}");
-            //     QFTAdderInt(target, database[testIndex]);
-            // } else {
-            //     let control = qIndex[0];
-            //     let qIndexLength = Length(qIndex);
-
-            //     let recursiveCall = Controlled GetElementUsingQuantumIndex([control], (_, database, target, _, _));
-            //     if (Length(qIndex) > 1) {
-            //         _GetQuantumIndexImpl(control, window, seenIndex, qIndexLength, recursiveCall(qIndex[1..Length(qIndex) - 1], _, _));
-            //         // Adjoint _GetQuantumIndexImpl(control, qIndex, target, window, recursiveCall(qIndex[1..Length(qIndex) - 1], _));
-            //     } else {
-            //         _GetQuantumIndexImpl(control, window, seenIndex, qIndexLength, recursiveCall(new Qubit[0], _, _));
-            //         // Adjoint _GetQuantumIndexImpl(control, qIndex, target, window, recursiveCall(new Qubit[0], _));
-            //     }
-            // }
         }
 
         adjoint auto;
@@ -128,6 +112,11 @@
 
                 GetElementUsingQuantumIndex(qIndex, categorized[i], BigEndian(elementTarget));
 
+                // Message("");
+                // Message($"loaded category {i}; startIndex: {startIndex}, endIndex: {endIndex}");
+                // DumpRegister((), elementTarget);
+                // Message("");
+
                 set startIndex = endIndex + 1;
             }
         }
@@ -190,6 +179,10 @@
                     let isNotZero = zeroTests[0];
                     let qIndex = qIndices[i];
                     let time = BigEndian(target[shipmentIdLength..shipmentIdLength + timeLength - 1]);
+
+                    // Message("");
+                    // Message("qIndex:");
+                    // DumpRegister((), qIndex);
 
                     let loadFunc = LoadStop(_, database, _);
                     loadFunc(qIndex, BigEndian(target));

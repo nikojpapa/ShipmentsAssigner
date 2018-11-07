@@ -161,14 +161,14 @@ namespace ShipmentsAssigner {
         let numElements = Length(database!);
         let maxDbIndex = numElements - 1;
 
-        RunOnAllBinariesOfLength(BitSize(maxDbIndex) * numElements, _TestOracleImpl(database, numElements, _));
-
         // using (qubits = Qubit[BitSize(maxDbIndex) * numElements]) {
-        //     IntegerIncrementLE(44, LittleEndian(qubits));
+        //     IntegerIncrementLE(6, LittleEndian(qubits));
         //     SwapReverseRegister(qubits);
         //     _TestOracleImpl(database, numElements, qubits);
         //     ResetAll(qubits);
         // }
+
+        RunOnAllBinariesOfLength(BitSize(maxDbIndex) * numElements, _TestOracleImpl(database, numElements, _));
 
         // using (qubits = Qubit[BitSize(maxDbIndex) * numElements]) {
         //     for (i in 0..numTests - 1) {

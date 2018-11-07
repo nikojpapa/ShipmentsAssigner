@@ -142,7 +142,10 @@ namespace ShipmentsAssigner {
                         // Message("setting invalid");
                         set valid = false;
                     }
-                    set lastTime = time;
+
+                    if (cIndex > 0) {
+                        set lastTime = time;
+                    }
                 } else {
                     set valid = false;
                 }
@@ -161,12 +164,12 @@ namespace ShipmentsAssigner {
         let numElements = Length(database!);
         let maxDbIndex = numElements - 1;
 
-        // using (qubits = Qubit[BitSize(maxDbIndex) * numElements]) {
-        //     IntegerIncrementLE(6, LittleEndian(qubits));
-        //     SwapReverseRegister(qubits);
-        //     _TestOracleImpl(database, numElements, qubits);
-        //     ResetAll(qubits);
-        // }
+        using (qubits = Qubit[BitSize(maxDbIndex) * numElements]) {
+            IntegerIncrementLE(17, LittleEndian(qubits));
+            SwapReverseRegister(qubits);
+            _TestOracleImpl(database, numElements, qubits);
+            ResetAll(qubits);
+        }
 
         RunOnAllBinariesOfLength(BitSize(maxDbIndex) * numElements, _TestOracleImpl(database, numElements, _));
 

@@ -284,7 +284,7 @@ namespace ShipmentsAssigner
             set;
         }
 
-        protected IUnitary<(QArray<Qubit>,Database,Microsoft.Quantum.Canon.BigEndian)> LoadStop
+        protected IUnitary<(QArray<Qubit>,Database,Microsoft.Quantum.Canon.BigEndian)> LoadFullStop
         {
             get;
             set;
@@ -332,7 +332,7 @@ namespace ShipmentsAssigner
 #line 63 "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
                 var target = Allocate.Apply(targetLength);
 #line 64 "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-                LoadStop.Apply((qIndex?.Copy(), database, new Microsoft.Quantum.Canon.BigEndian(target?.Copy())));
+                LoadFullStop.Apply((qIndex?.Copy(), database, new Microsoft.Quantum.Canon.BigEndian(target?.Copy())));
 #line 66 "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
                 if (nullStop)
                 {
@@ -389,7 +389,7 @@ namespace ShipmentsAssigner
             this.ResetAll = this.Factory.Get<ICallable<QArray<Qubit>, QVoid>>(typeof(Microsoft.Quantum.Primitive.ResetAll));
             this.DatabaseEntryToArray = this.Factory.Get<ICallable<DatabaseEntry, QArray<Int64>>>(typeof(DatabaseEntryToArray));
             this.GetPropertyLengths = this.Factory.Get<ICallable<Database, QArray<Int64>>>(typeof(GetPropertyLengths));
-            this.LoadStop = this.Factory.Get<IUnitary<(QArray<Qubit>,Database,Microsoft.Quantum.Canon.BigEndian)>>(typeof(LoadStop));
+            this.LoadFullStop = this.Factory.Get<IUnitary<(QArray<Qubit>,Database,Microsoft.Quantum.Canon.BigEndian)>>(typeof(LoadFullStop));
             this.UtilsGeneralQubitsToInt = this.Factory.Get<ICallable<QArray<Qubit>, Int64>>(typeof(Utils.General.QubitsToInt));
         }
 

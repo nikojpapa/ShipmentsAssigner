@@ -61,7 +61,7 @@ namespace ShipmentsAssigner {
         Message($"target length: {targetLength}");
 
         using (target = Qubit[targetLength]) {
-            LoadStop(qIndex, database, BigEndian(target));
+            LoadFullStop(qIndex, database, BigEndian(target));
 
             if (nullStop) {
                 AssertAllZero(target);

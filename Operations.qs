@@ -62,18 +62,6 @@
         return [shipmentId, time, coordinates];
     }
 
-    // function GetShipmentIdFromDatabaseEntry(databaseEntry: DatabaseEntry): Int {
-    //     return (DatabaseEntryToArray(databaseEntry))[0];
-    // }
-
-    // function GetTimeFromDatabaseEntry(databaseEntry: DatabaseEntry): Int {
-    //     return (DatabaseEntryToArray(databaseEntry))[1];
-    // }
-
-    // function GetCoordinatesFromDatabaseEntry(databaseEntry: DatabaseEntry): Int {
-    //     return (DatabaseEntryToArray(databaseEntry))[2];
-    // }
-
     function GetCategorizedEntries(database: Database): Int[][] {
         let databaseEntriesInArr = Map(DatabaseEntryToArray, database!);
         let numProperties = Length(databaseEntriesInArr[0]);
@@ -118,42 +106,42 @@
         controlled adjoint distribute;
     }
 
-    operation LoadFullStop(qIndex: Qubit[], database: Database, target: BigEndian): Unit {
-        body (...) {
-            let categorized = GetCategorizedEntries(database);
-            let numCategories = Length(categorized);
-            let elementLengths = GetPropertyLengths(database);
+    // operation LoadFullStop(qIndex: Qubit[], database: Database, target: BigEndian): Unit {
+    //     body (...) {
+    //         let categorized = GetCategorizedEntries(database);
+    //         let numCategories = Length(categorized);
+    //         let elementLengths = GetPropertyLengths(database);
 
-            mutable startIndex = 0;
-            for (i in 0..Length(elementLengths) - 1) {
-                let endIndex = startIndex + elementLengths[i] - 1;
-                let elementTarget = target![startIndex..endIndex];
+    //         mutable startIndex = 0;
+    //         for (i in 0..Length(elementLengths) - 1) {
+    //             let endIndex = startIndex + elementLengths[i] - 1;
+    //             let elementTarget = target![startIndex..endIndex];
 
-                GetElementUsingQuantumIndex(qIndex, categorized[i], BigEndian(elementTarget));
+    //             GetElementUsingQuantumIndex(qIndex, categorized[i], BigEndian(elementTarget));
 
-                set startIndex = endIndex + 1;
-            }
-        }
+    //             set startIndex = endIndex + 1;
+    //         }
+    //     }
 
-        adjoint (...) {
-            let categorized = GetCategorizedEntries(database);
-            let numCategories = Length(categorized);
-            let elementLengths = GetPropertyLengths(database);
+    //     adjoint (...) {
+    //         let categorized = GetCategorizedEntries(database);
+    //         let numCategories = Length(categorized);
+    //         let elementLengths = GetPropertyLengths(database);
 
-            mutable endIndex = ClassicalSum(elementLengths) - 1;
-            for (i in Length(elementLengths) - 1..-1..0) {
-                let startIndex = endIndex - elementLengths[i] + 1;
-                let elementTarget = target![startIndex..endIndex];
+    //         mutable endIndex = ClassicalSum(elementLengths) - 1;
+    //         for (i in Length(elementLengths) - 1..-1..0) {
+    //             let startIndex = endIndex - elementLengths[i] + 1;
+    //             let elementTarget = target![startIndex..endIndex];
 
-                Adjoint GetElementUsingQuantumIndex(qIndex, categorized[i], BigEndian(elementTarget));
+    //             Adjoint GetElementUsingQuantumIndex(qIndex, categorized[i], BigEndian(elementTarget));
 
-                set endIndex = startIndex - 1;
-            }
-        }
+    //             set endIndex = startIndex - 1;
+    //         }
+    //     }
 
-        controlled distribute;
-        controlled adjoint distribute;
-    }
+    //     controlled distribute;
+    //     controlled adjoint distribute;
+    // }
 
     operation _ValidTimes(
             qIndices   : Qubit[][],
@@ -216,97 +204,97 @@
         controlled adjoint distribute;
     }
 
-    operation _OracleImpl (
-            numStops        : Int, 
-            targetLength    : Int, 
-            qIndices        : Qubit[][], 
-            database        : Database, 
-            shipmentIdLength: Int, 
-            timeLength      : Int, 
-            lastTime        : BigEndian, 
-            isInvalidLE     : LittleEndian, 
-            lastTarget      : Qubit[]
-            )               : Unit {
+    // operation _OracleImpl (
+    //         numStops        : Int, 
+    //         targetLength    : Int, 
+    //         qIndices        : Qubit[][], 
+    //         database        : Database, 
+    //         shipmentIdLength: Int, 
+    //         timeLength      : Int, 
+    //         lastTime        : BigEndian, 
+    //         isInvalidLE     : LittleEndian, 
+    //         lastTarget      : Qubit[]
+    //         )               : Unit {
 
-        body (...) {
-            for (i in 0..numStops - 1) {
-                using ((target, toggles, zeroTests) = (Qubit[targetLength], Qubit[1], Qubit[1])) {
-                    let invalidToggle = toggles[0];
-                    let isNotZero = zeroTests[0];
-                    let qIndex = qIndices[i];
-                    let time = BigEndian(target[shipmentIdLength..shipmentIdLength + timeLength - 1]);
+    //     body (...) {
+    //         for (i in 0..numStops - 1) {
+    //             using ((target, toggles, zeroTests) = (Qubit[targetLength], Qubit[1], Qubit[1])) {
+    //                 let invalidToggle = toggles[0];
+    //                 let isNotZero = zeroTests[0];
+    //                 let qIndex = qIndices[i];
+    //                 let time = BigEndian(target[shipmentIdLength..shipmentIdLength + timeLength - 1]);
 
-                    // Message("");
-                    // Message("qIndex:");
-                    // DumpRegister((), qIndex);
+    //                 // Message("");
+    //                 // Message("qIndex:");
+    //                 // DumpRegister((), qIndex);
 
-                    let loadFunc = LoadFullStop(_, database, _);
-                    loadFunc(qIndex, BigEndian(target));
+    //                 let loadFunc = LoadFullStop(_, database, _);
+    //                 loadFunc(qIndex, BigEndian(target));
 
-                    // Message("");
-                    // Message("loaded: ");
-                    // DumpRegister((), target);
+    //                 // Message("");
+    //                 // Message("loaded: ");
+    //                 // DumpRegister((), target);
 
-                    // Message("");
-                    // Message("last time: ");
-                    // DumpRegister((), lastTime!);
+    //                 // Message("");
+    //                 // Message("last time: ");
+    //                 // DumpRegister((), lastTime!);
 
-                    // Message("");
-                    // Message("current time: ");
-                    // DumpRegister((), time!);
+    //                 // Message("");
+    //                 // Message("current time: ");
+    //                 // DumpRegister((), time!);
 
-                    X(isNotZero);
-                    XIfAllZero(qIndex, isNotZero);
+    //                 X(isNotZero);
+    //                 XIfAllZero(qIndex, isNotZero);
 
-                    X(invalidToggle);
-                    ApplyRippleCarryComparatorBE(time, lastTime, invalidToggle);
+    //                 X(invalidToggle);
+    //                 ApplyRippleCarryComparatorBE(time, lastTime, invalidToggle);
 
                     
-                    // Message("");
-                    // Message("is not null: ");
-                    // DumpRegister((), [isNotZero]);
+    //                 // Message("");
+    //                 // Message("is not null: ");
+    //                 // DumpRegister((), [isNotZero]);
                     
-                    // Message("");
-                    // Message("invalidToggle: ");
-                    // DumpRegister((), [invalidToggle]);
+    //                 // Message("");
+    //                 // Message("invalidToggle: ");
+    //                 // DumpRegister((), [invalidToggle]);
 
-                    Controlled IntegerIncrementLE ([isNotZero, invalidToggle], (1, isInvalidLE));
+    //                 Controlled IntegerIncrementLE ([isNotZero, invalidToggle], (1, isInvalidLE));
 
-                    Adjoint ApplyRippleCarryComparatorBE(time, lastTime, invalidToggle);
-                    X(invalidToggle);
+    //                 Adjoint ApplyRippleCarryComparatorBE(time, lastTime, invalidToggle);
+    //                 X(invalidToggle);
 
-                    if (i > 0) {
-                        X(isNotZero);
-                        for (j in 0..i - 1) {
-                            let qIndicesToTest = ConcatArrays(qIndices[i - j..i - 1]);
-                            let fullControlReg = qIndicesToTest + [isNotZero];
-                            // Message("");
-                            // Message($"i: {i}, j: {j}");
-                            // Message("qIndicesToTest: ");
-                            // if (Length(qIndicesToTest) > 0) {
-                            //     DumpRegister((), qIndicesToTest);
-                            // }
-                            // Message("");
-                            // Message("full control reg: ");
-                            // DumpRegister((), fullControlReg);
-                            (ControlledOnInt(0, Adjoint loadFunc(qIndices[i - j - 1], _)))(fullControlReg, BigEndian(lastTarget));
-                        }
-                        X(isNotZero);
-                    }
-                    for (j in 0..targetLength - 1) {
-                        Controlled SWAP([isNotZero], (lastTarget[j], target[j]));
-                    }
+    //                 if (i > 0) {
+    //                     X(isNotZero);
+    //                     for (j in 0..i - 1) {
+    //                         let qIndicesToTest = ConcatArrays(qIndices[i - j..i - 1]);
+    //                         let fullControlReg = qIndicesToTest + [isNotZero];
+    //                         // Message("");
+    //                         // Message($"i: {i}, j: {j}");
+    //                         // Message("qIndicesToTest: ");
+    //                         // if (Length(qIndicesToTest) > 0) {
+    //                         //     DumpRegister((), qIndicesToTest);
+    //                         // }
+    //                         // Message("");
+    //                         // Message("full control reg: ");
+    //                         // DumpRegister((), fullControlReg);
+    //                         (ControlledOnInt(0, Adjoint loadFunc(qIndices[i - j - 1], _)))(fullControlReg, BigEndian(lastTarget));
+    //                     }
+    //                     X(isNotZero);
+    //                 }
+    //                 for (j in 0..targetLength - 1) {
+    //                     Controlled SWAP([isNotZero], (lastTarget[j], target[j]));
+    //                 }
 
-                    XIfAllZero(qIndex, isNotZero);
-                    X(isNotZero);
-                }
-            }
-        }
+    //                 XIfAllZero(qIndex, isNotZero);
+    //                 X(isNotZero);
+    //             }
+    //         }
+    //     }
 
-        adjoint invert;
-        controlled distribute;
-        controlled adjoint distribute;
-    }
+    //     adjoint invert;
+    //     controlled distribute;
+    //     controlled adjoint distribute;
+    // }
 
     function CreateIndices(
             qubits         : Qubit[],
@@ -374,9 +362,12 @@
         body (...) {
             using (toggles = Qubit[1]) {
                 let toggle = toggles[0];
+                
                 Oracle(qubits, database, toggle);
 
                 Controlled X([aug, toggle], ancilla);
+
+                Adjoint Oracle(qubits, database, toggle);
             }
         }
 
@@ -400,8 +391,8 @@
     operation OraclePow(power: Int, qubits: Qubit[], database: Database): Unit {
         body (...) {
             let stateOracle = StateOracle(StateAugmentedOracle(_, _, database));
-            let groverIteration = AmpAmpByOracle(1, stateOracle, 0);
-            (OperationPowCA(groverIteration, power))(qubits);
+            (AmpAmpByOracle(power, stateOracle, 0))(qubits);
+            // (OperationPowCA(groverIteration, power))(qubits);
         }
 
         adjoint invert;
@@ -417,6 +408,7 @@
         Message($"t: {lenT}");
 
         using ((control, target) = (Qubit[lenT], Qubit[bitsForMaxDbIndex * numElements + 2])) {
+            SwapReverseRegister(control);
             let controlBE = BigEndian(control);
             let discreteOracle = DiscreteOracle(OraclePow(_, _, database));
 

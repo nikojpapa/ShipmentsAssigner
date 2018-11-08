@@ -39,57 +39,57 @@ namespace ShipmentsAssigner {
         RunOnAllBinariesOfLength(length, _TestGetQuantumIndexImpl(_, length));
     }
 
-    // LoadStop
-    operation _TestLoadStopImpl(database: Database, qIndex: Qubit[]): Unit {
-        let cIndex = QubitsToInt(qIndex);
-        let numStops = Length(database!);
-        let nullStop = cIndex >= numStops;
+    // // LoadStop
+    // operation _TestLoadStopImpl(database: Database, qIndex: Qubit[]): Unit {
+    //     let cIndex = QubitsToInt(qIndex);
+    //     let numStops = Length(database!);
+    //     let nullStop = cIndex >= numStops;
 
-        let propertyLengths = GetPropertyLengths(database);
-        let numProperties = Length(propertyLengths);
+    //     let propertyLengths = GetPropertyLengths(database);
+    //     let numProperties = Length(propertyLengths);
 
         
-        Message("qIndex length: " + ToStringI(Length(qIndex)));
-        Message("Index: " + ToStringI(cIndex));
-        Message($"num stops: {numStops}");
+    //     Message("qIndex length: " + ToStringI(Length(qIndex)));
+    //     Message("Index: " + ToStringI(cIndex));
+    //     Message($"num stops: {numStops}");
 
-        mutable targetLength = 0;
-        for (i in 0..numProperties - 1) {
-            set targetLength = targetLength + propertyLengths[i];
-        }
+    //     mutable targetLength = 0;
+    //     for (i in 0..numProperties - 1) {
+    //         set targetLength = targetLength + propertyLengths[i];
+    //     }
 
-        Message($"target length: {targetLength}");
+    //     Message($"target length: {targetLength}");
 
-        using (target = Qubit[targetLength]) {
-            LoadFullStop(qIndex, database, BigEndian(target));
+    //     using (target = Qubit[targetLength]) {
+    //         LoadFullStop(qIndex, database, BigEndian(target));
 
-            if (nullStop) {
-                AssertAllZero(target);
-            } else {
-                let trueStop = database![cIndex];
-                let stopArray = DatabaseEntryToArray(trueStop);
+    //         if (nullStop) {
+    //             AssertAllZero(target);
+    //         } else {
+    //             let trueStop = database![cIndex];
+    //             let stopArray = DatabaseEntryToArray(trueStop);
 
-                mutable startIndex = 0;
-                for (i in 0..Length(stopArray) - 1) {
-                    Message($"Category: {i}");
-                    let endIndex = startIndex + propertyLengths[i] - 1;
-                    let calcAns = QubitsToInt(target[startIndex..endIndex]);
-                    let trueAns = stopArray[i];
-                    AssertIntEqual(calcAns, trueAns, $"{calcAns} != {trueAns}");
+    //             mutable startIndex = 0;
+    //             for (i in 0..Length(stopArray) - 1) {
+    //                 Message($"Category: {i}");
+    //                 let endIndex = startIndex + propertyLengths[i] - 1;
+    //                 let calcAns = QubitsToInt(target[startIndex..endIndex]);
+    //                 let trueAns = stopArray[i];
+    //                 AssertIntEqual(calcAns, trueAns, $"{calcAns} != {trueAns}");
 
-                    set startIndex = endIndex + 1;
-                }
-            }
+    //                 set startIndex = endIndex + 1;
+    //             }
+    //         }
 
-            ResetAll(target);
-        }
-    }
-    operation _TestLoadStop(): Unit {
-        let database = GetDatabase();
-        let numElements = Length(database!);
-        let maxDbIndex = numElements - 1;
-        RunOnAllBinariesOfLength(BitSize(maxDbIndex), _TestLoadStopImpl(GetDatabase(), _));
-    }
+    //         ResetAll(target);
+    //     }
+    // }
+    // operation _TestLoadStop(): Unit {
+    //     let database = GetDatabase();
+    //     let numElements = Length(database!);
+    //     let maxDbIndex = numElements - 1;
+    //     RunOnAllBinariesOfLength(BitSize(maxDbIndex), _TestLoadStopImpl(GetDatabase(), _));
+    // }
 
     operation _TestOracleImpl(
             database   : Database,

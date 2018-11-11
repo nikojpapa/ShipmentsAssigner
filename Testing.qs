@@ -267,18 +267,19 @@ namespace ShipmentsAssigner {
             let ans = target[1..bitsForMaxDbIndex * numElements];
             let inputQubits = [aug] + ans;
 
-            ApplyToEach(H, inputQubits);
-            X(ancilla);
-            H(ancilla);
+            GroverPow(2, target, database);
+            // ApplyToEach(H, inputQubits);
+            // X(ancilla);
+            // H(ancilla);
 
-            for (i in 1..2) {
-                OracleAugmented(ans, database, ancilla, aug);  // Grover iteration
-                ApplyToEach(H, inputQubits);
-                ApplyToEach(X, inputQubits);
-                Controlled Z(Most(inputQubits), Tail(inputQubits));
-                ApplyToEach(X, inputQubits);
-                ApplyToEach(H, inputQubits);
-            }
+            // for (i in 1..2) {
+            //     OracleAugmented(ans, database, ancilla, aug);  // Grover iteration
+            //     ApplyToEach(H, inputQubits);
+            //     ApplyToEach(X, inputQubits);
+            //     Controlled Z(Most(inputQubits), Tail(inputQubits));
+            //     ApplyToEach(X, inputQubits);
+            //     ApplyToEach(H, inputQubits);
+            // }
             
             mutable calcAnsStr = "";
             Message("reg: " + RegisterToString(target));

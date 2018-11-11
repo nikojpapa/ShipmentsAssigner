@@ -376,10 +376,12 @@
         controlled adjoint distribute;
     }
 
-    operation StateAugmentedOracle(flagIndex: Int, qubits: Qubit[], database: Database): Unit {  // aug is last qubit
+    operation GroverStateAugmentedOracle(flagIndex: Int, qubits: Qubit[], database: Database): Unit {  // aug is last qubit
         body (...) {
             let flag = qubits[flagIndex];
             let stateQubits = Exclude([flagIndex], qubits);
+
+            ApplyToEachCA(H, stateQubits);
             OracleAugmented(Most(stateQubits), database, flag, Tail(stateQubits));
         }
 
@@ -388,11 +390,22 @@
         controlled adjoint distribute;
     }
 
-    operation OraclePow(power: Int, qubits: Qubit[], database: Database): Unit {  // flag is index 0
+    operation GroverPow(power: Int, qubits: Qubit[], database: Database): Unit {  // set flag index to 0
         body (...) {
-            let stateOracle = StateOracle(StateAugmentedOracle(_, _, database));
+            // let ancilla = qubits[0];
+            // let inputQubits = qubits[1..Length(qubits) - 1];
+            // let aug = Tail(inputQubits);
+            // let ans = Most(inputQubits);
+            // for (i in 1..power) {
+            //     OracleAugmented(ans, database, ancilla, aug);  // Grover iteration
+            //     ApplyToEachCA(H, inputQubits);
+            //     ApplyToEachCA(X, inputQubits);
+            //     Controlled Z(Most(inputQubits), Tail(inputQubits));
+            //     ApplyToEachCA(X, inputQubits);
+            //     ApplyToEachCA(H, inputQubits);
+            // }
+            let stateOracle = StateOracle(GroverStateAugmentedOracle(_, _, database));
             (AmpAmpByOracle(power, stateOracle, 0))(qubits);
-            // (OperationPowCA(groverIteration, power))(qubits);
         }
 
         adjoint invert;
@@ -410,7 +423,7 @@
         using ((control, target) = (Qubit[lenT], Qubit[bitsForMaxDbIndex * numElements + 2])) {
             SwapReverseRegister(control);
             let controlBE = BigEndian(control);
-            let discreteOracle = DiscreteOracle(OraclePow(_, _, database));
+            let discreteOracle = DiscreteOracle(GroverPow(_, _, database));
 
             QFT(BigEndian(target));
             QuantumPhaseEstimation(discreteOracle, target, controlBE);

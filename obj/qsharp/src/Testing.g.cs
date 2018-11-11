@@ -872,12 +872,6 @@ namespace ShipmentsAssigner
 
         String ICallable.Name => "_TestApplyOracle";
         String ICallable.FullName => "ShipmentsAssigner._TestApplyOracle";
-        protected ICallable MicrosoftQuantumCanonApplyToEach
-        {
-            get;
-            set;
-        }
-
         protected ICallable<Int64, Int64> MicrosoftQuantumCanonBitSize
         {
             get;
@@ -885,12 +879,6 @@ namespace ShipmentsAssigner
         }
 
         protected ICallable<Microsoft.Quantum.Canon.BigEndian, Int64> MicrosoftQuantumCanonMeasureIntegerBE
-        {
-            get;
-            set;
-        }
-
-        protected ICallable MicrosoftQuantumCanonMost
         {
             get;
             set;
@@ -926,12 +914,6 @@ namespace ShipmentsAssigner
             set;
         }
 
-        protected IUnitary<Qubit> MicrosoftQuantumPrimitiveH
-        {
-            get;
-            set;
-        }
-
         protected ICallable<Qubit, Result> M
         {
             get;
@@ -956,25 +938,13 @@ namespace ShipmentsAssigner
             set;
         }
 
-        protected IUnitary<Qubit> MicrosoftQuantumPrimitiveX
-        {
-            get;
-            set;
-        }
-
-        protected IUnitary<Qubit> MicrosoftQuantumPrimitiveZ
-        {
-            get;
-            set;
-        }
-
         protected ICallable<QVoid, Database> GetDatabase
         {
             get;
             set;
         }
 
-        protected IUnitary<(QArray<Qubit>,Database,Qubit,Qubit)> OracleAugmented
+        protected IUnitary<(Int64,QArray<Qubit>,Database)> GroverPow
         {
             get;
             set;
@@ -1010,30 +980,8 @@ namespace ShipmentsAssigner
                 var inputQubits = (new QArray<Qubit>()
                 {aug} + ans);
 #line 270 "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-                MicrosoftQuantumCanonApplyToEach.Apply((MicrosoftQuantumPrimitiveH, inputQubits?.Copy()));
-#line 271 "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-                MicrosoftQuantumPrimitiveX.Apply(ancilla);
-#line 272 "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-                MicrosoftQuantumPrimitiveH.Apply(ancilla);
-#line 274 "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-                foreach (var i in new Range(1L, 2L))
-#line hidden
-                {
-#line 275 "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-                    OracleAugmented.Apply((ans?.Copy(), database, ancilla, aug));
-#line 276 "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-                    MicrosoftQuantumCanonApplyToEach.Apply((MicrosoftQuantumPrimitiveH, inputQubits?.Copy()));
-#line 277 "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-                    MicrosoftQuantumCanonApplyToEach.Apply((MicrosoftQuantumPrimitiveX, inputQubits?.Copy()));
-#line 278 "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-                    MicrosoftQuantumPrimitiveZ.Controlled.Apply((MicrosoftQuantumCanonMost.Apply<QArray<Qubit>>(inputQubits), MicrosoftQuantumCanonTail.Apply<Qubit>(inputQubits)));
-#line 279 "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-                    MicrosoftQuantumCanonApplyToEach.Apply((MicrosoftQuantumPrimitiveX, inputQubits?.Copy()));
-#line 280 "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-                    MicrosoftQuantumCanonApplyToEach.Apply((MicrosoftQuantumPrimitiveH, inputQubits?.Copy()));
-                }
-
-#line 283 "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
+                GroverPow.Apply((2L, target?.Copy(), database));
+#line 284 "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
                 var calcAnsStr = "";
 #line 285 "/Users/nicholaspapadopoulos/Box Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
                 Message.Apply(("reg: " + UtilsGeneralRegisterToString.Apply(target?.Copy())));
@@ -1066,24 +1014,19 @@ namespace ShipmentsAssigner
         ;
         public override void Init()
         {
-            this.MicrosoftQuantumCanonApplyToEach = this.Factory.Get<ICallable>(typeof(Microsoft.Quantum.Canon.ApplyToEach<>));
             this.MicrosoftQuantumCanonBitSize = this.Factory.Get<ICallable<Int64, Int64>>(typeof(Microsoft.Quantum.Canon.BitSize));
             this.MicrosoftQuantumCanonMeasureIntegerBE = this.Factory.Get<ICallable<Microsoft.Quantum.Canon.BigEndian, Int64>>(typeof(Microsoft.Quantum.Canon.MeasureIntegerBE));
-            this.MicrosoftQuantumCanonMost = this.Factory.Get<ICallable>(typeof(Microsoft.Quantum.Canon.Most<>));
             this.MicrosoftQuantumCanonResultAsInt = this.Factory.Get<ICallable<QArray<Result>, Int64>>(typeof(Microsoft.Quantum.Canon.ResultAsInt));
             this.MicrosoftQuantumCanonTail = this.Factory.Get<ICallable>(typeof(Microsoft.Quantum.Canon.Tail<>));
             this.Length = this.Factory.Get<ICallable>(typeof(Microsoft.Quantum.Core.Length<>));
             this.MicrosoftQuantumExtensionsConvertToStringI = this.Factory.Get<ICallable<Int64, String>>(typeof(Microsoft.Quantum.Extensions.Convert.ToStringI));
             this.Allocate = this.Factory.Get<Allocate>(typeof(Microsoft.Quantum.Primitive.Allocate));
-            this.MicrosoftQuantumPrimitiveH = this.Factory.Get<IUnitary<Qubit>>(typeof(Microsoft.Quantum.Primitive.H));
             this.M = this.Factory.Get<ICallable<Qubit, Result>>(typeof(Microsoft.Quantum.Primitive.M));
             this.Message = this.Factory.Get<ICallable<String, QVoid>>(typeof(Microsoft.Quantum.Primitive.Message));
             this.Release = this.Factory.Get<Release>(typeof(Microsoft.Quantum.Primitive.Release));
             this.ResetAll = this.Factory.Get<ICallable<QArray<Qubit>, QVoid>>(typeof(Microsoft.Quantum.Primitive.ResetAll));
-            this.MicrosoftQuantumPrimitiveX = this.Factory.Get<IUnitary<Qubit>>(typeof(Microsoft.Quantum.Primitive.X));
-            this.MicrosoftQuantumPrimitiveZ = this.Factory.Get<IUnitary<Qubit>>(typeof(Microsoft.Quantum.Primitive.Z));
             this.GetDatabase = this.Factory.Get<ICallable<QVoid, Database>>(typeof(GetDatabase));
-            this.OracleAugmented = this.Factory.Get<IUnitary<(QArray<Qubit>,Database,Qubit,Qubit)>>(typeof(OracleAugmented));
+            this.GroverPow = this.Factory.Get<IUnitary<(Int64,QArray<Qubit>,Database)>>(typeof(GroverPow));
             this.UtilsGeneralRegisterToString = this.Factory.Get<ICallable<QArray<Qubit>, String>>(typeof(Utils.General.RegisterToString));
         }
 

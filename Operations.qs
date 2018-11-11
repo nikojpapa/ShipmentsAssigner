@@ -376,7 +376,7 @@
         controlled adjoint distribute;
     }
 
-    operation StateAugmentedOracle(flagIndex: Int, qubits: Qubit[], database: Database): Unit {
+    operation StateAugmentedOracle(flagIndex: Int, qubits: Qubit[], database: Database): Unit {  // aug is last qubit
         body (...) {
             let flag = qubits[flagIndex];
             let stateQubits = Exclude([flagIndex], qubits);
@@ -388,7 +388,7 @@
         controlled adjoint distribute;
     }
 
-    operation OraclePow(power: Int, qubits: Qubit[], database: Database): Unit {
+    operation OraclePow(power: Int, qubits: Qubit[], database: Database): Unit {  // flag is index 0
         body (...) {
             let stateOracle = StateOracle(StateAugmentedOracle(_, _, database));
             (AmpAmpByOracle(power, stateOracle, 0))(qubits);
@@ -404,7 +404,7 @@
         let numElements = Length(database!);
         let maxDbIndex = numElements - 1;
         let bitsForMaxDbIndex = BitSize(maxDbIndex);
-        let lenT = bitsForMaxDbIndex * 2 + 1 + CeilLogBase2(2.0 + 1.0 / (2.0 * maxError));
+        let lenT = 8; // bitsForMaxDbIndex * 2 + 1 + CeilLogBase2(2.0 + 1.0 / (2.0 * maxError));
         Message($"t: {lenT}");
 
         using ((control, target) = (Qubit[lenT], Qubit[bitsForMaxDbIndex * numElements + 2])) {

@@ -182,7 +182,115 @@ namespace ShipmentsAssigner {
         // }
     }
 
+    operation _TestOracleAugmentedImpl(
+            database   : Database,
+            numElements: Int,
+            qubits     : Qubit[])
+                       : Unit {
+
+        let target = Most(qubits);
+        let aug = Tail(qubits);
+        let qIndexLength = Length(qubits) / numElements;
+
+        using (ancillas = Qubit[1]) {
+            let ancilla = ancillas[0];
+            OracleAugmented(target, database, ancilla, aug);
+
+            let calcAns = M(ancilla);
+            let mAug = M(aug);
+
+            mutable cIndices = new Int[numElements];
+            mutable startIndex = 0;
+            for (i in 0..numElements - 1) {
+                let endIndex = startIndex + qIndexLength - 1;
+                set cIndices[i] = QubitsToInt(target[startIndex..endIndex]);
+                set startIndex = endIndex + 1;
+            }
+
+            Message(IntArrrayToString(cIndices) + ", aug: " + ToStringI(ResultAsInt([mAug])));
+
+            let categorized = GetCategorizedEntries(database);
+            let times = categorized[1];
+            mutable valid = IsResultOne(mAug);
+            mutable lastTime = -1;
+            for (i in 0..Length(cIndices) - 1) {
+                let cIndex = cIndices[i];
+                if (cIndex < Length(times)) {
+                    let time = times[cIndex];
+                    // Message($"cIndex: {cIndex}; time: {time}, lastTime: {lastTime}");
+                    if (cIndex > 0 && time <= lastTime) {
+                        // Message("setting invalid");
+                        set valid = false;
+                    }
+
+                    if (cIndex > 0) {
+                        set lastTime = time;
+                    }
+                } else {
+                    set valid = false;
+                }
+            }
+
+            let trueAns = ResultFromBool(valid);
+
+            AssertResultEqual(calcAns, trueAns, "Incorrect. Correct answer is " + ToStringB(valid));
+            Message("Correctly " + ToStringB(valid));
+
+            ResetAll(ancillas);
+        }        
+    }
+    operation _TestOracleAugmented(numTests: Int): Unit {
+        let database = GetDatabase();
+        let numElements = Length(database!);
+        let maxDbIndex = numElements - 1;
+
+        // using (qubits = Qubit[BitSize(maxDbIndex) * numElements + 1]) {
+        //     IntegerIncrementLE(17, LittleEndian(qubits));
+        //     SwapReverseRegister(qubits);
+        //     _TestOracleAugmentedImpl(database, numElements, qubits);
+        //     ResetAll(qubits);
+        // }
+
+        RunOnAllBinariesOfLength(BitSize(maxDbIndex) * numElements + 1, _TestOracleAugmentedImpl(database, numElements, _));
+    }
+
+    operation _TestApplyOracle(): Unit {
+        let database = GetDatabase();
+        let numElements = Length(database!);
+        let maxDbIndex = numElements - 1;
+        let bitsForMaxDbIndex = BitSize(maxDbIndex);
+
+        using (target = Qubit[bitsForMaxDbIndex * numElements + 2]) {
+            let ancilla = target[0];
+            let aug = Tail(target);
+            let ans = target[1..bitsForMaxDbIndex * numElements];
+            let discreteOracle = DiscreteOracle(OraclePow(_, _, database));
+
+            QFT(BigEndian([aug] + ans));
+            X(ancilla);
+            H(ancilla);
+            discreteOracle!(1, target);
+
+            
+            mutable calcAnsStr = "";
+            for (i in 0..numElements - 1) {
+                let startIndex = i * bitsForMaxDbIndex;
+                let endIndex = startIndex + bitsForMaxDbIndex - 1;
+
+                set calcAnsStr = calcAnsStr + ToStringI(MeasureIntegerBE(BigEndian(ans[startIndex..endIndex])));
+            }
+
+            Message("calcAns: "+ calcAnsStr);
+
+            ResetAll(target);
+        }
+    }
+
     operation _TestCountSolutions(maxError: Double): Unit {
         CountSolutions(maxError, GetDatabase());
     }
+
+    // operation _TestCounterWithMicrosoftGrover(): Unit {
+    //     (GroverSearch( [5], nIterations, 0))(qubits);
+    // }
 }

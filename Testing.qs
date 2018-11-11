@@ -1,6 +1,7 @@
 namespace ShipmentsAssigner {
     open Microsoft.Quantum.Canon;
     open Microsoft.Quantum.Extensions.Convert;
+    open Microsoft.Quantum.Extensions.Diagnostics;
     open Microsoft.Quantum.Extensions.Testing;
     open Microsoft.Quantum.Primitive;
     open Utils.General;
@@ -264,15 +265,23 @@ namespace ShipmentsAssigner {
             let ancilla = target[0];
             let aug = Tail(target);
             let ans = target[1..bitsForMaxDbIndex * numElements];
-            let discreteOracle = DiscreteOracle(OraclePow(_, _, database));
+            let inputQubits = [aug] + ans;
 
-            QFT(BigEndian([aug] + ans));
+            ApplyToEach(H, inputQubits);
             X(ancilla);
             H(ancilla);
-            discreteOracle!(1, target);
 
+            for (i in 1..2) {
+                OracleAugmented(ans, database, ancilla, aug);  // Grover iteration
+                ApplyToEach(H, inputQubits);
+                ApplyToEach(X, inputQubits);
+                Controlled Z(Most(inputQubits), Tail(inputQubits));
+                ApplyToEach(X, inputQubits);
+                ApplyToEach(H, inputQubits);
+            }
             
             mutable calcAnsStr = "";
+            Message("reg: " + RegisterToString(target));
             for (i in 0..numElements - 1) {
                 let startIndex = i * bitsForMaxDbIndex;
                 let endIndex = startIndex + bitsForMaxDbIndex - 1;
@@ -280,7 +289,7 @@ namespace ShipmentsAssigner {
                 set calcAnsStr = calcAnsStr + ToStringI(MeasureIntegerBE(BigEndian(ans[startIndex..endIndex])));
             }
 
-            Message("calcAns: "+ calcAnsStr);
+            Message("calcAns: "+ calcAnsStr + ", aug: " + ToStringI(ResultAsInt([M(aug)])) + ", ancilla: " + ToStringI(ResultAsInt([M(ancilla)])));
 
             ResetAll(target);
         }

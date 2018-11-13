@@ -7,6 +7,18 @@ namespace ShipmentsAssigner {
     open Utils.General;
     open Utils.Testing;
 
+    function GetDatabase(): Database {
+        return Database([
+            DatabaseEntry(0, 0, 0),
+            DatabaseEntry(1, 1, 1),
+            DatabaseEntry(2, 2, 2),
+            // DatabaseEntry(3, 3, 3),
+            // DatabaseEntry(4, 4, 4),
+            // DatabaseEntry(5, 2, 9),
+            // DatabaseEntry(9, 15, 13)
+        ]);
+    }
+
     // GET QUANTUM INDEX //
     operation _TestGetQuantumIndexImpl(qIndex: Qubit[], length: Int): Unit {
         let cIndex = QubitsToInt(qIndex);
@@ -267,20 +279,11 @@ namespace ShipmentsAssigner {
             let ans = target[1..bitsForMaxDbIndex * numElements];
             let inputQubits = [aug] + ans;
 
+            // GroverPow(2, target, database);
+            X(ancilla);
+            ApplyToEach(H, target);
             GroverPow(2, target, database);
-            // ApplyToEach(H, inputQubits);
-            // X(ancilla);
-            // H(ancilla);
 
-            // for (i in 1..2) {
-            //     OracleAugmented(ans, database, ancilla, aug);  // Grover iteration
-            //     ApplyToEach(H, inputQubits);
-            //     ApplyToEach(X, inputQubits);
-            //     Controlled Z(Most(inputQubits), Tail(inputQubits));
-            //     ApplyToEach(X, inputQubits);
-            //     ApplyToEach(H, inputQubits);
-            // }
-            
             mutable calcAnsStr = "";
             Message("reg: " + RegisterToString(target));
             for (i in 0..numElements - 1) {
@@ -296,8 +299,9 @@ namespace ShipmentsAssigner {
         }
     }
 
-    operation _TestCountSolutions(maxError: Double): Unit {
-        CountSolutions(maxError, GetDatabase());
+    operation _TestCountSolutions(bitAccuracy: Int, maxError: Double): Unit {
+        // CountSolutions(maxError, GetDatabase());
+        Message(ToStringI(CountSolutions(bitAccuracy, maxError, GetDatabase())));
     }
 
     // operation _TestCounterWithMicrosoftGrover(): Unit {

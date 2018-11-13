@@ -19,8 +19,8 @@ namespace ShipmentsAssigner
                 // _TestLoadStop.Run(qsim).Wait();
                 // _TestOracle.Run(qsim, 4).Wait();
                 // _TestOracleAugmented.Run(qsim, 4).Wait();
-                _TestApplyOracle.Run(qsim).Wait();
-                // _TestCountSolutions.Run(qsim, 0.25).Wait(-1);
+                // _TestApplyOracle.Run(qsim).Wait();
+                _TestCountSolutions.Run(qsim, 2, 0.25).Wait(-1);
 
                 watch.Stop();
                 var elapsedMs = watch.ElapsedMilliseconds;

@@ -12,6 +12,15 @@ namespace ShipmentsAssigner
         {
             using (var qsim = new QuantumSimulator())
             {
+                var bitAccuracy = 3;
+                var maxError = 0.25;
+                if (args.Length > 0) {
+                    Int32.TryParse(args[0], out bitAccuracy);
+                }
+                if (args.Length > 1) {
+                    Double.TryParse(args[1], out maxError);
+                }
+                
                 var watch = System.Diagnostics.Stopwatch.StartNew();
 
                 // _TestXIfQubitEqualToInt.Run(qsim, 4).Wait();
@@ -20,7 +29,7 @@ namespace ShipmentsAssigner
                 // _TestOracle.Run(qsim, 4).Wait();
                 // _TestOracleAugmented.Run(qsim, 4).Wait();
                 // _TestApplyOracle.Run(qsim).Wait();
-                _TestCountSolutions.Run(qsim, 2, 0.25).Wait(-1);
+                _TestCountSolutions.Run(qsim, bitAccuracy, maxError).Wait(-1);
 
                 watch.Stop();
                 var elapsedMs = watch.ElapsedMilliseconds;

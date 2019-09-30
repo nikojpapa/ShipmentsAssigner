@@ -1,9 +1,11 @@
 namespace ShipmentsAssigner {
+    open Microsoft.Quantum.Arithmetic;
+    open Microsoft.Quantum.Arrays;
     open Microsoft.Quantum.Canon;
     open Microsoft.Quantum.Extensions.Convert;
     open Microsoft.Quantum.Extensions.Diagnostics;
     open Microsoft.Quantum.Extensions.Testing;
-    open Microsoft.Quantum.Primitive;
+    open Microsoft.Quantum.Intrinsic;
     open Utils.General;
     open Utils.Testing;
 
@@ -29,7 +31,7 @@ namespace ShipmentsAssigner {
         mutable cDatabase = new Int[dbLength];
         // mutable databaseStr = "";
         for (i in 0..dbLength - 1) {
-            set cDatabase[i] = i;
+            set cDatabase w/= i <- i;
             // set cDatabase[i] = RandomInt(2);
             // set databaseStr = databaseStr + ToStringI(cDatabase[i]);
         }
@@ -135,7 +137,7 @@ namespace ShipmentsAssigner {
             mutable startIndex = 0;
             for (i in 0..numElements - 1) {
                 let endIndex = startIndex + qIndexLength - 1;
-                set cIndices[i] = QubitsToInt(qubits[startIndex..endIndex]);
+                set cIndices w/= i <- QubitsToInt(qubits[startIndex..endIndex]);
                 // set qIndices[i] = qubits[startIndex..endIndex];
                 set startIndex = endIndex + 1;
             }
@@ -151,7 +153,7 @@ namespace ShipmentsAssigner {
                 if (cIndex < Length(times)) {
                     let time = times[cIndex];
                     // Message($"cIndex: {cIndex}; time: {time}, lastTime: {lastTime}");
-                    if (cIndex > 0 && time <= lastTime) {
+                    if (cIndex > 0 and time <= lastTime) {
                         // Message("setting invalid");
                         set valid = false;
                     }
@@ -216,7 +218,7 @@ namespace ShipmentsAssigner {
             mutable startIndex = 0;
             for (i in 0..numElements - 1) {
                 let endIndex = startIndex + qIndexLength - 1;
-                set cIndices[i] = QubitsToInt(target[startIndex..endIndex]);
+                set cIndices w/= i <- QubitsToInt(target[startIndex..endIndex]);
                 set startIndex = endIndex + 1;
             }
 
@@ -231,7 +233,7 @@ namespace ShipmentsAssigner {
                 if (cIndex < Length(times)) {
                     let time = times[cIndex];
                     // Message($"cIndex: {cIndex}; time: {time}, lastTime: {lastTime}");
-                    if (cIndex > 0 && time <= lastTime) {
+                    if (cIndex > 0 and time <= lastTime) {
                         // Message("setting invalid");
                         set valid = false;
                     }
@@ -279,10 +281,9 @@ namespace ShipmentsAssigner {
             let ans = target[1..bitsForMaxDbIndex * numElements];
             let inputQubits = [aug] + ans;
 
-            // GroverPow(2, target, database);
-            X(ancilla);
-            ApplyToEach(H, target);
-            GroverPow(2, target, database);
+            // X(ancilla);
+            // ApplyToEach(H, target);
+            GroverPow(8, target, database);
 
             mutable calcAnsStr = "";
             Message("reg: " + RegisterToString(target));

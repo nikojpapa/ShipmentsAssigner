@@ -3,7 +3,7 @@
     open Microsoft.Quantum.Arithmetic;
     open Microsoft.Quantum.Arrays;
     open Microsoft.Quantum.Canon;
-    open Microsoft.Quantum.Extensions.Convert;
+    open Microsoft.Quantum.Convert;
     open Microsoft.Quantum.Extensions.Diagnostics;
     open Microsoft.Quantum.Math;
     open Microsoft.Quantum.Intrinsic;
@@ -31,7 +31,7 @@
             for (i in 0..Length(arr) - 1) {
                 SwapReverseRegister(target!);  // this is much faster than below block of home grown functions, but the rest of the code is implemented assuming qIndex is BigEndian, even though dump register prints it as LittleEndian
                 SwapReverseRegister(qIndex);
-                (ControlledOnInt(i, IntegerIncrementLE(arr[i], _)))(qIndex, LittleEndian(target!));
+                (ControlledOnInt(i, IncrementByInteger(arr[i], _)))(qIndex, LittleEndian(target!));
                 SwapReverseRegister(qIndex);
                 SwapReverseRegister(target!);
 
@@ -55,7 +55,7 @@
     }
 
     function GetCategorizedEntries(database: Database): Int[][] {
-        let databaseEntriesInArr = Map(DatabaseEntryToArray, database!);
+        let databaseEntriesInArr = Mapped(DatabaseEntryToArray, database!);
         let numProperties = Length(databaseEntriesInArr[0]);
 
         mutable categorized = new Int[][numProperties];
@@ -70,14 +70,14 @@
     }
 
     function GetPropertyLengths(database: Database): Int[] {
-        let databaseEntriesInArr = Map(DatabaseEntryToArray, database!);
+        let databaseEntriesInArr = Mapped(DatabaseEntryToArray, database!);
         let numProperties = Length(databaseEntriesInArr[0]);
 
         let categorized = GetCategorizedEntries(database);
 
         mutable lengths = new Int[numProperties];
         for (i in 0..numProperties - 1) {
-            set lengths w/= i <- BitSize(Max(categorized[i]));
+            set lengths w/= i <- BitSizeI(Max(categorized[i]));
         }
 
         return lengths;
@@ -165,11 +165,11 @@
                     XIfAllZero(qIndex, isNotZero);
 
                     X(invalidToggle);
-                    ApplyRippleCarryComparatorBE(timeBE, lastTime, invalidToggle);
+                    CompareUsingRippleCarry(BigEndianAsLittleEndian(timeBE), BigEndianAsLittleEndian(lastTime), invalidToggle);
 
-                    Controlled IntegerIncrementLE ([isNotZero, invalidToggle], (1, isInvalidLE));
+                    Controlled IncrementByInteger ([isNotZero, invalidToggle], (1, isInvalidLE));
 
-                    Adjoint ApplyRippleCarryComparatorBE(timeBE, lastTime, invalidToggle);
+                    Adjoint CompareUsingRippleCarry(BigEndianAsLittleEndian(timeBE), BigEndianAsLittleEndian(lastTime), invalidToggle);
                     X(invalidToggle);
 
                     if (i > 0) {
@@ -327,7 +327,7 @@
 
             let targetLength = SumIntArray(propertyLengths);
 
-            using ((lastTime, inValid) = (Qubit[propertyLengths[1]], Qubit[BitSize(numStops)])) {
+            using ((lastTime, inValid) = (Qubit[propertyLengths[1]], Qubit[BitSizeI(numStops)])) {
                 let lastTimeBE = BigEndian(lastTime);
                 let inValidLE = LittleEndian(inValid);
 
@@ -352,31 +352,31 @@
             )       : Unit {
 
         body (...) {
-            // using ((ancillae, toggles) = (Qubit[1], Qubit[1])) {
-            //     let ancilla = ancillae[0];
-            //     let toggle = toggles[0];
+            using (toggles = Qubit[1]) {
+                // let ancilla = ancillae[0];
+                let toggle = toggles[0];
 
-            //     X(ancilla);
-            //     H(ancilla);
+                X(ancilla);
+                H(ancilla);
                 
-            //     // Oracle(qubits, database, toggle);
+                Oracle(qubits, database, toggle);
 
-            //     // Controlled X([aug, toggle], ancilla);
+                Controlled X([aug, toggle], ancilla);
 
-            //     // Adjoint Oracle(qubits, database, toggle);
+                Adjoint Oracle(qubits, database, toggle);
 
-            //     // Controlled X (qubits, ancilla);
+                Controlled X (qubits, ancilla);
 
-            //     X(qubits[2]);
-            //     Controlled X (qubits, ancilla);
-            //     X(qubits[2]);
-            //     X(qubits[1]);
-            //     Controlled X (qubits, ancilla);
-            //     X(qubits[1]);
+                // X(qubits[2]);
+                // Controlled X (qubits, ancilla);
+                // X(qubits[2]);
+                // X(qubits[1]);
+                // Controlled X (qubits, ancilla);
+                // X(qubits[1]);
 
-            //     H(ancilla);
-            //     X(ancilla);
-            // }
+                H(ancilla);
+                X(ancilla);
+            }
         }
 
         adjoint invert;
@@ -400,30 +400,44 @@
 
     operation GroverPow(power: Int, qubits: Qubit[], database: Database): Unit {  // set flag index to 0
         body (...) {
-            // using (ancillae = Qubit[1]) {
-                let ancilla = qubits[0];
-                let stateQubits = qubits[1..Length(qubits) - 1];
-                let aug = Tail(qubits);
-                let ans = Most(qubits);
-                for (i in 1..power) {
-                    // Message($"  {i}");
-                    OracleAugmented(ans, database, ancilla, aug);  // Grover iteration
+            let ancilla = qubits[0];
+            let inputQubits = qubits[1..Length(qubits) - 1];
+            let aug = Tail(inputQubits);
+            let ans = Most(inputQubits);
 
-                    // DumpMachine();
-                    ApplyToEachCA(H, qubits);
-                    ApplyToEachCA(X, qubits);
-                    // for (j in 1..2 ^ (Length(ans)) - 1) {
-                    //     (ControlledOnInt(j, Z))(ans, aug);
-                    // }
-                    Controlled Z(ans, aug);
-                    ApplyToEachCA(X, qubits);
-                    ApplyToEachCA(H, qubits);
-                }
-                DumpRegister((), qubits);
+            for (i in 1..power) {
+                OracleAugmented(ans, database, ancilla, aug);  // Grover iteration
+                ApplyToEachCA(H, inputQubits);
+                ApplyToEachCA(X, inputQubits);
+                Controlled Z(Most(inputQubits), Tail(inputQubits));
+                ApplyToEachCA(X, inputQubits);
+                R(PauliI, 2.0 * PI(), qubits[0]);
+                ApplyToEachCA(H, inputQubits);
+            }
+            // // using (ancillae = Qubit[1]) {
+            //     let ancilla = qubits[0];
+            //     let stateQubits = qubits[1..Length(qubits) - 1];
+            //     let aug = Tail(qubits);
+            //     let ans = Most(qubits);
+            //     for (i in 1..power) {
+            //         // Message($"  {i}");
+            //         OracleAugmented(ans, database, ancilla, aug);  // Grover iteration
 
-            // }
-            // let stateOracle = StateOracle(GroverStateAugmentedOracle(_, _, database));
-            // (AmpAmpByOracle(power, stateOracle, 0))(qubits);
+            //         // DumpMachine();
+            //         ApplyToEachCA(H, qubits);
+            //         ApplyToEachCA(X, qubits);
+            //         // for (j in 1..2 ^ (Length(ans)) - 1) {
+            //         //     (ControlledOnInt(j, Z))(ans, aug);
+            //         // }
+            //         Controlled Z(ans, aug);
+            //         ApplyToEachCA(X, qubits);
+            //         ApplyToEachCA(H, qubits);
+            //     }
+            //     DumpRegister((), qubits);
+
+            // // }
+            // // let stateOracle = StateOracle(GroverStateAugmentedOracle(_, _, database));
+            // // (AmpAmpByOracle(power, stateOracle, 0))(qubits);
         }
 
         adjoint invert;
@@ -434,50 +448,64 @@
     operation CountSolutions(bitAccuracy: Int, maxError: Double, database: Database): Int {
         let numElements = Length(database!);
         let maxDbIndex = numElements - 1;
-        let bitsForMaxDbIndex = BitSize(maxDbIndex);
+        let bitsForMaxDbIndex = BitSizeI(maxDbIndex);
         let lenT = bitAccuracy + CeilLogBase2(2.0 + 1.0 / (2.0 * maxError));
         Message($"t: {lenT}");
 
         mutable numSolutions = -1;
         using ((control, target) = (Qubit[lenT], Qubit[bitsForMaxDbIndex * numElements + 3])) {
             let controlBE = BigEndian(control);
-            let EPR = target[0..1];
-            let ancilla = EPR[1];
-            let aug = Tail(target);
-            let ans = target[2..bitsForMaxDbIndex * numElements + 1];
-            let stateQubits = ans + [aug];
-            let inputQubits = [ancilla] +  stateQubits;
-            let discreteOracle = DiscreteOracle(GroverPow(_, _, database));
+            let ancilla = target[0];
 
-            // GroverPow(2, target, database);
-            H(ancilla);
-            CNOT(ancilla, EPR[0]);
-
-            // ApplyToEachCA(H, control);
-            ApplyToEachCA(H, control + stateQubits);
-            for (i in 0..0) {
-                Message(ToStringI(i));
-                Controlled GroverPow([control[Length(control) - 1 - i]], (2 ^ i, inputQubits, database));
+            X(ancilla);
+            ApplyToEachCA(H, control + target);
+            for (i in 0..Length(control) - 1) {
+                Controlled GroverPow([control[Length(control) - 1 - i]], (2 ^ i, target, database));
             }
-            DumpRegister((), control);
             Adjoint QFT(controlBE);
 
-            // ApplyToEachCA(H, target);
-            // QuantumPhaseEstimation(discreteOracle, target, controlBE);
+            let fiBE = MeasureInteger(BigEndianAsLittleEndian(controlBE));
+            let numSolutionsD = PowD(Sin(IntAsDouble(fiBE) / 2.0), 2.0) * IntAsDouble(2 ^ Length(control + target));
 
-            let fiBE = QubitsToInt(control);
-            let fi = MeasureInteger(LittleEndian(control));
-            Message("fi: "+ ToStringI(fi));
-            Message("fiBE: "+ ToStringI(fiBE));
+            Message("numSolutions: " + IntAsString(Round(numSolutionsD)));
+            // let controlBE = BigEndian(control);
+            // let EPR = target[0..1];
+            // let ancilla = EPR[1];
+            // let aug = Tail(target);
+            // let ans = target[2..bitsForMaxDbIndex * numElements + 1];
+            // let stateQubits = ans + [aug];
+            // let inputQubits = [ancilla] +  stateQubits;
+            // let discreteOracle = DiscreteOracle(GroverPow(_, _, database));
 
-            let numSolutionsD = PowD(Sin(ToDouble(fiBE) / 2.0), 2.0) * ToDouble(2 ^ Length(inputQubits));
-            Message("numSolutionsD: " + ToStringD(numSolutionsD));
+            // // GroverPow(2, target, database);
+            // H(ancilla);
+            // CNOT(ancilla, EPR[0]);
 
-            // if (RealMod(numSolutionsD - 0.5, 1.0, 0.0) == 0.0) {
-            //     set numSolutions = Round(numSolutionsD - 0.5);
-            // } else {
-                set numSolutions = Round(numSolutionsD);
+            // // ApplyToEachCA(H, control);
+            // ApplyToEachCA(H, control + stateQubits);
+            // for (i in 0..0) {
+            //     Message(ToStringI(i));
+            //     Controlled GroverPow([control[Length(control) - 1 - i]], (2 ^ i, inputQubits, database));
             // }
+            // DumpRegister((), control);
+            // Adjoint QFT(controlBE);
+
+            // // ApplyToEachCA(H, target);
+            // // QuantumPhaseEstimation(discreteOracle, target, controlBE);
+
+            // let fiBE = QubitsToInt(control);
+            // let fi = MeasureInteger(LittleEndian(control));
+            // Message("fi: "+ ToStringI(fi));
+            // Message("fiBE: "+ ToStringI(fiBE));
+
+            // let numSolutionsD = PowD(Sin(ToDouble(fiBE) / 2.0), 2.0) * ToDouble(2 ^ Length(inputQubits));
+            // Message("numSolutionsD: " + ToStringD(numSolutionsD));
+
+            // // if (RealMod(numSolutionsD - 0.5, 1.0, 0.0) == 0.0) {
+            // //     set numSolutions = Round(numSolutionsD - 0.5);
+            // // } else {
+            //     set numSolutions = Round(numSolutionsD);
+            // // }
 
             ResetAll(control + target);
         }
@@ -487,7 +515,7 @@
 
     // operation Entry () : Unit {
     //     let numPickups = 3;
-    //     let indicesLength = numPickups * BitSize(numPickups);
+    //     let indicesLength = numPickups * BitSizeI(numPickups);
     //     using ((pickups, deliveries) = (Qubit[indicesLength], Qubit[indicesLength])) {
 
     //     }

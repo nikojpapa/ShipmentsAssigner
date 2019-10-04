@@ -266,7 +266,7 @@
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
-      "nikojpapa.Quantum.Utils/0.9.0": {
+      "nikojpapa.Quantum.Utils/0.9.1": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.App": "2.0.0",
@@ -969,14 +969,14 @@
         "newtonsoft.json.nuspec"
       ]
     },
-    "nikojpapa.Quantum.Utils/0.9.0": {
-      "sha512": "47/90oVKPYe3wIouFBDlfXYCw+xLTsfxu4E/ldB+1XxsIIG46J6r01xdHJ41xp0HQcAcooY9KDvS8MNAIXcmFw==",
+    "nikojpapa.Quantum.Utils/0.9.1": {
+      "sha512": "v66ggoezs64E7atddvJiDfOFwzfJJm4ZcS9OFRp9P6YGDKEBatqxKsuoLPz/+4tT4dW2f7znsPzB0VNqZqPZPw==",
       "type": "package",
-      "path": "nikojpapa.quantum.utils/0.9.0",
+      "path": "nikojpapa.quantum.utils/0.9.1",
       "files": [
         "lib/netcoreapp2.0/Utils.dll",
         "lib/netcoreapp2.0/Utils.runtimeconfig.json",
-        "nikojpapa.quantum.utils.0.9.0.nupkg.sha512",
+        "nikojpapa.quantum.utils.0.9.1.nupkg.sha512",
         "nikojpapa.quantum.utils.nuspec"
       ]
     }
@@ -986,7 +986,7 @@
       "Microsoft.NETCore.App >= 2.0.0",
       "Microsoft.Quantum.Development.Kit >= 0.9.1909.3002",
       "Microsoft.Quantum.Standard >= 0.9.1909.3002",
-      "nikojpapa.quantum.utils >= 0.9.0"
+      "nikojpapa.quantum.utils >= 0.9.1"
     ]
   },
   "packageFolders": {
@@ -1043,7 +1043,7 @@
           },
           "nikojpapa.quantum.utils": {
             "target": "Package",
-            "version": "[0.9.0, )"
+            "version": "[0.9.1, )"
           }
         },
         "imports": [

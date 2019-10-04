@@ -58,11 +58,11 @@ using Microsoft.Quantum.Simulation.Core;
 [assembly: SpecializationDeclaration("{\"Kind\":{\"Case\":\"QsControlledAdjoint\"},\"TypeArguments\":{\"Case\":\"Null\"},\"Information\":{\"Characteristics\":{\"Case\":\"Union\",\"Fields\":[{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Adjointable\"}]},{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Controllable\"}]}]},\"InferredInformation\":{\"IsSelfAdjoint\":false,\"IsIntrinsic\":false}},\"Parent\":{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"GroverStateAugmentedOracle\"},\"Attributes\":[],\"SourceFile\":\"/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs\",\"Position\":{\"Item1\":397,\"Item2\":8},\"HeaderRange\":{\"Item1\":{\"Line\":1,\"Column\":1},\"Item2\":{\"Line\":1,\"Column\":19}},\"Documentation\":[]}")]
 [assembly: CallableDeclaration("{\"Kind\":{\"Case\":\"Operation\"},\"QualifiedName\":{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"GroverPow\"},\"Attributes\":[],\"SourceFile\":\"/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs\",\"Position\":{\"Item1\":400,\"Item2\":4},\"SymbolRange\":{\"Item1\":{\"Line\":1,\"Column\":11},\"Item2\":{\"Line\":1,\"Column\":20}},\"ArgumentTuple\":{\"Case\":\"QsTuple\",\"Fields\":[[{\"Case\":\"QsTupleItem\",\"Fields\":[{\"VariableName\":{\"Case\":\"ValidName\",\"Fields\":[\"power\"]},\"Type\":{\"Case\":\"Int\"},\"InferredInformation\":{\"IsMutable\":false,\"HasLocalQuantumDependency\":false},\"Position\":{\"Case\":\"Null\"},\"Range\":{\"Item1\":{\"Line\":1,\"Column\":21},\"Item2\":{\"Line\":1,\"Column\":26}}}]},{\"Case\":\"QsTupleItem\",\"Fields\":[{\"VariableName\":{\"Case\":\"ValidName\",\"Fields\":[\"qubits\"]},\"Type\":{\"Case\":\"ArrayType\",\"Fields\":[{\"Case\":\"Qubit\"}]},\"InferredInformation\":{\"IsMutable\":false,\"HasLocalQuantumDependency\":false},\"Position\":{\"Case\":\"Null\"},\"Range\":{\"Item1\":{\"Line\":1,\"Column\":33},\"Item2\":{\"Line\":1,\"Column\":39}}}]},{\"Case\":\"QsTupleItem\",\"Fields\":[{\"VariableName\":{\"Case\":\"ValidName\",\"Fields\":[\"database\"]},\"Type\":{\"Case\":\"UserDefinedType\",\"Fields\":[{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"Database\",\"Range\":{\"Case\":\"Value\",\"Fields\":[{\"Item1\":{\"Line\":1,\"Column\":60},\"Item2\":{\"Line\":1,\"Column\":68}}]}}]},\"InferredInformation\":{\"IsMutable\":false,\"HasLocalQuantumDependency\":false},\"Position\":{\"Case\":\"Null\"},\"Range\":{\"Item1\":{\"Line\":1,\"Column\":50},\"Item2\":{\"Line\":1,\"Column\":58}}}]}]]},\"Signature\":{\"TypeParameters\":[],\"ArgumentType\":{\"Case\":\"TupleType\",\"Fields\":[[{\"Case\":\"Int\"},{\"Case\":\"ArrayType\",\"Fields\":[{\"Case\":\"Qubit\"}]},{\"Case\":\"UserDefinedType\",\"Fields\":[{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"Database\",\"Range\":{\"Case\":\"Null\"}}]}]]},\"ReturnType\":{\"Case\":\"UnitType\"},\"Information\":{\"Characteristics\":{\"Case\":\"Union\",\"Fields\":[{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Adjointable\"}]},{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Controllable\"}]}]},\"InferredInformation\":{\"IsSelfAdjoint\":false,\"IsIntrinsic\":false}}},\"Documentation\":[]}")]
 [assembly: SpecializationDeclaration("{\"Kind\":{\"Case\":\"QsBody\"},\"TypeArguments\":{\"Case\":\"Null\"},\"Information\":{\"Characteristics\":{\"Case\":\"Union\",\"Fields\":[{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Adjointable\"}]},{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Controllable\"}]}]},\"InferredInformation\":{\"IsSelfAdjoint\":false,\"IsIntrinsic\":false}},\"Parent\":{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"GroverPow\"},\"Attributes\":[],\"SourceFile\":\"/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs\",\"Position\":{\"Item1\":401,\"Item2\":8},\"HeaderRange\":{\"Item1\":{\"Line\":1,\"Column\":1},\"Item2\":{\"Line\":1,\"Column\":5}},\"Documentation\":[]}")]
-[assembly: SpecializationDeclaration("{\"Kind\":{\"Case\":\"QsAdjoint\"},\"TypeArguments\":{\"Case\":\"Null\"},\"Information\":{\"Characteristics\":{\"Case\":\"Union\",\"Fields\":[{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Adjointable\"}]},{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Controllable\"}]}]},\"InferredInformation\":{\"IsSelfAdjoint\":false,\"IsIntrinsic\":false}},\"Parent\":{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"GroverPow\"},\"Attributes\":[],\"SourceFile\":\"/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs\",\"Position\":{\"Item1\":428,\"Item2\":8},\"HeaderRange\":{\"Item1\":{\"Line\":1,\"Column\":1},\"Item2\":{\"Line\":1,\"Column\":8}},\"Documentation\":[]}")]
-[assembly: SpecializationDeclaration("{\"Kind\":{\"Case\":\"QsControlled\"},\"TypeArguments\":{\"Case\":\"Null\"},\"Information\":{\"Characteristics\":{\"Case\":\"Union\",\"Fields\":[{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Adjointable\"}]},{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Controllable\"}]}]},\"InferredInformation\":{\"IsSelfAdjoint\":false,\"IsIntrinsic\":false}},\"Parent\":{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"GroverPow\"},\"Attributes\":[],\"SourceFile\":\"/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs\",\"Position\":{\"Item1\":429,\"Item2\":8},\"HeaderRange\":{\"Item1\":{\"Line\":1,\"Column\":1},\"Item2\":{\"Line\":1,\"Column\":11}},\"Documentation\":[]}")]
-[assembly: SpecializationDeclaration("{\"Kind\":{\"Case\":\"QsControlledAdjoint\"},\"TypeArguments\":{\"Case\":\"Null\"},\"Information\":{\"Characteristics\":{\"Case\":\"Union\",\"Fields\":[{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Adjointable\"}]},{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Controllable\"}]}]},\"InferredInformation\":{\"IsSelfAdjoint\":false,\"IsIntrinsic\":false}},\"Parent\":{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"GroverPow\"},\"Attributes\":[],\"SourceFile\":\"/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs\",\"Position\":{\"Item1\":430,\"Item2\":8},\"HeaderRange\":{\"Item1\":{\"Line\":1,\"Column\":1},\"Item2\":{\"Line\":1,\"Column\":19}},\"Documentation\":[]}")]
-[assembly: CallableDeclaration("{\"Kind\":{\"Case\":\"Operation\"},\"QualifiedName\":{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"CountSolutions\"},\"Attributes\":[],\"SourceFile\":\"/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs\",\"Position\":{\"Item1\":433,\"Item2\":4},\"SymbolRange\":{\"Item1\":{\"Line\":1,\"Column\":11},\"Item2\":{\"Line\":1,\"Column\":25}},\"ArgumentTuple\":{\"Case\":\"QsTuple\",\"Fields\":[[{\"Case\":\"QsTupleItem\",\"Fields\":[{\"VariableName\":{\"Case\":\"ValidName\",\"Fields\":[\"bitAccuracy\"]},\"Type\":{\"Case\":\"Int\"},\"InferredInformation\":{\"IsMutable\":false,\"HasLocalQuantumDependency\":false},\"Position\":{\"Case\":\"Null\"},\"Range\":{\"Item1\":{\"Line\":1,\"Column\":26},\"Item2\":{\"Line\":1,\"Column\":37}}}]},{\"Case\":\"QsTupleItem\",\"Fields\":[{\"VariableName\":{\"Case\":\"ValidName\",\"Fields\":[\"maxError\"]},\"Type\":{\"Case\":\"Double\"},\"InferredInformation\":{\"IsMutable\":false,\"HasLocalQuantumDependency\":false},\"Position\":{\"Case\":\"Null\"},\"Range\":{\"Item1\":{\"Line\":1,\"Column\":44},\"Item2\":{\"Line\":1,\"Column\":52}}}]},{\"Case\":\"QsTupleItem\",\"Fields\":[{\"VariableName\":{\"Case\":\"ValidName\",\"Fields\":[\"database\"]},\"Type\":{\"Case\":\"UserDefinedType\",\"Fields\":[{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"Database\",\"Range\":{\"Case\":\"Value\",\"Fields\":[{\"Item1\":{\"Line\":1,\"Column\":72},\"Item2\":{\"Line\":1,\"Column\":80}}]}}]},\"InferredInformation\":{\"IsMutable\":false,\"HasLocalQuantumDependency\":false},\"Position\":{\"Case\":\"Null\"},\"Range\":{\"Item1\":{\"Line\":1,\"Column\":62},\"Item2\":{\"Line\":1,\"Column\":70}}}]}]]},\"Signature\":{\"TypeParameters\":[],\"ArgumentType\":{\"Case\":\"TupleType\",\"Fields\":[[{\"Case\":\"Int\"},{\"Case\":\"Double\"},{\"Case\":\"UserDefinedType\",\"Fields\":[{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"Database\",\"Range\":{\"Case\":\"Null\"}}]}]]},\"ReturnType\":{\"Case\":\"Int\"},\"Information\":{\"Characteristics\":{\"Case\":\"EmptySet\"},\"InferredInformation\":{\"IsSelfAdjoint\":false,\"IsIntrinsic\":false}}},\"Documentation\":[]}")]
-[assembly: SpecializationDeclaration("{\"Kind\":{\"Case\":\"QsBody\"},\"TypeArguments\":{\"Case\":\"Null\"},\"Information\":{\"Characteristics\":{\"Case\":\"EmptySet\"},\"InferredInformation\":{\"IsSelfAdjoint\":false,\"IsIntrinsic\":false}},\"Parent\":{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"CountSolutions\"},\"Attributes\":[],\"SourceFile\":\"/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs\",\"Position\":{\"Item1\":433,\"Item2\":4},\"HeaderRange\":{\"Item1\":{\"Line\":1,\"Column\":11},\"Item2\":{\"Line\":1,\"Column\":25}},\"Documentation\":[]}")]
+[assembly: SpecializationDeclaration("{\"Kind\":{\"Case\":\"QsAdjoint\"},\"TypeArguments\":{\"Case\":\"Null\"},\"Information\":{\"Characteristics\":{\"Case\":\"Union\",\"Fields\":[{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Adjointable\"}]},{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Controllable\"}]}]},\"InferredInformation\":{\"IsSelfAdjoint\":false,\"IsIntrinsic\":false}},\"Parent\":{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"GroverPow\"},\"Attributes\":[],\"SourceFile\":\"/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs\",\"Position\":{\"Item1\":442,\"Item2\":8},\"HeaderRange\":{\"Item1\":{\"Line\":1,\"Column\":1},\"Item2\":{\"Line\":1,\"Column\":8}},\"Documentation\":[]}")]
+[assembly: SpecializationDeclaration("{\"Kind\":{\"Case\":\"QsControlled\"},\"TypeArguments\":{\"Case\":\"Null\"},\"Information\":{\"Characteristics\":{\"Case\":\"Union\",\"Fields\":[{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Adjointable\"}]},{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Controllable\"}]}]},\"InferredInformation\":{\"IsSelfAdjoint\":false,\"IsIntrinsic\":false}},\"Parent\":{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"GroverPow\"},\"Attributes\":[],\"SourceFile\":\"/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs\",\"Position\":{\"Item1\":443,\"Item2\":8},\"HeaderRange\":{\"Item1\":{\"Line\":1,\"Column\":1},\"Item2\":{\"Line\":1,\"Column\":11}},\"Documentation\":[]}")]
+[assembly: SpecializationDeclaration("{\"Kind\":{\"Case\":\"QsControlledAdjoint\"},\"TypeArguments\":{\"Case\":\"Null\"},\"Information\":{\"Characteristics\":{\"Case\":\"Union\",\"Fields\":[{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Adjointable\"}]},{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Controllable\"}]}]},\"InferredInformation\":{\"IsSelfAdjoint\":false,\"IsIntrinsic\":false}},\"Parent\":{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"GroverPow\"},\"Attributes\":[],\"SourceFile\":\"/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs\",\"Position\":{\"Item1\":444,\"Item2\":8},\"HeaderRange\":{\"Item1\":{\"Line\":1,\"Column\":1},\"Item2\":{\"Line\":1,\"Column\":19}},\"Documentation\":[]}")]
+[assembly: CallableDeclaration("{\"Kind\":{\"Case\":\"Operation\"},\"QualifiedName\":{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"CountSolutions\"},\"Attributes\":[],\"SourceFile\":\"/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs\",\"Position\":{\"Item1\":447,\"Item2\":4},\"SymbolRange\":{\"Item1\":{\"Line\":1,\"Column\":11},\"Item2\":{\"Line\":1,\"Column\":25}},\"ArgumentTuple\":{\"Case\":\"QsTuple\",\"Fields\":[[{\"Case\":\"QsTupleItem\",\"Fields\":[{\"VariableName\":{\"Case\":\"ValidName\",\"Fields\":[\"bitAccuracy\"]},\"Type\":{\"Case\":\"Int\"},\"InferredInformation\":{\"IsMutable\":false,\"HasLocalQuantumDependency\":false},\"Position\":{\"Case\":\"Null\"},\"Range\":{\"Item1\":{\"Line\":1,\"Column\":26},\"Item2\":{\"Line\":1,\"Column\":37}}}]},{\"Case\":\"QsTupleItem\",\"Fields\":[{\"VariableName\":{\"Case\":\"ValidName\",\"Fields\":[\"maxError\"]},\"Type\":{\"Case\":\"Double\"},\"InferredInformation\":{\"IsMutable\":false,\"HasLocalQuantumDependency\":false},\"Position\":{\"Case\":\"Null\"},\"Range\":{\"Item1\":{\"Line\":1,\"Column\":44},\"Item2\":{\"Line\":1,\"Column\":52}}}]},{\"Case\":\"QsTupleItem\",\"Fields\":[{\"VariableName\":{\"Case\":\"ValidName\",\"Fields\":[\"database\"]},\"Type\":{\"Case\":\"UserDefinedType\",\"Fields\":[{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"Database\",\"Range\":{\"Case\":\"Value\",\"Fields\":[{\"Item1\":{\"Line\":1,\"Column\":72},\"Item2\":{\"Line\":1,\"Column\":80}}]}}]},\"InferredInformation\":{\"IsMutable\":false,\"HasLocalQuantumDependency\":false},\"Position\":{\"Case\":\"Null\"},\"Range\":{\"Item1\":{\"Line\":1,\"Column\":62},\"Item2\":{\"Line\":1,\"Column\":70}}}]}]]},\"Signature\":{\"TypeParameters\":[],\"ArgumentType\":{\"Case\":\"TupleType\",\"Fields\":[[{\"Case\":\"Int\"},{\"Case\":\"Double\"},{\"Case\":\"UserDefinedType\",\"Fields\":[{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"Database\",\"Range\":{\"Case\":\"Null\"}}]}]]},\"ReturnType\":{\"Case\":\"Int\"},\"Information\":{\"Characteristics\":{\"Case\":\"EmptySet\"},\"InferredInformation\":{\"IsSelfAdjoint\":false,\"IsIntrinsic\":false}}},\"Documentation\":[]}")]
+[assembly: SpecializationDeclaration("{\"Kind\":{\"Case\":\"QsBody\"},\"TypeArguments\":{\"Case\":\"Null\"},\"Information\":{\"Characteristics\":{\"Case\":\"EmptySet\"},\"InferredInformation\":{\"IsSelfAdjoint\":false,\"IsIntrinsic\":false}},\"Parent\":{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"CountSolutions\"},\"Attributes\":[],\"SourceFile\":\"/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs\",\"Position\":{\"Item1\":447,\"Item2\":4},\"HeaderRange\":{\"Item1\":{\"Line\":1,\"Column\":11},\"Item2\":{\"Line\":1,\"Column\":25}},\"Documentation\":[]}")]
 #line hidden
 namespace ShipmentsAssigner
 {
@@ -196,6 +196,12 @@ namespace ShipmentsAssigner
 
         String ICallable.Name => "GetElementUsingQuantumIndex";
         String ICallable.FullName => "ShipmentsAssigner.GetElementUsingQuantumIndex";
+        protected IUnitary<(Int64,Microsoft.Quantum.Arithmetic.LittleEndian)> MicrosoftQuantumArithmeticIncrementByInteger
+        {
+            get;
+            set;
+        }
+
         protected ICallable<IQArray<Qubit>, Microsoft.Quantum.Arithmetic.LittleEndian> MicrosoftQuantumArithmeticLittleEndian
         {
             get;
@@ -203,12 +209,6 @@ namespace ShipmentsAssigner
         }
 
         protected ICallable MicrosoftQuantumCanonControlledOnInt
-        {
-            get;
-            set;
-        }
-
-        protected IUnitary<(Int64,Microsoft.Quantum.Arithmetic.LittleEndian)> MicrosoftQuantumCanonIntegerIncrementLE
         {
             get;
             set;
@@ -244,7 +244,7 @@ namespace ShipmentsAssigner
 #line 33 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
                 MicrosoftQuantumCanonSwapReverseRegister.Apply(qIndex);
 #line 34 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                MicrosoftQuantumCanonControlledOnInt.Apply<IUnitary>((i, MicrosoftQuantumCanonIntegerIncrementLE.Partial(new Func<Microsoft.Quantum.Arithmetic.LittleEndian, (Int64,Microsoft.Quantum.Arithmetic.LittleEndian)>((__arg1__) => (arr[i], __arg1__))))).Apply((qIndex, new Microsoft.Quantum.Arithmetic.LittleEndian(target.Data)));
+                MicrosoftQuantumCanonControlledOnInt.Apply<IUnitary>((i, MicrosoftQuantumArithmeticIncrementByInteger.Partial(new Func<Microsoft.Quantum.Arithmetic.LittleEndian, (Int64,Microsoft.Quantum.Arithmetic.LittleEndian)>((__arg1__) => (arr[i], __arg1__))))).Apply((qIndex, new Microsoft.Quantum.Arithmetic.LittleEndian(target.Data)));
 #line 35 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
                 MicrosoftQuantumCanonSwapReverseRegister.Apply(qIndex);
 #line 36 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
@@ -268,7 +268,7 @@ namespace ShipmentsAssigner
 #line hidden
                 MicrosoftQuantumCanonSwapReverseRegister.Adjoint.Apply(qIndex);
 #line hidden
-                MicrosoftQuantumCanonControlledOnInt.Apply<IUnitary>((__qsVar0__i__, MicrosoftQuantumCanonIntegerIncrementLE.Partial(new Func<Microsoft.Quantum.Arithmetic.LittleEndian, (Int64,Microsoft.Quantum.Arithmetic.LittleEndian)>((__arg1__) => (arr[__qsVar0__i__], __arg1__))))).Adjoint.Apply((qIndex, new Microsoft.Quantum.Arithmetic.LittleEndian(target.Data)));
+                MicrosoftQuantumCanonControlledOnInt.Apply<IUnitary>((__qsVar0__i__, MicrosoftQuantumArithmeticIncrementByInteger.Partial(new Func<Microsoft.Quantum.Arithmetic.LittleEndian, (Int64,Microsoft.Quantum.Arithmetic.LittleEndian)>((__arg1__) => (arr[__qsVar0__i__], __arg1__))))).Adjoint.Apply((qIndex, new Microsoft.Quantum.Arithmetic.LittleEndian(target.Data)));
 #line hidden
                 MicrosoftQuantumCanonSwapReverseRegister.Adjoint.Apply(qIndex);
 #line hidden
@@ -292,7 +292,7 @@ namespace ShipmentsAssigner
 #line hidden
                 MicrosoftQuantumCanonSwapReverseRegister.Controlled.Apply((__controlQubits__, qIndex));
 #line hidden
-                MicrosoftQuantumCanonControlledOnInt.Apply<IUnitary>((i, MicrosoftQuantumCanonIntegerIncrementLE.Partial(new Func<Microsoft.Quantum.Arithmetic.LittleEndian, (Int64,Microsoft.Quantum.Arithmetic.LittleEndian)>((__arg1__) => (arr[i], __arg1__))))).Controlled.Apply((__controlQubits__, (qIndex, new Microsoft.Quantum.Arithmetic.LittleEndian(target.Data))));
+                MicrosoftQuantumCanonControlledOnInt.Apply<IUnitary>((i, MicrosoftQuantumArithmeticIncrementByInteger.Partial(new Func<Microsoft.Quantum.Arithmetic.LittleEndian, (Int64,Microsoft.Quantum.Arithmetic.LittleEndian)>((__arg1__) => (arr[i], __arg1__))))).Controlled.Apply((__controlQubits__, (qIndex, new Microsoft.Quantum.Arithmetic.LittleEndian(target.Data))));
 #line hidden
                 MicrosoftQuantumCanonSwapReverseRegister.Controlled.Apply((__controlQubits__, qIndex));
 #line hidden
@@ -316,7 +316,7 @@ namespace ShipmentsAssigner
 #line hidden
                 MicrosoftQuantumCanonSwapReverseRegister.Adjoint.Controlled.Apply((__controlQubits__, qIndex));
 #line hidden
-                MicrosoftQuantumCanonControlledOnInt.Apply<IUnitary>((__qsVar0__i__, MicrosoftQuantumCanonIntegerIncrementLE.Partial(new Func<Microsoft.Quantum.Arithmetic.LittleEndian, (Int64,Microsoft.Quantum.Arithmetic.LittleEndian)>((__arg1__) => (arr[__qsVar0__i__], __arg1__))))).Adjoint.Controlled.Apply((__controlQubits__, (qIndex, new Microsoft.Quantum.Arithmetic.LittleEndian(target.Data))));
+                MicrosoftQuantumCanonControlledOnInt.Apply<IUnitary>((__qsVar0__i__, MicrosoftQuantumArithmeticIncrementByInteger.Partial(new Func<Microsoft.Quantum.Arithmetic.LittleEndian, (Int64,Microsoft.Quantum.Arithmetic.LittleEndian)>((__arg1__) => (arr[__qsVar0__i__], __arg1__))))).Adjoint.Controlled.Apply((__controlQubits__, (qIndex, new Microsoft.Quantum.Arithmetic.LittleEndian(target.Data))));
 #line hidden
                 MicrosoftQuantumCanonSwapReverseRegister.Adjoint.Controlled.Apply((__controlQubits__, qIndex));
 #line hidden
@@ -330,9 +330,9 @@ namespace ShipmentsAssigner
         ;
         public override void Init()
         {
+            this.MicrosoftQuantumArithmeticIncrementByInteger = this.Factory.Get<IUnitary<(Int64,Microsoft.Quantum.Arithmetic.LittleEndian)>>(typeof(Microsoft.Quantum.Arithmetic.IncrementByInteger));
             this.MicrosoftQuantumArithmeticLittleEndian = this.Factory.Get<ICallable<IQArray<Qubit>, Microsoft.Quantum.Arithmetic.LittleEndian>>(typeof(Microsoft.Quantum.Arithmetic.LittleEndian));
             this.MicrosoftQuantumCanonControlledOnInt = this.Factory.Get<ICallable>(typeof(Microsoft.Quantum.Canon.ControlledOnInt<>));
-            this.MicrosoftQuantumCanonIntegerIncrementLE = this.Factory.Get<IUnitary<(Int64,Microsoft.Quantum.Arithmetic.LittleEndian)>>(typeof(Microsoft.Quantum.Canon.IntegerIncrementLE));
             this.MicrosoftQuantumCanonSwapReverseRegister = this.Factory.Get<IUnitary<IQArray<Qubit>>>(typeof(Microsoft.Quantum.Canon.SwapReverseRegister));
             this.Length = this.Factory.Get<ICallable>(typeof(Microsoft.Quantum.Core.Length<>));
             this.RangeReverse = this.Factory.Get<ICallable<Range, Range>>(typeof(Microsoft.Quantum.Core.RangeReverse));
@@ -384,7 +384,7 @@ namespace ShipmentsAssigner
 
         String ICallable.Name => "GetCategorizedEntries";
         String ICallable.FullName => "ShipmentsAssigner.GetCategorizedEntries";
-        protected ICallable MicrosoftQuantumCanonMap
+        protected ICallable MicrosoftQuantumArraysMapped
         {
             get;
             set;
@@ -406,7 +406,7 @@ namespace ShipmentsAssigner
         {
             var database = __in__;
 #line 58 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-            var databaseEntriesInArr = (IQArray<IQArray<Int64>>)MicrosoftQuantumCanonMap.Apply<IQArray<IQArray<Int64>>>((DatabaseEntryToArray, database.Data));
+            var databaseEntriesInArr = (IQArray<IQArray<Int64>>)MicrosoftQuantumArraysMapped.Apply<IQArray<IQArray<Int64>>>((DatabaseEntryToArray, database.Data));
 #line 59 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
             var numProperties = databaseEntriesInArr[0L].Length;
 #line 61 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
@@ -433,7 +433,7 @@ namespace ShipmentsAssigner
         ;
         public override void Init()
         {
-            this.MicrosoftQuantumCanonMap = this.Factory.Get<ICallable>(typeof(Microsoft.Quantum.Canon.Map<,>));
+            this.MicrosoftQuantumArraysMapped = this.Factory.Get<ICallable>(typeof(Microsoft.Quantum.Arrays.Mapped<,>));
             this.Length = this.Factory.Get<ICallable>(typeof(Microsoft.Quantum.Core.Length<>));
             this.DatabaseEntryToArray = this.Factory.Get<ICallable<DatabaseEntry, IQArray<Int64>>>(typeof(DatabaseEntryToArray));
         }
@@ -454,19 +454,19 @@ namespace ShipmentsAssigner
 
         String ICallable.Name => "GetPropertyLengths";
         String ICallable.FullName => "ShipmentsAssigner.GetPropertyLengths";
-        protected ICallable<Int64, Int64> MicrosoftQuantumCanonBitSize
-        {
-            get;
-            set;
-        }
-
-        protected ICallable MicrosoftQuantumCanonMap
+        protected ICallable MicrosoftQuantumArraysMapped
         {
             get;
             set;
         }
 
         protected ICallable Length
+        {
+            get;
+            set;
+        }
+
+        protected ICallable<Int64, Int64> MicrosoftQuantumMathBitSizeI
         {
             get;
             set;
@@ -494,7 +494,7 @@ namespace ShipmentsAssigner
         {
             var database = __in__;
 #line 73 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-            var databaseEntriesInArr = (IQArray<IQArray<Int64>>)MicrosoftQuantumCanonMap.Apply<IQArray<IQArray<Int64>>>((DatabaseEntryToArray, database.Data));
+            var databaseEntriesInArr = (IQArray<IQArray<Int64>>)MicrosoftQuantumArraysMapped.Apply<IQArray<IQArray<Int64>>>((DatabaseEntryToArray, database.Data));
 #line 74 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
             var numProperties = databaseEntriesInArr[0L].Length;
 #line 76 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
@@ -506,7 +506,7 @@ namespace ShipmentsAssigner
 #line hidden
             {
 #line 80 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                lengths.Modify(i, MicrosoftQuantumCanonBitSize.Apply(MicrosoftQuantumMathMax.Apply(categorized[i])));
+                lengths.Modify(i, MicrosoftQuantumMathBitSizeI.Apply(MicrosoftQuantumMathMax.Apply(categorized[i])));
             }
 
 #line 83 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
@@ -516,9 +516,9 @@ namespace ShipmentsAssigner
         ;
         public override void Init()
         {
-            this.MicrosoftQuantumCanonBitSize = this.Factory.Get<ICallable<Int64, Int64>>(typeof(Microsoft.Quantum.Canon.BitSize));
-            this.MicrosoftQuantumCanonMap = this.Factory.Get<ICallable>(typeof(Microsoft.Quantum.Canon.Map<,>));
+            this.MicrosoftQuantumArraysMapped = this.Factory.Get<ICallable>(typeof(Microsoft.Quantum.Arrays.Mapped<,>));
             this.Length = this.Factory.Get<ICallable>(typeof(Microsoft.Quantum.Core.Length<>));
+            this.MicrosoftQuantumMathBitSizeI = this.Factory.Get<ICallable<Int64, Int64>>(typeof(Microsoft.Quantum.Math.BitSizeI));
             this.MicrosoftQuantumMathMax = this.Factory.Get<ICallable<IQArray<Int64>, Int64>>(typeof(Microsoft.Quantum.Math.Max));
             this.DatabaseEntryToArray = this.Factory.Get<ICallable<DatabaseEntry, IQArray<Int64>>>(typeof(DatabaseEntryToArray));
             this.GetCategorizedEntries = this.Factory.Get<ICallable<Database, IQArray<IQArray<Int64>>>>(typeof(GetCategorizedEntries));
@@ -691,19 +691,25 @@ namespace ShipmentsAssigner
             set;
         }
 
-        protected IUnitary<(Microsoft.Quantum.Arithmetic.BigEndian,Microsoft.Quantum.Arithmetic.BigEndian,Qubit)> MicrosoftQuantumCanonApplyRippleCarryComparatorBE
+        protected ICallable<Microsoft.Quantum.Arithmetic.BigEndian, Microsoft.Quantum.Arithmetic.LittleEndian> MicrosoftQuantumArithmeticBigEndianAsLittleEndian
+        {
+            get;
+            set;
+        }
+
+        protected IUnitary<(Microsoft.Quantum.Arithmetic.LittleEndian,Microsoft.Quantum.Arithmetic.LittleEndian,Qubit)> MicrosoftQuantumArithmeticCompareUsingRippleCarry
+        {
+            get;
+            set;
+        }
+
+        protected IUnitary<(Int64,Microsoft.Quantum.Arithmetic.LittleEndian)> MicrosoftQuantumArithmeticIncrementByInteger
         {
             get;
             set;
         }
 
         protected ICallable MicrosoftQuantumCanonControlledOnInt
-        {
-            get;
-            set;
-        }
-
-        protected IUnitary<(Int64,Microsoft.Quantum.Arithmetic.LittleEndian)> MicrosoftQuantumCanonIntegerIncrementLE
         {
             get;
             set;
@@ -815,11 +821,11 @@ namespace ShipmentsAssigner
 #line 167 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
                         MicrosoftQuantumIntrinsicX.Apply(invalidToggle);
 #line 168 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                        MicrosoftQuantumCanonApplyRippleCarryComparatorBE.Apply((timeBE, lastTime, invalidToggle));
+                        MicrosoftQuantumArithmeticCompareUsingRippleCarry.Apply((MicrosoftQuantumArithmeticBigEndianAsLittleEndian.Apply(timeBE), MicrosoftQuantumArithmeticBigEndianAsLittleEndian.Apply(lastTime), invalidToggle));
 #line 170 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                        MicrosoftQuantumCanonIntegerIncrementLE.Controlled.Apply((new QArray<Qubit>(isNotZero, invalidToggle), (1L, isInvalidLE)));
+                        MicrosoftQuantumArithmeticIncrementByInteger.Controlled.Apply((new QArray<Qubit>(isNotZero, invalidToggle), (1L, isInvalidLE)));
 #line 172 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                        MicrosoftQuantumCanonApplyRippleCarryComparatorBE.Adjoint.Apply((timeBE, lastTime, invalidToggle));
+                        MicrosoftQuantumArithmeticCompareUsingRippleCarry.Adjoint.Apply((MicrosoftQuantumArithmeticBigEndianAsLittleEndian.Apply(timeBE), MicrosoftQuantumArithmeticBigEndianAsLittleEndian.Apply(lastTime), invalidToggle));
 #line 173 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
                         MicrosoftQuantumIntrinsicX.Apply(invalidToggle);
 #line 175 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
@@ -950,11 +956,11 @@ namespace ShipmentsAssigner
 #line hidden
                         MicrosoftQuantumIntrinsicX.Adjoint.Apply(__qsVar7__invalidToggle__);
 #line hidden
-                        MicrosoftQuantumCanonApplyRippleCarryComparatorBE.Adjoint.Adjoint.Apply((__qsVar6__timeBE__, lastTime, __qsVar7__invalidToggle__));
+                        MicrosoftQuantumArithmeticCompareUsingRippleCarry.Adjoint.Adjoint.Apply((MicrosoftQuantumArithmeticBigEndianAsLittleEndian.Apply(__qsVar6__timeBE__), MicrosoftQuantumArithmeticBigEndianAsLittleEndian.Apply(lastTime), __qsVar7__invalidToggle__));
 #line hidden
-                        MicrosoftQuantumCanonIntegerIncrementLE.Controlled.Adjoint.Apply((new QArray<Qubit>(__qsVar8__isNotZero__, __qsVar7__invalidToggle__), (1L, isInvalidLE)));
+                        MicrosoftQuantumArithmeticIncrementByInteger.Controlled.Adjoint.Apply((new QArray<Qubit>(__qsVar8__isNotZero__, __qsVar7__invalidToggle__), (1L, isInvalidLE)));
 #line hidden
-                        MicrosoftQuantumCanonApplyRippleCarryComparatorBE.Adjoint.Apply((__qsVar6__timeBE__, lastTime, __qsVar7__invalidToggle__));
+                        MicrosoftQuantumArithmeticCompareUsingRippleCarry.Adjoint.Apply((MicrosoftQuantumArithmeticBigEndianAsLittleEndian.Apply(__qsVar6__timeBE__), MicrosoftQuantumArithmeticBigEndianAsLittleEndian.Apply(lastTime), __qsVar7__invalidToggle__));
 #line hidden
                         MicrosoftQuantumIntrinsicX.Adjoint.Apply(__qsVar7__invalidToggle__);
 #line hidden
@@ -1035,11 +1041,11 @@ namespace ShipmentsAssigner
 #line hidden
                         MicrosoftQuantumIntrinsicX.Controlled.Apply((__controlQubits__, invalidToggle));
 #line hidden
-                        MicrosoftQuantumCanonApplyRippleCarryComparatorBE.Controlled.Apply((__controlQubits__, (timeBE, lastTime, invalidToggle)));
+                        MicrosoftQuantumArithmeticCompareUsingRippleCarry.Controlled.Apply((__controlQubits__, (MicrosoftQuantumArithmeticBigEndianAsLittleEndian.Apply(timeBE), MicrosoftQuantumArithmeticBigEndianAsLittleEndian.Apply(lastTime), invalidToggle)));
 #line hidden
-                        MicrosoftQuantumCanonIntegerIncrementLE.Controlled.Controlled.Apply((__controlQubits__, (new QArray<Qubit>(isNotZero, invalidToggle), (1L, isInvalidLE))));
+                        MicrosoftQuantumArithmeticIncrementByInteger.Controlled.Controlled.Apply((__controlQubits__, (new QArray<Qubit>(isNotZero, invalidToggle), (1L, isInvalidLE))));
 #line hidden
-                        MicrosoftQuantumCanonApplyRippleCarryComparatorBE.Adjoint.Controlled.Apply((__controlQubits__, (timeBE, lastTime, invalidToggle)));
+                        MicrosoftQuantumArithmeticCompareUsingRippleCarry.Adjoint.Controlled.Apply((__controlQubits__, (MicrosoftQuantumArithmeticBigEndianAsLittleEndian.Apply(timeBE), MicrosoftQuantumArithmeticBigEndianAsLittleEndian.Apply(lastTime), invalidToggle)));
 #line hidden
                         MicrosoftQuantumIntrinsicX.Controlled.Apply((__controlQubits__, invalidToggle));
 #line hidden
@@ -1170,11 +1176,11 @@ namespace ShipmentsAssigner
 #line hidden
                         MicrosoftQuantumIntrinsicX.Adjoint.Controlled.Apply((__controlQubits__, __qsVar7__invalidToggle__));
 #line hidden
-                        MicrosoftQuantumCanonApplyRippleCarryComparatorBE.Adjoint.Adjoint.Controlled.Apply((__controlQubits__, (__qsVar6__timeBE__, lastTime, __qsVar7__invalidToggle__)));
+                        MicrosoftQuantumArithmeticCompareUsingRippleCarry.Adjoint.Adjoint.Controlled.Apply((__controlQubits__, (MicrosoftQuantumArithmeticBigEndianAsLittleEndian.Apply(__qsVar6__timeBE__), MicrosoftQuantumArithmeticBigEndianAsLittleEndian.Apply(lastTime), __qsVar7__invalidToggle__)));
 #line hidden
-                        MicrosoftQuantumCanonIntegerIncrementLE.Controlled.Adjoint.Controlled.Apply((__controlQubits__, (new QArray<Qubit>(__qsVar8__isNotZero__, __qsVar7__invalidToggle__), (1L, isInvalidLE))));
+                        MicrosoftQuantumArithmeticIncrementByInteger.Controlled.Adjoint.Controlled.Apply((__controlQubits__, (new QArray<Qubit>(__qsVar8__isNotZero__, __qsVar7__invalidToggle__), (1L, isInvalidLE))));
 #line hidden
-                        MicrosoftQuantumCanonApplyRippleCarryComparatorBE.Adjoint.Controlled.Apply((__controlQubits__, (__qsVar6__timeBE__, lastTime, __qsVar7__invalidToggle__)));
+                        MicrosoftQuantumArithmeticCompareUsingRippleCarry.Adjoint.Controlled.Apply((__controlQubits__, (MicrosoftQuantumArithmeticBigEndianAsLittleEndian.Apply(__qsVar6__timeBE__), MicrosoftQuantumArithmeticBigEndianAsLittleEndian.Apply(lastTime), __qsVar7__invalidToggle__)));
 #line hidden
                         MicrosoftQuantumIntrinsicX.Adjoint.Controlled.Apply((__controlQubits__, __qsVar7__invalidToggle__));
 #line hidden
@@ -1218,9 +1224,10 @@ namespace ShipmentsAssigner
         public override void Init()
         {
             this.MicrosoftQuantumArithmeticBigEndian = this.Factory.Get<ICallable<IQArray<Qubit>, Microsoft.Quantum.Arithmetic.BigEndian>>(typeof(Microsoft.Quantum.Arithmetic.BigEndian));
-            this.MicrosoftQuantumCanonApplyRippleCarryComparatorBE = this.Factory.Get<IUnitary<(Microsoft.Quantum.Arithmetic.BigEndian,Microsoft.Quantum.Arithmetic.BigEndian,Qubit)>>(typeof(Microsoft.Quantum.Canon.ApplyRippleCarryComparatorBE));
+            this.MicrosoftQuantumArithmeticBigEndianAsLittleEndian = this.Factory.Get<ICallable<Microsoft.Quantum.Arithmetic.BigEndian, Microsoft.Quantum.Arithmetic.LittleEndian>>(typeof(Microsoft.Quantum.Arithmetic.BigEndianAsLittleEndian));
+            this.MicrosoftQuantumArithmeticCompareUsingRippleCarry = this.Factory.Get<IUnitary<(Microsoft.Quantum.Arithmetic.LittleEndian,Microsoft.Quantum.Arithmetic.LittleEndian,Qubit)>>(typeof(Microsoft.Quantum.Arithmetic.CompareUsingRippleCarry));
+            this.MicrosoftQuantumArithmeticIncrementByInteger = this.Factory.Get<IUnitary<(Int64,Microsoft.Quantum.Arithmetic.LittleEndian)>>(typeof(Microsoft.Quantum.Arithmetic.IncrementByInteger));
             this.MicrosoftQuantumCanonControlledOnInt = this.Factory.Get<ICallable>(typeof(Microsoft.Quantum.Canon.ControlledOnInt<>));
-            this.MicrosoftQuantumCanonIntegerIncrementLE = this.Factory.Get<IUnitary<(Int64,Microsoft.Quantum.Arithmetic.LittleEndian)>>(typeof(Microsoft.Quantum.Canon.IntegerIncrementLE));
             this.MicrosoftQuantumCanonSwapReverseRegister = this.Factory.Get<IUnitary<IQArray<Qubit>>>(typeof(Microsoft.Quantum.Canon.SwapReverseRegister));
             this.Length = this.Factory.Get<ICallable>(typeof(Microsoft.Quantum.Core.Length<>));
             this.RangeReverse = this.Factory.Get<ICallable<Range, Range>>(typeof(Microsoft.Quantum.Core.RangeReverse));
@@ -1322,12 +1329,6 @@ namespace ShipmentsAssigner
             set;
         }
 
-        protected ICallable<Int64, Int64> MicrosoftQuantumCanonBitSize
-        {
-            get;
-            set;
-        }
-
         protected ICallable Length
         {
             get;
@@ -1341,6 +1342,12 @@ namespace ShipmentsAssigner
         }
 
         protected Release Release
+        {
+            get;
+            set;
+        }
+
+        protected ICallable<Int64, Int64> MicrosoftQuantumMathBitSizeI
         {
             get;
             set;
@@ -1400,7 +1407,7 @@ namespace ShipmentsAssigner
 #line hidden
             {
 #line 330 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                var (lastTime,inValid) = (Allocate.Apply(propertyLengths[1L]), Allocate.Apply(MicrosoftQuantumCanonBitSize.Apply(numStops)));
+                var (lastTime,inValid) = (Allocate.Apply(propertyLengths[1L]), Allocate.Apply(MicrosoftQuantumMathBitSizeI.Apply(numStops)));
 #line hidden
                 Exception __arg1__ = null;
                 try
@@ -1466,7 +1473,7 @@ namespace ShipmentsAssigner
 #line hidden
             {
 #line hidden
-                var (__qsVar9__lastTime__,__qsVar10__inValid__) = (Allocate.Apply(__qsVar2__propertyLengths__[1L]), Allocate.Apply(MicrosoftQuantumCanonBitSize.Apply(__qsVar0__numStops__)));
+                var (__qsVar9__lastTime__,__qsVar10__inValid__) = (Allocate.Apply(__qsVar2__propertyLengths__[1L]), Allocate.Apply(MicrosoftQuantumMathBitSizeI.Apply(__qsVar0__numStops__)));
 #line hidden
                 Exception __arg1__ = null;
                 try
@@ -1532,7 +1539,7 @@ namespace ShipmentsAssigner
 #line hidden
             {
 #line hidden
-                var (lastTime,inValid) = (Allocate.Apply(propertyLengths[1L]), Allocate.Apply(MicrosoftQuantumCanonBitSize.Apply(numStops)));
+                var (lastTime,inValid) = (Allocate.Apply(propertyLengths[1L]), Allocate.Apply(MicrosoftQuantumMathBitSizeI.Apply(numStops)));
 #line hidden
                 Exception __arg1__ = null;
                 try
@@ -1598,7 +1605,7 @@ namespace ShipmentsAssigner
 #line hidden
             {
 #line hidden
-                var (__qsVar9__lastTime__,__qsVar10__inValid__) = (Allocate.Apply(__qsVar2__propertyLengths__[1L]), Allocate.Apply(MicrosoftQuantumCanonBitSize.Apply(__qsVar0__numStops__)));
+                var (__qsVar9__lastTime__,__qsVar10__inValid__) = (Allocate.Apply(__qsVar2__propertyLengths__[1L]), Allocate.Apply(MicrosoftQuantumMathBitSizeI.Apply(__qsVar0__numStops__)));
 #line hidden
                 Exception __arg1__ = null;
                 try
@@ -1644,10 +1651,10 @@ namespace ShipmentsAssigner
         {
             this.MicrosoftQuantumArithmeticBigEndian = this.Factory.Get<ICallable<IQArray<Qubit>, Microsoft.Quantum.Arithmetic.BigEndian>>(typeof(Microsoft.Quantum.Arithmetic.BigEndian));
             this.MicrosoftQuantumArithmeticLittleEndian = this.Factory.Get<ICallable<IQArray<Qubit>, Microsoft.Quantum.Arithmetic.LittleEndian>>(typeof(Microsoft.Quantum.Arithmetic.LittleEndian));
-            this.MicrosoftQuantumCanonBitSize = this.Factory.Get<ICallable<Int64, Int64>>(typeof(Microsoft.Quantum.Canon.BitSize));
             this.Length = this.Factory.Get<ICallable>(typeof(Microsoft.Quantum.Core.Length<>));
             this.Allocate = this.Factory.Get<Allocate>(typeof(Microsoft.Quantum.Intrinsic.Allocate));
             this.Release = this.Factory.Get<Release>(typeof(Microsoft.Quantum.Intrinsic.Release));
+            this.MicrosoftQuantumMathBitSizeI = this.Factory.Get<ICallable<Int64, Int64>>(typeof(Microsoft.Quantum.Math.BitSizeI));
             this.CreateIndices = this.Factory.Get<ICallable<(IQArray<Qubit>,Int64,Int64,Int64,IQArray<Int64>), IQArray<IQArray<Qubit>>>>(typeof(CreateIndices));
             this.GetPropertyLengths = this.Factory.Get<ICallable<Database, IQArray<Int64>>>(typeof(GetPropertyLengths));
             this._ValidTimes = this.Factory.Get<IUnitary<(IQArray<IQArray<Qubit>>,Database,Microsoft.Quantum.Arithmetic.BigEndian,Microsoft.Quantum.Arithmetic.LittleEndian)>>(typeof(_ValidTimes));
@@ -1680,9 +1687,85 @@ namespace ShipmentsAssigner
 
         String ICallable.Name => "OracleAugmented";
         String ICallable.FullName => "ShipmentsAssigner.OracleAugmented";
+        protected Allocate Allocate
+        {
+            get;
+            set;
+        }
+
+        protected IUnitary<Qubit> MicrosoftQuantumIntrinsicH
+        {
+            get;
+            set;
+        }
+
+        protected Release Release
+        {
+            get;
+            set;
+        }
+
+        protected IUnitary<Qubit> MicrosoftQuantumIntrinsicX
+        {
+            get;
+            set;
+        }
+
+        protected IUnitary<(IQArray<Qubit>,Database,Qubit)> Oracle
+        {
+            get;
+            set;
+        }
+
         public override Func<(IQArray<Qubit>,Database,Qubit,Qubit), QVoid> Body => (__in__) =>
         {
             var (qubits,database,ancilla,aug) = __in__;
+#line hidden
+            {
+#line 355 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+                var toggles = Allocate.Apply(1L);
+#line hidden
+                Exception __arg1__ = null;
+                try
+                {
+#line 357 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+                    var toggle = toggles[0L];
+#line 359 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+                    MicrosoftQuantumIntrinsicX.Apply(ancilla);
+#line 360 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+                    MicrosoftQuantumIntrinsicH.Apply(ancilla);
+#line 362 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+                    Oracle.Apply((qubits, database, toggle));
+#line 364 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+                    MicrosoftQuantumIntrinsicX.Controlled.Apply((new QArray<Qubit>(aug, toggle), ancilla));
+#line 366 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+                    Oracle.Adjoint.Apply((qubits, database, toggle));
+#line 368 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+                    MicrosoftQuantumIntrinsicX.Controlled.Apply((qubits, ancilla));
+#line 377 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+                    MicrosoftQuantumIntrinsicH.Apply(ancilla);
+#line 378 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+                    MicrosoftQuantumIntrinsicX.Apply(ancilla);
+                }
+#line hidden
+                catch (Exception __arg2__)
+                {
+                    __arg1__ = __arg2__;
+                    throw __arg1__;
+                }
+#line hidden
+                finally
+                {
+                    if (__arg1__ != null)
+                    {
+                        throw __arg1__;
+                    }
+
+#line hidden
+                    Release.Apply(toggles);
+                }
+            }
+
 #line hidden
             return QVoid.Instance;
         }
@@ -1692,6 +1775,52 @@ namespace ShipmentsAssigner
         {
             var (qubits,database,ancilla,aug) = __in__;
 #line hidden
+            {
+#line hidden
+                var __qsVar0__toggles__ = Allocate.Apply(1L);
+#line hidden
+                Exception __arg1__ = null;
+                try
+                {
+#line hidden
+                    var __qsVar1__toggle__ = __qsVar0__toggles__[0L];
+#line hidden
+                    MicrosoftQuantumIntrinsicX.Adjoint.Apply(ancilla);
+#line hidden
+                    MicrosoftQuantumIntrinsicH.Adjoint.Apply(ancilla);
+#line hidden
+                    MicrosoftQuantumIntrinsicX.Controlled.Adjoint.Apply((qubits, ancilla));
+#line hidden
+                    Oracle.Adjoint.Adjoint.Apply((qubits, database, __qsVar1__toggle__));
+#line hidden
+                    MicrosoftQuantumIntrinsicX.Controlled.Adjoint.Apply((new QArray<Qubit>(aug, __qsVar1__toggle__), ancilla));
+#line hidden
+                    Oracle.Adjoint.Apply((qubits, database, __qsVar1__toggle__));
+#line hidden
+                    MicrosoftQuantumIntrinsicH.Adjoint.Apply(ancilla);
+#line hidden
+                    MicrosoftQuantumIntrinsicX.Adjoint.Apply(ancilla);
+                }
+#line hidden
+                catch (Exception __arg2__)
+                {
+                    __arg1__ = __arg2__;
+                    throw __arg1__;
+                }
+#line hidden
+                finally
+                {
+                    if (__arg1__ != null)
+                    {
+                        throw __arg1__;
+                    }
+
+#line hidden
+                    Release.Apply(__qsVar0__toggles__);
+                }
+            }
+
+#line hidden
             return QVoid.Instance;
         }
 
@@ -1699,6 +1828,52 @@ namespace ShipmentsAssigner
         public override Func<(IQArray<Qubit>,(IQArray<Qubit>,Database,Qubit,Qubit)), QVoid> ControlledBody => (__in__) =>
         {
             var (__controlQubits__,(qubits,database,ancilla,aug)) = __in__;
+#line hidden
+            {
+#line hidden
+                var toggles = Allocate.Apply(1L);
+#line hidden
+                Exception __arg1__ = null;
+                try
+                {
+#line hidden
+                    var toggle = toggles[0L];
+#line hidden
+                    MicrosoftQuantumIntrinsicX.Controlled.Apply((__controlQubits__, ancilla));
+#line hidden
+                    MicrosoftQuantumIntrinsicH.Controlled.Apply((__controlQubits__, ancilla));
+#line hidden
+                    Oracle.Controlled.Apply((__controlQubits__, (qubits, database, toggle)));
+#line hidden
+                    MicrosoftQuantumIntrinsicX.Controlled.Controlled.Apply((__controlQubits__, (new QArray<Qubit>(aug, toggle), ancilla)));
+#line hidden
+                    Oracle.Adjoint.Controlled.Apply((__controlQubits__, (qubits, database, toggle)));
+#line hidden
+                    MicrosoftQuantumIntrinsicX.Controlled.Controlled.Apply((__controlQubits__, (qubits, ancilla)));
+#line hidden
+                    MicrosoftQuantumIntrinsicH.Controlled.Apply((__controlQubits__, ancilla));
+#line hidden
+                    MicrosoftQuantumIntrinsicX.Controlled.Apply((__controlQubits__, ancilla));
+                }
+#line hidden
+                catch (Exception __arg2__)
+                {
+                    __arg1__ = __arg2__;
+                    throw __arg1__;
+                }
+#line hidden
+                finally
+                {
+                    if (__arg1__ != null)
+                    {
+                        throw __arg1__;
+                    }
+
+#line hidden
+                    Release.Apply(toggles);
+                }
+            }
+
 #line hidden
             return QVoid.Instance;
         }
@@ -1708,12 +1883,63 @@ namespace ShipmentsAssigner
         {
             var (__controlQubits__,(qubits,database,ancilla,aug)) = __in__;
 #line hidden
+            {
+#line hidden
+                var __qsVar0__toggles__ = Allocate.Apply(1L);
+#line hidden
+                Exception __arg1__ = null;
+                try
+                {
+#line hidden
+                    var __qsVar1__toggle__ = __qsVar0__toggles__[0L];
+#line hidden
+                    MicrosoftQuantumIntrinsicX.Adjoint.Controlled.Apply((__controlQubits__, ancilla));
+#line hidden
+                    MicrosoftQuantumIntrinsicH.Adjoint.Controlled.Apply((__controlQubits__, ancilla));
+#line hidden
+                    MicrosoftQuantumIntrinsicX.Controlled.Adjoint.Controlled.Apply((__controlQubits__, (qubits, ancilla)));
+#line hidden
+                    Oracle.Adjoint.Adjoint.Controlled.Apply((__controlQubits__, (qubits, database, __qsVar1__toggle__)));
+#line hidden
+                    MicrosoftQuantumIntrinsicX.Controlled.Adjoint.Controlled.Apply((__controlQubits__, (new QArray<Qubit>(aug, __qsVar1__toggle__), ancilla)));
+#line hidden
+                    Oracle.Adjoint.Controlled.Apply((__controlQubits__, (qubits, database, __qsVar1__toggle__)));
+#line hidden
+                    MicrosoftQuantumIntrinsicH.Adjoint.Controlled.Apply((__controlQubits__, ancilla));
+#line hidden
+                    MicrosoftQuantumIntrinsicX.Adjoint.Controlled.Apply((__controlQubits__, ancilla));
+                }
+#line hidden
+                catch (Exception __arg2__)
+                {
+                    __arg1__ = __arg2__;
+                    throw __arg1__;
+                }
+#line hidden
+                finally
+                {
+                    if (__arg1__ != null)
+                    {
+                        throw __arg1__;
+                    }
+
+#line hidden
+                    Release.Apply(__qsVar0__toggles__);
+                }
+            }
+
+#line hidden
             return QVoid.Instance;
         }
 
         ;
         public override void Init()
         {
+            this.Allocate = this.Factory.Get<Allocate>(typeof(Microsoft.Quantum.Intrinsic.Allocate));
+            this.MicrosoftQuantumIntrinsicH = this.Factory.Get<IUnitary<Qubit>>(typeof(Microsoft.Quantum.Intrinsic.H));
+            this.Release = this.Factory.Get<Release>(typeof(Microsoft.Quantum.Intrinsic.Release));
+            this.MicrosoftQuantumIntrinsicX = this.Factory.Get<IUnitary<Qubit>>(typeof(Microsoft.Quantum.Intrinsic.X));
+            this.Oracle = this.Factory.Get<IUnitary<(IQArray<Qubit>,Database,Qubit)>>(typeof(Oracle));
         }
 
         public override IApplyData __dataIn((IQArray<Qubit>,Database,Qubit,Qubit) data) => new In(data);
@@ -1906,13 +2132,13 @@ namespace ShipmentsAssigner
             set;
         }
 
-        protected ICallable MicrosoftQuantumExtensionsDiagnosticsDumpRegister
+        protected IUnitary<Qubit> MicrosoftQuantumIntrinsicH
         {
             get;
             set;
         }
 
-        protected IUnitary<Qubit> MicrosoftQuantumIntrinsicH
+        protected IUnitary<(Pauli,Double,Qubit)> MicrosoftQuantumIntrinsicR
         {
             get;
             set;
@@ -1930,6 +2156,12 @@ namespace ShipmentsAssigner
             set;
         }
 
+        protected ICallable<QVoid, Double> MicrosoftQuantumMathPI
+        {
+            get;
+            set;
+        }
+
         protected IUnitary<(IQArray<Qubit>,Database,Qubit,Qubit)> OracleAugmented
         {
             get;
@@ -1939,34 +2171,34 @@ namespace ShipmentsAssigner
         public override Func<(Int64,IQArray<Qubit>,Database), QVoid> Body => (__in__) =>
         {
             var (power,qubits,database) = __in__;
-#line 404 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+#line 403 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
             var ancilla = qubits[0L];
+#line 404 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+            var inputQubits = (IQArray<Qubit>)qubits?.Slice(new Range(1L, (qubits.Length - 1L)));
 #line 405 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-            var stateQubits = (IQArray<Qubit>)qubits?.Slice(new Range(1L, (qubits.Length - 1L)));
+            var aug = MicrosoftQuantumArraysTail.Apply<Qubit>(inputQubits);
 #line 406 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-            var aug = MicrosoftQuantumArraysTail.Apply<Qubit>(qubits);
-#line 407 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-            var ans = (IQArray<Qubit>)MicrosoftQuantumArraysMost.Apply<IQArray<Qubit>>(qubits);
+            var ans = (IQArray<Qubit>)MicrosoftQuantumArraysMost.Apply<IQArray<Qubit>>(inputQubits);
 #line 408 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
             foreach (var i in new Range(1L, power))
 #line hidden
             {
-#line 410 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+#line 409 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
                 OracleAugmented.Apply((ans, database, ancilla, aug));
+#line 410 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+                MicrosoftQuantumCanonApplyToEachCA.Apply((MicrosoftQuantumIntrinsicH, inputQubits));
+#line 411 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+                MicrosoftQuantumCanonApplyToEachCA.Apply((MicrosoftQuantumIntrinsicX, inputQubits));
+#line 412 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+                MicrosoftQuantumIntrinsicZ.Controlled.Apply((MicrosoftQuantumArraysMost.Apply<IQArray<Qubit>>(inputQubits), MicrosoftQuantumArraysTail.Apply<Qubit>(inputQubits)));
 #line 413 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                MicrosoftQuantumCanonApplyToEachCA.Apply((MicrosoftQuantumIntrinsicH, qubits));
+                MicrosoftQuantumCanonApplyToEachCA.Apply((MicrosoftQuantumIntrinsicX, inputQubits));
 #line 414 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                MicrosoftQuantumCanonApplyToEachCA.Apply((MicrosoftQuantumIntrinsicX, qubits));
-#line 418 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                MicrosoftQuantumIntrinsicZ.Controlled.Apply((ans, aug));
-#line 419 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                MicrosoftQuantumCanonApplyToEachCA.Apply((MicrosoftQuantumIntrinsicX, qubits));
-#line 420 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                MicrosoftQuantumCanonApplyToEachCA.Apply((MicrosoftQuantumIntrinsicH, qubits));
+                MicrosoftQuantumIntrinsicR.Apply((Pauli.PauliI, (2D * MicrosoftQuantumMathPI.Apply(QVoid.Instance)), qubits[0L]));
+#line 415 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+                MicrosoftQuantumCanonApplyToEachCA.Apply((MicrosoftQuantumIntrinsicH, inputQubits));
             }
 
-#line 422 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-            MicrosoftQuantumExtensionsDiagnosticsDumpRegister.Apply((QVoid.Instance, qubits));
 #line hidden
             return QVoid.Instance;
         }
@@ -1978,27 +2210,27 @@ namespace ShipmentsAssigner
 #line hidden
             var __qsVar0__ancilla__ = qubits[0L];
 #line hidden
-            var __qsVar1__stateQubits__ = (IQArray<Qubit>)qubits?.Slice(new Range(1L, (qubits.Length - 1L)));
+            var __qsVar1__inputQubits__ = (IQArray<Qubit>)qubits?.Slice(new Range(1L, (qubits.Length - 1L)));
 #line hidden
-            var __qsVar2__aug__ = MicrosoftQuantumArraysTail.Apply<Qubit>(qubits);
+            var __qsVar2__aug__ = MicrosoftQuantumArraysTail.Apply<Qubit>(__qsVar1__inputQubits__);
 #line hidden
-            var __qsVar3__ans__ = (IQArray<Qubit>)MicrosoftQuantumArraysMost.Apply<IQArray<Qubit>>(qubits);
-#line hidden
-            MicrosoftQuantumExtensionsDiagnosticsDumpRegister.Apply((QVoid.Instance, qubits));
+            var __qsVar3__ans__ = (IQArray<Qubit>)MicrosoftQuantumArraysMost.Apply<IQArray<Qubit>>(__qsVar1__inputQubits__);
 #line hidden
             foreach (var __qsVar4__i__ in RangeReverse.Apply(new Range(1L, power)))
 #line hidden
             {
 #line hidden
-                MicrosoftQuantumCanonApplyToEachCA.Adjoint.Apply((MicrosoftQuantumIntrinsicH, qubits));
+                MicrosoftQuantumCanonApplyToEachCA.Adjoint.Apply((MicrosoftQuantumIntrinsicH, __qsVar1__inputQubits__));
 #line hidden
-                MicrosoftQuantumCanonApplyToEachCA.Adjoint.Apply((MicrosoftQuantumIntrinsicX, qubits));
+                MicrosoftQuantumIntrinsicR.Adjoint.Apply((Pauli.PauliI, (2D * MicrosoftQuantumMathPI.Apply(QVoid.Instance)), qubits[0L]));
 #line hidden
-                MicrosoftQuantumIntrinsicZ.Controlled.Adjoint.Apply((__qsVar3__ans__, __qsVar2__aug__));
+                MicrosoftQuantumCanonApplyToEachCA.Adjoint.Apply((MicrosoftQuantumIntrinsicX, __qsVar1__inputQubits__));
 #line hidden
-                MicrosoftQuantumCanonApplyToEachCA.Adjoint.Apply((MicrosoftQuantumIntrinsicX, qubits));
+                MicrosoftQuantumIntrinsicZ.Controlled.Adjoint.Apply((MicrosoftQuantumArraysMost.Apply<IQArray<Qubit>>(__qsVar1__inputQubits__), MicrosoftQuantumArraysTail.Apply<Qubit>(__qsVar1__inputQubits__)));
 #line hidden
-                MicrosoftQuantumCanonApplyToEachCA.Adjoint.Apply((MicrosoftQuantumIntrinsicH, qubits));
+                MicrosoftQuantumCanonApplyToEachCA.Adjoint.Apply((MicrosoftQuantumIntrinsicX, __qsVar1__inputQubits__));
+#line hidden
+                MicrosoftQuantumCanonApplyToEachCA.Adjoint.Apply((MicrosoftQuantumIntrinsicH, __qsVar1__inputQubits__));
 #line hidden
                 OracleAugmented.Adjoint.Apply((__qsVar3__ans__, database, __qsVar0__ancilla__, __qsVar2__aug__));
             }
@@ -2014,11 +2246,11 @@ namespace ShipmentsAssigner
 #line hidden
             var ancilla = qubits[0L];
 #line hidden
-            var stateQubits = (IQArray<Qubit>)qubits?.Slice(new Range(1L, (qubits.Length - 1L)));
+            var inputQubits = (IQArray<Qubit>)qubits?.Slice(new Range(1L, (qubits.Length - 1L)));
 #line hidden
-            var aug = MicrosoftQuantumArraysTail.Apply<Qubit>(qubits);
+            var aug = MicrosoftQuantumArraysTail.Apply<Qubit>(inputQubits);
 #line hidden
-            var ans = (IQArray<Qubit>)MicrosoftQuantumArraysMost.Apply<IQArray<Qubit>>(qubits);
+            var ans = (IQArray<Qubit>)MicrosoftQuantumArraysMost.Apply<IQArray<Qubit>>(inputQubits);
 #line hidden
             foreach (var i in new Range(1L, power))
 #line hidden
@@ -2026,19 +2258,19 @@ namespace ShipmentsAssigner
 #line hidden
                 OracleAugmented.Controlled.Apply((__controlQubits__, (ans, database, ancilla, aug)));
 #line hidden
-                MicrosoftQuantumCanonApplyToEachCA.Controlled.Apply((__controlQubits__, (MicrosoftQuantumIntrinsicH, qubits)));
+                MicrosoftQuantumCanonApplyToEachCA.Controlled.Apply((__controlQubits__, (MicrosoftQuantumIntrinsicH, inputQubits)));
 #line hidden
-                MicrosoftQuantumCanonApplyToEachCA.Controlled.Apply((__controlQubits__, (MicrosoftQuantumIntrinsicX, qubits)));
+                MicrosoftQuantumCanonApplyToEachCA.Controlled.Apply((__controlQubits__, (MicrosoftQuantumIntrinsicX, inputQubits)));
 #line hidden
-                MicrosoftQuantumIntrinsicZ.Controlled.Controlled.Apply((__controlQubits__, (ans, aug)));
+                MicrosoftQuantumIntrinsicZ.Controlled.Controlled.Apply((__controlQubits__, (MicrosoftQuantumArraysMost.Apply<IQArray<Qubit>>(inputQubits), MicrosoftQuantumArraysTail.Apply<Qubit>(inputQubits))));
 #line hidden
-                MicrosoftQuantumCanonApplyToEachCA.Controlled.Apply((__controlQubits__, (MicrosoftQuantumIntrinsicX, qubits)));
+                MicrosoftQuantumCanonApplyToEachCA.Controlled.Apply((__controlQubits__, (MicrosoftQuantumIntrinsicX, inputQubits)));
 #line hidden
-                MicrosoftQuantumCanonApplyToEachCA.Controlled.Apply((__controlQubits__, (MicrosoftQuantumIntrinsicH, qubits)));
+                MicrosoftQuantumIntrinsicR.Controlled.Apply((__controlQubits__, (Pauli.PauliI, (2D * MicrosoftQuantumMathPI.Apply(QVoid.Instance)), qubits[0L])));
+#line hidden
+                MicrosoftQuantumCanonApplyToEachCA.Controlled.Apply((__controlQubits__, (MicrosoftQuantumIntrinsicH, inputQubits)));
             }
 
-#line hidden
-            MicrosoftQuantumExtensionsDiagnosticsDumpRegister.Apply((QVoid.Instance, qubits));
 #line hidden
             return QVoid.Instance;
         }
@@ -2050,27 +2282,27 @@ namespace ShipmentsAssigner
 #line hidden
             var __qsVar0__ancilla__ = qubits[0L];
 #line hidden
-            var __qsVar1__stateQubits__ = (IQArray<Qubit>)qubits?.Slice(new Range(1L, (qubits.Length - 1L)));
+            var __qsVar1__inputQubits__ = (IQArray<Qubit>)qubits?.Slice(new Range(1L, (qubits.Length - 1L)));
 #line hidden
-            var __qsVar2__aug__ = MicrosoftQuantumArraysTail.Apply<Qubit>(qubits);
+            var __qsVar2__aug__ = MicrosoftQuantumArraysTail.Apply<Qubit>(__qsVar1__inputQubits__);
 #line hidden
-            var __qsVar3__ans__ = (IQArray<Qubit>)MicrosoftQuantumArraysMost.Apply<IQArray<Qubit>>(qubits);
-#line hidden
-            MicrosoftQuantumExtensionsDiagnosticsDumpRegister.Apply((QVoid.Instance, qubits));
+            var __qsVar3__ans__ = (IQArray<Qubit>)MicrosoftQuantumArraysMost.Apply<IQArray<Qubit>>(__qsVar1__inputQubits__);
 #line hidden
             foreach (var __qsVar4__i__ in RangeReverse.Apply(new Range(1L, power)))
 #line hidden
             {
 #line hidden
-                MicrosoftQuantumCanonApplyToEachCA.Adjoint.Controlled.Apply((__controlQubits__, (MicrosoftQuantumIntrinsicH, qubits)));
+                MicrosoftQuantumCanonApplyToEachCA.Adjoint.Controlled.Apply((__controlQubits__, (MicrosoftQuantumIntrinsicH, __qsVar1__inputQubits__)));
 #line hidden
-                MicrosoftQuantumCanonApplyToEachCA.Adjoint.Controlled.Apply((__controlQubits__, (MicrosoftQuantumIntrinsicX, qubits)));
+                MicrosoftQuantumIntrinsicR.Adjoint.Controlled.Apply((__controlQubits__, (Pauli.PauliI, (2D * MicrosoftQuantumMathPI.Apply(QVoid.Instance)), qubits[0L])));
 #line hidden
-                MicrosoftQuantumIntrinsicZ.Controlled.Adjoint.Controlled.Apply((__controlQubits__, (__qsVar3__ans__, __qsVar2__aug__)));
+                MicrosoftQuantumCanonApplyToEachCA.Adjoint.Controlled.Apply((__controlQubits__, (MicrosoftQuantumIntrinsicX, __qsVar1__inputQubits__)));
 #line hidden
-                MicrosoftQuantumCanonApplyToEachCA.Adjoint.Controlled.Apply((__controlQubits__, (MicrosoftQuantumIntrinsicX, qubits)));
+                MicrosoftQuantumIntrinsicZ.Controlled.Adjoint.Controlled.Apply((__controlQubits__, (MicrosoftQuantumArraysMost.Apply<IQArray<Qubit>>(__qsVar1__inputQubits__), MicrosoftQuantumArraysTail.Apply<Qubit>(__qsVar1__inputQubits__))));
 #line hidden
-                MicrosoftQuantumCanonApplyToEachCA.Adjoint.Controlled.Apply((__controlQubits__, (MicrosoftQuantumIntrinsicH, qubits)));
+                MicrosoftQuantumCanonApplyToEachCA.Adjoint.Controlled.Apply((__controlQubits__, (MicrosoftQuantumIntrinsicX, __qsVar1__inputQubits__)));
+#line hidden
+                MicrosoftQuantumCanonApplyToEachCA.Adjoint.Controlled.Apply((__controlQubits__, (MicrosoftQuantumIntrinsicH, __qsVar1__inputQubits__)));
 #line hidden
                 OracleAugmented.Adjoint.Controlled.Apply((__controlQubits__, (__qsVar3__ans__, database, __qsVar0__ancilla__, __qsVar2__aug__)));
             }
@@ -2087,10 +2319,11 @@ namespace ShipmentsAssigner
             this.MicrosoftQuantumCanonApplyToEachCA = this.Factory.Get<IUnitary>(typeof(Microsoft.Quantum.Canon.ApplyToEachCA<>));
             this.Length = this.Factory.Get<ICallable>(typeof(Microsoft.Quantum.Core.Length<>));
             this.RangeReverse = this.Factory.Get<ICallable<Range, Range>>(typeof(Microsoft.Quantum.Core.RangeReverse));
-            this.MicrosoftQuantumExtensionsDiagnosticsDumpRegister = this.Factory.Get<ICallable>(typeof(Microsoft.Quantum.Extensions.Diagnostics.DumpRegister<>));
             this.MicrosoftQuantumIntrinsicH = this.Factory.Get<IUnitary<Qubit>>(typeof(Microsoft.Quantum.Intrinsic.H));
+            this.MicrosoftQuantumIntrinsicR = this.Factory.Get<IUnitary<(Pauli,Double,Qubit)>>(typeof(Microsoft.Quantum.Intrinsic.R));
             this.MicrosoftQuantumIntrinsicX = this.Factory.Get<IUnitary<Qubit>>(typeof(Microsoft.Quantum.Intrinsic.X));
             this.MicrosoftQuantumIntrinsicZ = this.Factory.Get<IUnitary<Qubit>>(typeof(Microsoft.Quantum.Intrinsic.Z));
+            this.MicrosoftQuantumMathPI = this.Factory.Get<ICallable<QVoid, Double>>(typeof(Microsoft.Quantum.Math.PI));
             this.OracleAugmented = this.Factory.Get<IUnitary<(IQArray<Qubit>,Database,Qubit,Qubit)>>(typeof(OracleAugmented));
         }
 
@@ -2125,7 +2358,7 @@ namespace ShipmentsAssigner
             set;
         }
 
-        protected ICallable<IQArray<Qubit>, Microsoft.Quantum.Arithmetic.LittleEndian> MicrosoftQuantumArithmeticLittleEndian
+        protected ICallable<Microsoft.Quantum.Arithmetic.BigEndian, Microsoft.Quantum.Arithmetic.LittleEndian> MicrosoftQuantumArithmeticBigEndianAsLittleEndian
         {
             get;
             set;
@@ -2137,19 +2370,7 @@ namespace ShipmentsAssigner
             set;
         }
 
-        protected ICallable MicrosoftQuantumArraysTail
-        {
-            get;
-            set;
-        }
-
         protected IUnitary MicrosoftQuantumCanonApplyToEachCA
-        {
-            get;
-            set;
-        }
-
-        protected ICallable<Int64, Int64> MicrosoftQuantumCanonBitSize
         {
             get;
             set;
@@ -2161,43 +2382,25 @@ namespace ShipmentsAssigner
             set;
         }
 
+        protected ICallable<Int64, Double> MicrosoftQuantumConvertIntAsDouble
+        {
+            get;
+            set;
+        }
+
+        protected ICallable<Int64, String> MicrosoftQuantumConvertIntAsString
+        {
+            get;
+            set;
+        }
+
         protected ICallable Length
         {
             get;
             set;
         }
 
-        protected ICallable<Int64, Double> MicrosoftQuantumExtensionsConvertToDouble
-        {
-            get;
-            set;
-        }
-
-        protected ICallable<Double, String> MicrosoftQuantumExtensionsConvertToStringD
-        {
-            get;
-            set;
-        }
-
-        protected ICallable<Int64, String> MicrosoftQuantumExtensionsConvertToStringI
-        {
-            get;
-            set;
-        }
-
-        protected ICallable MicrosoftQuantumExtensionsDiagnosticsDumpRegister
-        {
-            get;
-            set;
-        }
-
         protected Allocate Allocate
-        {
-            get;
-            set;
-        }
-
-        protected IUnitary<(Qubit,Qubit)> MicrosoftQuantumIntrinsicCNOT
         {
             get;
             set;
@@ -2227,6 +2430,18 @@ namespace ShipmentsAssigner
             set;
         }
 
+        protected IUnitary<Qubit> MicrosoftQuantumIntrinsicX
+        {
+            get;
+            set;
+        }
+
+        protected ICallable<Int64, Int64> MicrosoftQuantumMathBitSizeI
+        {
+            get;
+            set;
+        }
+
         protected ICallable<(Double,Double), Double> MicrosoftQuantumMathPowD
         {
             get;
@@ -2245,19 +2460,7 @@ namespace ShipmentsAssigner
             set;
         }
 
-        protected ICallable<IUnitary, Microsoft.Quantum.Oracles.DiscreteOracle> MicrosoftQuantumOraclesDiscreteOracle
-        {
-            get;
-            set;
-        }
-
         protected IUnitary<(Int64,IQArray<Qubit>,Database)> GroverPow
-        {
-            get;
-            set;
-        }
-
-        protected ICallable<IQArray<Qubit>, Int64> UtilsGeneralQubitsToInt
         {
             get;
             set;
@@ -2272,77 +2475,51 @@ namespace ShipmentsAssigner
         public override Func<(Int64,Double,Database), Int64> Body => (__in__) =>
         {
             var (bitAccuracy,maxError,database) = __in__;
-#line 435 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+#line 449 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
             var numElements = database.Data.Length;
-#line 436 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+#line 450 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
             var maxDbIndex = (numElements - 1L);
-#line 437 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-            var bitsForMaxDbIndex = MicrosoftQuantumCanonBitSize.Apply(maxDbIndex);
-#line 438 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+#line 451 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+            var bitsForMaxDbIndex = MicrosoftQuantumMathBitSizeI.Apply(maxDbIndex);
+#line 452 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
             var lenT = (bitAccuracy + UtilsMathCeilLogBase2.Apply((2D + (1D / (2D * maxError)))));
-#line 439 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+#line 453 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
             MicrosoftQuantumIntrinsicMessage.Apply(String.Format("t: {0}", lenT));
-#line 441 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+#line 455 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
             var numSolutions = -(1L);
 #line hidden
             {
-#line 442 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+#line 456 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
                 var (control,target) = (Allocate.Apply(lenT), Allocate.Apply(((bitsForMaxDbIndex * numElements) + 3L)));
 #line hidden
                 Exception __arg1__ = null;
                 try
                 {
-#line 443 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                    var controlBE = new Microsoft.Quantum.Arithmetic.BigEndian(control);
-#line 444 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                    var EPR = (IQArray<Qubit>)target?.Slice(new Range(0L, 1L));
-#line 445 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                    var ancilla = EPR[1L];
-#line 446 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                    var aug = MicrosoftQuantumArraysTail.Apply<Qubit>(target);
-#line 447 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                    var ans = (IQArray<Qubit>)target?.Slice(new Range(2L, ((bitsForMaxDbIndex * numElements) + 1L)));
-#line 448 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                    var stateQubits = (IQArray<Qubit>)QArray<Qubit>.Add(ans, new QArray<Qubit>(aug));
-#line 449 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                    var inputQubits = (IQArray<Qubit>)QArray<Qubit>.Add(new QArray<Qubit>(ancilla), stateQubits);
-#line 450 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                    var discreteOracle = new Microsoft.Quantum.Oracles.DiscreteOracle(GroverPow.Partial(new Func<(Int64,IQArray<Qubit>), (Int64,IQArray<Qubit>,Database)>((__arg3__) => (__arg3__.Item1, __arg3__.Item2, database))));
-#line 453 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                    MicrosoftQuantumIntrinsicH.Apply(ancilla);
-#line 454 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                    MicrosoftQuantumIntrinsicCNOT.Apply((ancilla, EPR[0L]));
 #line 457 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                    MicrosoftQuantumCanonApplyToEachCA.Apply((MicrosoftQuantumIntrinsicH, QArray<Qubit>.Add(control, stateQubits)));
+                    var controlBE = new Microsoft.Quantum.Arithmetic.BigEndian(control);
 #line 458 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                    foreach (var i in new Range(0L, 0L))
+                    var ancilla = target[0L];
+#line 460 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+                    MicrosoftQuantumIntrinsicX.Apply(ancilla);
+#line 461 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+                    MicrosoftQuantumCanonApplyToEachCA.Apply((MicrosoftQuantumIntrinsicH, QArray<Qubit>.Add(control, target)));
+#line 462 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+                    foreach (var i in new Range(0L, (control.Length - 1L)))
 #line hidden
                     {
-#line 459 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                        MicrosoftQuantumIntrinsicMessage.Apply(MicrosoftQuantumExtensionsConvertToStringI.Apply(i));
-#line 460 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                        GroverPow.Controlled.Apply((new QArray<Qubit>(control[((control.Length - 1L) - i)]), (2L.Pow(i), inputQubits, database)));
+#line 463 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+                        GroverPow.Controlled.Apply((new QArray<Qubit>(control[((control.Length - 1L) - i)]), (2L.Pow(i), target, database)));
                     }
 
-#line 462 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                    MicrosoftQuantumExtensionsDiagnosticsDumpRegister.Apply((QVoid.Instance, control));
-#line 463 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+#line 465 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
                     MicrosoftQuantumCanonQFT.Adjoint.Apply(controlBE);
+#line 467 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+                    var fiBE = MicrosoftQuantumArithmeticMeasureInteger.Apply(MicrosoftQuantumArithmeticBigEndianAsLittleEndian.Apply(controlBE));
 #line 468 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                    var fiBE = UtilsGeneralQubitsToInt.Apply(control);
-#line 469 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                    var fi = MicrosoftQuantumArithmeticMeasureInteger.Apply(new Microsoft.Quantum.Arithmetic.LittleEndian(control));
+                    var numSolutionsD = (MicrosoftQuantumMathPowD.Apply((MicrosoftQuantumMathSin.Apply((MicrosoftQuantumConvertIntAsDouble.Apply(fiBE) / 2D)), 2D)) * MicrosoftQuantumConvertIntAsDouble.Apply(2L.Pow(QArray<Qubit>.Add(control, target).Length)));
 #line 470 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                    MicrosoftQuantumIntrinsicMessage.Apply(("fi: " + MicrosoftQuantumExtensionsConvertToStringI.Apply(fi)));
-#line 471 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                    MicrosoftQuantumIntrinsicMessage.Apply(("fiBE: " + MicrosoftQuantumExtensionsConvertToStringI.Apply(fiBE)));
-#line 473 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                    var numSolutionsD = (MicrosoftQuantumMathPowD.Apply((MicrosoftQuantumMathSin.Apply((MicrosoftQuantumExtensionsConvertToDouble.Apply(fiBE) / 2D)), 2D)) * MicrosoftQuantumExtensionsConvertToDouble.Apply(2L.Pow(inputQubits.Length)));
-#line 474 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                    MicrosoftQuantumIntrinsicMessage.Apply(("numSolutionsD: " + MicrosoftQuantumExtensionsConvertToStringD.Apply(numSolutionsD)));
-#line 479 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                    numSolutions = MicrosoftQuantumMathRound.Apply(numSolutionsD);
-#line 482 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+                    MicrosoftQuantumIntrinsicMessage.Apply(("numSolutions: " + MicrosoftQuantumConvertIntAsString.Apply(MicrosoftQuantumMathRound.Apply(numSolutionsD))));
+#line 510 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
                     MicrosoftQuantumIntrinsicResetAll.Apply(QArray<Qubit>.Add(control, target));
                 }
 #line hidden
@@ -2366,7 +2543,7 @@ namespace ShipmentsAssigner
                 }
             }
 
-#line 485 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
+#line 513 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
             return numSolutions;
         }
 
@@ -2374,29 +2551,24 @@ namespace ShipmentsAssigner
         public override void Init()
         {
             this.MicrosoftQuantumArithmeticBigEndian = this.Factory.Get<ICallable<IQArray<Qubit>, Microsoft.Quantum.Arithmetic.BigEndian>>(typeof(Microsoft.Quantum.Arithmetic.BigEndian));
-            this.MicrosoftQuantumArithmeticLittleEndian = this.Factory.Get<ICallable<IQArray<Qubit>, Microsoft.Quantum.Arithmetic.LittleEndian>>(typeof(Microsoft.Quantum.Arithmetic.LittleEndian));
+            this.MicrosoftQuantumArithmeticBigEndianAsLittleEndian = this.Factory.Get<ICallable<Microsoft.Quantum.Arithmetic.BigEndian, Microsoft.Quantum.Arithmetic.LittleEndian>>(typeof(Microsoft.Quantum.Arithmetic.BigEndianAsLittleEndian));
             this.MicrosoftQuantumArithmeticMeasureInteger = this.Factory.Get<ICallable<Microsoft.Quantum.Arithmetic.LittleEndian, Int64>>(typeof(Microsoft.Quantum.Arithmetic.MeasureInteger));
-            this.MicrosoftQuantumArraysTail = this.Factory.Get<ICallable>(typeof(Microsoft.Quantum.Arrays.Tail<>));
             this.MicrosoftQuantumCanonApplyToEachCA = this.Factory.Get<IUnitary>(typeof(Microsoft.Quantum.Canon.ApplyToEachCA<>));
-            this.MicrosoftQuantumCanonBitSize = this.Factory.Get<ICallable<Int64, Int64>>(typeof(Microsoft.Quantum.Canon.BitSize));
             this.MicrosoftQuantumCanonQFT = this.Factory.Get<IUnitary<Microsoft.Quantum.Arithmetic.BigEndian>>(typeof(Microsoft.Quantum.Canon.QFT));
+            this.MicrosoftQuantumConvertIntAsDouble = this.Factory.Get<ICallable<Int64, Double>>(typeof(Microsoft.Quantum.Convert.IntAsDouble));
+            this.MicrosoftQuantumConvertIntAsString = this.Factory.Get<ICallable<Int64, String>>(typeof(Microsoft.Quantum.Convert.IntAsString));
             this.Length = this.Factory.Get<ICallable>(typeof(Microsoft.Quantum.Core.Length<>));
-            this.MicrosoftQuantumExtensionsConvertToDouble = this.Factory.Get<ICallable<Int64, Double>>(typeof(Microsoft.Quantum.Extensions.Convert.ToDouble));
-            this.MicrosoftQuantumExtensionsConvertToStringD = this.Factory.Get<ICallable<Double, String>>(typeof(Microsoft.Quantum.Extensions.Convert.ToStringD));
-            this.MicrosoftQuantumExtensionsConvertToStringI = this.Factory.Get<ICallable<Int64, String>>(typeof(Microsoft.Quantum.Extensions.Convert.ToStringI));
-            this.MicrosoftQuantumExtensionsDiagnosticsDumpRegister = this.Factory.Get<ICallable>(typeof(Microsoft.Quantum.Extensions.Diagnostics.DumpRegister<>));
             this.Allocate = this.Factory.Get<Allocate>(typeof(Microsoft.Quantum.Intrinsic.Allocate));
-            this.MicrosoftQuantumIntrinsicCNOT = this.Factory.Get<IUnitary<(Qubit,Qubit)>>(typeof(Microsoft.Quantum.Intrinsic.CNOT));
             this.MicrosoftQuantumIntrinsicH = this.Factory.Get<IUnitary<Qubit>>(typeof(Microsoft.Quantum.Intrinsic.H));
             this.MicrosoftQuantumIntrinsicMessage = this.Factory.Get<ICallable<String, QVoid>>(typeof(Microsoft.Quantum.Intrinsic.Message));
             this.Release = this.Factory.Get<Release>(typeof(Microsoft.Quantum.Intrinsic.Release));
             this.MicrosoftQuantumIntrinsicResetAll = this.Factory.Get<ICallable<IQArray<Qubit>, QVoid>>(typeof(Microsoft.Quantum.Intrinsic.ResetAll));
+            this.MicrosoftQuantumIntrinsicX = this.Factory.Get<IUnitary<Qubit>>(typeof(Microsoft.Quantum.Intrinsic.X));
+            this.MicrosoftQuantumMathBitSizeI = this.Factory.Get<ICallable<Int64, Int64>>(typeof(Microsoft.Quantum.Math.BitSizeI));
             this.MicrosoftQuantumMathPowD = this.Factory.Get<ICallable<(Double,Double), Double>>(typeof(Microsoft.Quantum.Math.PowD));
             this.MicrosoftQuantumMathRound = this.Factory.Get<ICallable<Double, Int64>>(typeof(Microsoft.Quantum.Math.Round));
             this.MicrosoftQuantumMathSin = this.Factory.Get<ICallable<Double, Double>>(typeof(Microsoft.Quantum.Math.Sin));
-            this.MicrosoftQuantumOraclesDiscreteOracle = this.Factory.Get<ICallable<IUnitary, Microsoft.Quantum.Oracles.DiscreteOracle>>(typeof(Microsoft.Quantum.Oracles.DiscreteOracle));
             this.GroverPow = this.Factory.Get<IUnitary<(Int64,IQArray<Qubit>,Database)>>(typeof(GroverPow));
-            this.UtilsGeneralQubitsToInt = this.Factory.Get<ICallable<IQArray<Qubit>, Int64>>(typeof(Utils.General.QubitsToInt));
             this.UtilsMathCeilLogBase2 = this.Factory.Get<ICallable<Double, Int64>>(typeof(Utils.Math.CeilLogBase2));
         }
 

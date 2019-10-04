@@ -308,13 +308,13 @@ namespace ShipmentsAssigner
             set;
         }
 
-        protected ICallable Length
+        protected ICallable<Boolean, String> MicrosoftQuantumConvertBoolAsString
         {
             get;
             set;
         }
 
-        protected ICallable<Boolean, String> MicrosoftQuantumExtensionsConvertToStringB
+        protected ICallable Length
         {
             get;
             set;
@@ -454,9 +454,9 @@ namespace ShipmentsAssigner
 #line 169 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
                     var trueAns = MicrosoftQuantumCanonResultFromBool.Apply(valid);
 #line 171 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-                    MicrosoftQuantumCanonAssertResultEqual.Apply((calcAns, trueAns, ("Incorrect. Correct answer is " + MicrosoftQuantumExtensionsConvertToStringB.Apply(valid))));
+                    MicrosoftQuantumCanonAssertResultEqual.Apply((calcAns, trueAns, ("Incorrect. Correct answer is " + MicrosoftQuantumConvertBoolAsString.Apply(valid))));
 #line 172 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-                    MicrosoftQuantumIntrinsicMessage.Apply(("Correctly " + MicrosoftQuantumExtensionsConvertToStringB.Apply(valid)));
+                    MicrosoftQuantumIntrinsicMessage.Apply(("Correctly " + MicrosoftQuantumConvertBoolAsString.Apply(valid)));
 #line 174 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
                     MicrosoftQuantumIntrinsicResetAll.Apply(ancillas);
                 }
@@ -488,8 +488,8 @@ namespace ShipmentsAssigner
         {
             this.MicrosoftQuantumCanonAssertResultEqual = this.Factory.Get<ICallable<(Result,Result,String), QVoid>>(typeof(Microsoft.Quantum.Canon.AssertResultEqual));
             this.MicrosoftQuantumCanonResultFromBool = this.Factory.Get<ICallable<Boolean, Result>>(typeof(Microsoft.Quantum.Canon.ResultFromBool));
+            this.MicrosoftQuantumConvertBoolAsString = this.Factory.Get<ICallable<Boolean, String>>(typeof(Microsoft.Quantum.Convert.BoolAsString));
             this.Length = this.Factory.Get<ICallable>(typeof(Microsoft.Quantum.Core.Length<>));
-            this.MicrosoftQuantumExtensionsConvertToStringB = this.Factory.Get<ICallable<Boolean, String>>(typeof(Microsoft.Quantum.Extensions.Convert.ToStringB));
             this.Allocate = this.Factory.Get<Allocate>(typeof(Microsoft.Quantum.Intrinsic.Allocate));
             this.MicrosoftQuantumIntrinsicM = this.Factory.Get<ICallable<Qubit, Result>>(typeof(Microsoft.Quantum.Intrinsic.M));
             this.MicrosoftQuantumIntrinsicMessage = this.Factory.Get<ICallable<String, QVoid>>(typeof(Microsoft.Quantum.Intrinsic.Message));
@@ -517,6 +517,12 @@ namespace ShipmentsAssigner
 
         String ICallable.Name => "_TestOracle";
         String ICallable.FullName => "ShipmentsAssigner._TestOracle";
+        protected IUnitary<(Int64,Microsoft.Quantum.Arithmetic.LittleEndian)> MicrosoftQuantumArithmeticIncrementByInteger
+        {
+            get;
+            set;
+        }
+
         protected ICallable<IQArray<Qubit>, Microsoft.Quantum.Arithmetic.LittleEndian> MicrosoftQuantumArithmeticLittleEndian
         {
             get;
@@ -524,12 +530,6 @@ namespace ShipmentsAssigner
         }
 
         protected ICallable<Int64, Int64> MicrosoftQuantumCanonBitSize
-        {
-            get;
-            set;
-        }
-
-        protected IUnitary<(Int64,Microsoft.Quantum.Arithmetic.LittleEndian)> MicrosoftQuantumCanonIntegerIncrementLE
         {
             get;
             set;
@@ -601,7 +601,7 @@ namespace ShipmentsAssigner
                 try
                 {
 #line 183 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-                    MicrosoftQuantumCanonIntegerIncrementLE.Apply((17L, new Microsoft.Quantum.Arithmetic.LittleEndian(qubits)));
+                    MicrosoftQuantumArithmeticIncrementByInteger.Apply((17L, new Microsoft.Quantum.Arithmetic.LittleEndian(qubits)));
 #line 184 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
                     MicrosoftQuantumCanonSwapReverseRegister.Apply(qubits);
 #line 185 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
@@ -637,9 +637,9 @@ namespace ShipmentsAssigner
         ;
         public override void Init()
         {
+            this.MicrosoftQuantumArithmeticIncrementByInteger = this.Factory.Get<IUnitary<(Int64,Microsoft.Quantum.Arithmetic.LittleEndian)>>(typeof(Microsoft.Quantum.Arithmetic.IncrementByInteger));
             this.MicrosoftQuantumArithmeticLittleEndian = this.Factory.Get<ICallable<IQArray<Qubit>, Microsoft.Quantum.Arithmetic.LittleEndian>>(typeof(Microsoft.Quantum.Arithmetic.LittleEndian));
             this.MicrosoftQuantumCanonBitSize = this.Factory.Get<ICallable<Int64, Int64>>(typeof(Microsoft.Quantum.Canon.BitSize));
-            this.MicrosoftQuantumCanonIntegerIncrementLE = this.Factory.Get<IUnitary<(Int64,Microsoft.Quantum.Arithmetic.LittleEndian)>>(typeof(Microsoft.Quantum.Canon.IntegerIncrementLE));
             this.MicrosoftQuantumCanonSwapReverseRegister = this.Factory.Get<IUnitary<IQArray<Qubit>>>(typeof(Microsoft.Quantum.Canon.SwapReverseRegister));
             this.Length = this.Factory.Get<ICallable>(typeof(Microsoft.Quantum.Core.Length<>));
             this.Allocate = this.Factory.Get<Allocate>(typeof(Microsoft.Quantum.Intrinsic.Allocate));
@@ -711,19 +711,19 @@ namespace ShipmentsAssigner
             set;
         }
 
+        protected ICallable<Boolean, String> MicrosoftQuantumConvertBoolAsString
+        {
+            get;
+            set;
+        }
+
+        protected ICallable<Int64, String> MicrosoftQuantumConvertIntAsString
+        {
+            get;
+            set;
+        }
+
         protected ICallable Length
-        {
-            get;
-            set;
-        }
-
-        protected ICallable<Boolean, String> MicrosoftQuantumExtensionsConvertToStringB
-        {
-            get;
-            set;
-        }
-
-        protected ICallable<Int64, String> MicrosoftQuantumExtensionsConvertToStringI
         {
             get;
             set;
@@ -825,7 +825,7 @@ namespace ShipmentsAssigner
                     }
 
 #line 225 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-                    MicrosoftQuantumIntrinsicMessage.Apply(((UtilsGeneralIntArrrayToString.Apply(cIndices?.Copy()) + ", aug: ") + MicrosoftQuantumExtensionsConvertToStringI.Apply(MicrosoftQuantumCanonResultAsInt.Apply(new QArray<Result>(mAug)))));
+                    MicrosoftQuantumIntrinsicMessage.Apply(((UtilsGeneralIntArrrayToString.Apply(cIndices?.Copy()) + ", aug: ") + MicrosoftQuantumConvertIntAsString.Apply(MicrosoftQuantumCanonResultAsInt.Apply(new QArray<Result>(mAug)))));
 #line 227 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
                     var categorized = (IQArray<IQArray<Int64>>)GetCategorizedEntries.Apply(database);
 #line 228 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
@@ -869,9 +869,9 @@ namespace ShipmentsAssigner
 #line 249 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
                     var trueAns = MicrosoftQuantumCanonResultFromBool.Apply(valid);
 #line 251 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-                    MicrosoftQuantumCanonAssertResultEqual.Apply((calcAns, trueAns, ("Incorrect. Correct answer is " + MicrosoftQuantumExtensionsConvertToStringB.Apply(valid))));
+                    MicrosoftQuantumCanonAssertResultEqual.Apply((calcAns, trueAns, ("Incorrect. Correct answer is " + MicrosoftQuantumConvertBoolAsString.Apply(valid))));
 #line 252 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-                    MicrosoftQuantumIntrinsicMessage.Apply(("Correctly " + MicrosoftQuantumExtensionsConvertToStringB.Apply(valid)));
+                    MicrosoftQuantumIntrinsicMessage.Apply(("Correctly " + MicrosoftQuantumConvertBoolAsString.Apply(valid)));
 #line 254 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
                     MicrosoftQuantumIntrinsicResetAll.Apply(ancillas);
                 }
@@ -907,9 +907,9 @@ namespace ShipmentsAssigner
             this.MicrosoftQuantumCanonIsResultOne = this.Factory.Get<ICallable<Result, Boolean>>(typeof(Microsoft.Quantum.Canon.IsResultOne));
             this.MicrosoftQuantumCanonResultAsInt = this.Factory.Get<ICallable<IQArray<Result>, Int64>>(typeof(Microsoft.Quantum.Canon.ResultAsInt));
             this.MicrosoftQuantumCanonResultFromBool = this.Factory.Get<ICallable<Boolean, Result>>(typeof(Microsoft.Quantum.Canon.ResultFromBool));
+            this.MicrosoftQuantumConvertBoolAsString = this.Factory.Get<ICallable<Boolean, String>>(typeof(Microsoft.Quantum.Convert.BoolAsString));
+            this.MicrosoftQuantumConvertIntAsString = this.Factory.Get<ICallable<Int64, String>>(typeof(Microsoft.Quantum.Convert.IntAsString));
             this.Length = this.Factory.Get<ICallable>(typeof(Microsoft.Quantum.Core.Length<>));
-            this.MicrosoftQuantumExtensionsConvertToStringB = this.Factory.Get<ICallable<Boolean, String>>(typeof(Microsoft.Quantum.Extensions.Convert.ToStringB));
-            this.MicrosoftQuantumExtensionsConvertToStringI = this.Factory.Get<ICallable<Int64, String>>(typeof(Microsoft.Quantum.Extensions.Convert.ToStringI));
             this.Allocate = this.Factory.Get<Allocate>(typeof(Microsoft.Quantum.Intrinsic.Allocate));
             this.MicrosoftQuantumIntrinsicM = this.Factory.Get<ICallable<Qubit, Result>>(typeof(Microsoft.Quantum.Intrinsic.M));
             this.MicrosoftQuantumIntrinsicMessage = this.Factory.Get<ICallable<String, QVoid>>(typeof(Microsoft.Quantum.Intrinsic.Message));
@@ -1038,13 +1038,13 @@ namespace ShipmentsAssigner
             set;
         }
 
-        protected ICallable Length
+        protected ICallable<Int64, String> MicrosoftQuantumConvertIntAsString
         {
             get;
             set;
         }
 
-        protected ICallable<Int64, String> MicrosoftQuantumExtensionsConvertToStringI
+        protected ICallable Length
         {
             get;
             set;
@@ -1139,11 +1139,11 @@ namespace ShipmentsAssigner
 #line 292 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
                         var endIndex = ((startIndex + bitsForMaxDbIndex) - 1L);
 #line 294 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-                        calcAnsStr = (calcAnsStr + MicrosoftQuantumExtensionsConvertToStringI.Apply(MicrosoftQuantumCanonMeasureIntegerBE.Apply(new Microsoft.Quantum.Arithmetic.BigEndian(ans?.Slice(new Range(startIndex, endIndex))))));
+                        calcAnsStr = (calcAnsStr + MicrosoftQuantumConvertIntAsString.Apply(MicrosoftQuantumCanonMeasureIntegerBE.Apply(new Microsoft.Quantum.Arithmetic.BigEndian(ans?.Slice(new Range(startIndex, endIndex))))));
                     }
 
 #line 297 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-                    MicrosoftQuantumIntrinsicMessage.Apply(((((("calcAns: " + calcAnsStr) + ", aug: ") + MicrosoftQuantumExtensionsConvertToStringI.Apply(MicrosoftQuantumCanonResultAsInt.Apply(new QArray<Result>(MicrosoftQuantumIntrinsicM.Apply(aug))))) + ", ancilla: ") + MicrosoftQuantumExtensionsConvertToStringI.Apply(MicrosoftQuantumCanonResultAsInt.Apply(new QArray<Result>(MicrosoftQuantumIntrinsicM.Apply(ancilla))))));
+                    MicrosoftQuantumIntrinsicMessage.Apply(((((("calcAns: " + calcAnsStr) + ", aug: ") + MicrosoftQuantumConvertIntAsString.Apply(MicrosoftQuantumCanonResultAsInt.Apply(new QArray<Result>(MicrosoftQuantumIntrinsicM.Apply(aug))))) + ", ancilla: ") + MicrosoftQuantumConvertIntAsString.Apply(MicrosoftQuantumCanonResultAsInt.Apply(new QArray<Result>(MicrosoftQuantumIntrinsicM.Apply(ancilla))))));
 #line 299 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
                     MicrosoftQuantumIntrinsicResetAll.Apply(target);
                 }
@@ -1178,8 +1178,8 @@ namespace ShipmentsAssigner
             this.MicrosoftQuantumCanonBitSize = this.Factory.Get<ICallable<Int64, Int64>>(typeof(Microsoft.Quantum.Canon.BitSize));
             this.MicrosoftQuantumCanonMeasureIntegerBE = this.Factory.Get<ICallable<Microsoft.Quantum.Arithmetic.BigEndian, Int64>>(typeof(Microsoft.Quantum.Canon.MeasureIntegerBE));
             this.MicrosoftQuantumCanonResultAsInt = this.Factory.Get<ICallable<IQArray<Result>, Int64>>(typeof(Microsoft.Quantum.Canon.ResultAsInt));
+            this.MicrosoftQuantumConvertIntAsString = this.Factory.Get<ICallable<Int64, String>>(typeof(Microsoft.Quantum.Convert.IntAsString));
             this.Length = this.Factory.Get<ICallable>(typeof(Microsoft.Quantum.Core.Length<>));
-            this.MicrosoftQuantumExtensionsConvertToStringI = this.Factory.Get<ICallable<Int64, String>>(typeof(Microsoft.Quantum.Extensions.Convert.ToStringI));
             this.Allocate = this.Factory.Get<Allocate>(typeof(Microsoft.Quantum.Intrinsic.Allocate));
             this.MicrosoftQuantumIntrinsicM = this.Factory.Get<ICallable<Qubit, Result>>(typeof(Microsoft.Quantum.Intrinsic.M));
             this.MicrosoftQuantumIntrinsicMessage = this.Factory.Get<ICallable<String, QVoid>>(typeof(Microsoft.Quantum.Intrinsic.Message));
@@ -1215,7 +1215,7 @@ namespace ShipmentsAssigner
 
         String ICallable.Name => "_TestCountSolutions";
         String ICallable.FullName => "ShipmentsAssigner._TestCountSolutions";
-        protected ICallable<Int64, String> MicrosoftQuantumExtensionsConvertToStringI
+        protected ICallable<Int64, String> MicrosoftQuantumConvertIntAsString
         {
             get;
             set;
@@ -1243,7 +1243,7 @@ namespace ShipmentsAssigner
         {
             var (bitAccuracy,maxError) = __in__;
 #line 305 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Testing.qs"
-            MicrosoftQuantumIntrinsicMessage.Apply(MicrosoftQuantumExtensionsConvertToStringI.Apply(CountSolutions.Apply((bitAccuracy, maxError, GetDatabase.Apply(QVoid.Instance)))));
+            MicrosoftQuantumIntrinsicMessage.Apply(MicrosoftQuantumConvertIntAsString.Apply(CountSolutions.Apply((bitAccuracy, maxError, GetDatabase.Apply(QVoid.Instance)))));
 #line hidden
             return QVoid.Instance;
         }
@@ -1251,7 +1251,7 @@ namespace ShipmentsAssigner
         ;
         public override void Init()
         {
-            this.MicrosoftQuantumExtensionsConvertToStringI = this.Factory.Get<ICallable<Int64, String>>(typeof(Microsoft.Quantum.Extensions.Convert.ToStringI));
+            this.MicrosoftQuantumConvertIntAsString = this.Factory.Get<ICallable<Int64, String>>(typeof(Microsoft.Quantum.Convert.IntAsString));
             this.MicrosoftQuantumIntrinsicMessage = this.Factory.Get<ICallable<String, QVoid>>(typeof(Microsoft.Quantum.Intrinsic.Message));
             this.CountSolutions = this.Factory.Get<ICallable<(Int64,Double,Database), Int64>>(typeof(CountSolutions));
             this.GetDatabase = this.Factory.Get<ICallable<QVoid, Database>>(typeof(GetDatabase));

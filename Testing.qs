@@ -2,7 +2,7 @@ namespace ShipmentsAssigner {
     open Microsoft.Quantum.Arithmetic;
     open Microsoft.Quantum.Arrays;
     open Microsoft.Quantum.Canon;
-    open Microsoft.Quantum.Extensions.Convert;
+    open Microsoft.Quantum.Convert;
     open Microsoft.Quantum.Extensions.Diagnostics;
     open Microsoft.Quantum.Extensions.Testing;
     open Microsoft.Quantum.Intrinsic;
@@ -168,8 +168,8 @@ namespace ShipmentsAssigner {
 
             let trueAns = ResultFromBool(valid);
 
-            AssertResultEqual(calcAns, trueAns, "Incorrect. Correct answer is " + ToStringB(valid));
-            Message("Correctly " + ToStringB(valid));
+            AssertResultEqual(calcAns, trueAns, "Incorrect. Correct answer is " + BoolAsString(valid));
+            Message("Correctly " + BoolAsString(valid));
 
             ResetAll(ancillas);
         }        
@@ -180,7 +180,7 @@ namespace ShipmentsAssigner {
         let maxDbIndex = numElements - 1;
 
         using (qubits = Qubit[BitSize(maxDbIndex) * numElements]) {
-            IntegerIncrementLE(17, LittleEndian(qubits));
+            IncrementByInteger(17, LittleEndian(qubits));
             SwapReverseRegister(qubits);
             _TestOracleImpl(database, numElements, qubits);
             ResetAll(qubits);
@@ -222,7 +222,7 @@ namespace ShipmentsAssigner {
                 set startIndex = endIndex + 1;
             }
 
-            Message(IntArrrayToString(cIndices) + ", aug: " + ToStringI(ResultAsInt([mAug])));
+            Message(IntArrrayToString(cIndices) + ", aug: " + IntAsString(ResultAsInt([mAug])));
 
             let categorized = GetCategorizedEntries(database);
             let times = categorized[1];
@@ -248,8 +248,8 @@ namespace ShipmentsAssigner {
 
             let trueAns = ResultFromBool(valid);
 
-            AssertResultEqual(calcAns, trueAns, "Incorrect. Correct answer is " + ToStringB(valid));
-            Message("Correctly " + ToStringB(valid));
+            AssertResultEqual(calcAns, trueAns, "Incorrect. Correct answer is " + BoolAsString(valid));
+            Message("Correctly " + BoolAsString(valid));
 
             ResetAll(ancillas);
         }        
@@ -291,10 +291,10 @@ namespace ShipmentsAssigner {
                 let startIndex = i * bitsForMaxDbIndex;
                 let endIndex = startIndex + bitsForMaxDbIndex - 1;
 
-                set calcAnsStr = calcAnsStr + ToStringI(MeasureIntegerBE(BigEndian(ans[startIndex..endIndex])));
+                set calcAnsStr = calcAnsStr + IntAsString(MeasureIntegerBE(BigEndian(ans[startIndex..endIndex])));
             }
 
-            Message("calcAns: "+ calcAnsStr + ", aug: " + ToStringI(ResultAsInt([M(aug)])) + ", ancilla: " + ToStringI(ResultAsInt([M(ancilla)])));
+            Message("calcAns: " + calcAnsStr + ", aug: " + IntAsString(ResultAsInt([M(aug)])) + ", ancilla: " + IntAsString(ResultAsInt([M(ancilla)])));
 
             ResetAll(target);
         }
@@ -302,7 +302,7 @@ namespace ShipmentsAssigner {
 
     operation _TestCountSolutions(bitAccuracy: Int, maxError: Double): Unit {
         // CountSolutions(maxError, GetDatabase());
-        Message(ToStringI(CountSolutions(bitAccuracy, maxError, GetDatabase())));
+        Message(IntAsString(CountSolutions(bitAccuracy, maxError, GetDatabase())));
     }
 
     // operation _TestCounterWithMicrosoftGrover(): Unit {

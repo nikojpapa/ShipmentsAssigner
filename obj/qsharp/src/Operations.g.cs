@@ -51,11 +51,6 @@ using Microsoft.Quantum.Simulation.Core;
 [assembly: SpecializationDeclaration("{\"Kind\":{\"Case\":\"QsAdjoint\"},\"TypeArguments\":{\"Case\":\"Null\"},\"Information\":{\"Characteristics\":{\"Case\":\"Union\",\"Fields\":[{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Adjointable\"}]},{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Controllable\"}]}]},\"InferredInformation\":{\"IsSelfAdjoint\":false,\"IsIntrinsic\":false}},\"Parent\":{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"OracleAugmented\"},\"Attributes\":[],\"SourceFile\":\"/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs\",\"Position\":{\"Item1\":381,\"Item2\":8},\"HeaderRange\":{\"Item1\":{\"Line\":1,\"Column\":1},\"Item2\":{\"Line\":1,\"Column\":8}},\"Documentation\":[]}")]
 [assembly: SpecializationDeclaration("{\"Kind\":{\"Case\":\"QsControlled\"},\"TypeArguments\":{\"Case\":\"Null\"},\"Information\":{\"Characteristics\":{\"Case\":\"Union\",\"Fields\":[{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Adjointable\"}]},{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Controllable\"}]}]},\"InferredInformation\":{\"IsSelfAdjoint\":false,\"IsIntrinsic\":false}},\"Parent\":{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"OracleAugmented\"},\"Attributes\":[],\"SourceFile\":\"/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs\",\"Position\":{\"Item1\":382,\"Item2\":8},\"HeaderRange\":{\"Item1\":{\"Line\":1,\"Column\":1},\"Item2\":{\"Line\":1,\"Column\":11}},\"Documentation\":[]}")]
 [assembly: SpecializationDeclaration("{\"Kind\":{\"Case\":\"QsControlledAdjoint\"},\"TypeArguments\":{\"Case\":\"Null\"},\"Information\":{\"Characteristics\":{\"Case\":\"Union\",\"Fields\":[{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Adjointable\"}]},{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Controllable\"}]}]},\"InferredInformation\":{\"IsSelfAdjoint\":false,\"IsIntrinsic\":false}},\"Parent\":{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"OracleAugmented\"},\"Attributes\":[],\"SourceFile\":\"/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs\",\"Position\":{\"Item1\":383,\"Item2\":8},\"HeaderRange\":{\"Item1\":{\"Line\":1,\"Column\":1},\"Item2\":{\"Line\":1,\"Column\":19}},\"Documentation\":[]}")]
-[assembly: CallableDeclaration("{\"Kind\":{\"Case\":\"Operation\"},\"QualifiedName\":{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"GroverStateAugmentedOracle\"},\"Attributes\":[],\"SourceFile\":\"/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs\",\"Position\":{\"Item1\":386,\"Item2\":4},\"SymbolRange\":{\"Item1\":{\"Line\":1,\"Column\":11},\"Item2\":{\"Line\":1,\"Column\":37}},\"ArgumentTuple\":{\"Case\":\"QsTuple\",\"Fields\":[[{\"Case\":\"QsTupleItem\",\"Fields\":[{\"VariableName\":{\"Case\":\"ValidName\",\"Fields\":[\"flagIndex\"]},\"Type\":{\"Case\":\"Int\"},\"InferredInformation\":{\"IsMutable\":false,\"HasLocalQuantumDependency\":false},\"Position\":{\"Case\":\"Null\"},\"Range\":{\"Item1\":{\"Line\":1,\"Column\":38},\"Item2\":{\"Line\":1,\"Column\":47}}}]},{\"Case\":\"QsTupleItem\",\"Fields\":[{\"VariableName\":{\"Case\":\"ValidName\",\"Fields\":[\"qubits\"]},\"Type\":{\"Case\":\"ArrayType\",\"Fields\":[{\"Case\":\"Qubit\"}]},\"InferredInformation\":{\"IsMutable\":false,\"HasLocalQuantumDependency\":false},\"Position\":{\"Case\":\"Null\"},\"Range\":{\"Item1\":{\"Line\":1,\"Column\":54},\"Item2\":{\"Line\":1,\"Column\":60}}}]},{\"Case\":\"QsTupleItem\",\"Fields\":[{\"VariableName\":{\"Case\":\"ValidName\",\"Fields\":[\"database\"]},\"Type\":{\"Case\":\"UserDefinedType\",\"Fields\":[{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"Database\",\"Range\":{\"Case\":\"Value\",\"Fields\":[{\"Item1\":{\"Line\":1,\"Column\":81},\"Item2\":{\"Line\":1,\"Column\":89}}]}}]},\"InferredInformation\":{\"IsMutable\":false,\"HasLocalQuantumDependency\":false},\"Position\":{\"Case\":\"Null\"},\"Range\":{\"Item1\":{\"Line\":1,\"Column\":71},\"Item2\":{\"Line\":1,\"Column\":79}}}]}]]},\"Signature\":{\"TypeParameters\":[],\"ArgumentType\":{\"Case\":\"TupleType\",\"Fields\":[[{\"Case\":\"Int\"},{\"Case\":\"ArrayType\",\"Fields\":[{\"Case\":\"Qubit\"}]},{\"Case\":\"UserDefinedType\",\"Fields\":[{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"Database\",\"Range\":{\"Case\":\"Null\"}}]}]]},\"ReturnType\":{\"Case\":\"UnitType\"},\"Information\":{\"Characteristics\":{\"Case\":\"Union\",\"Fields\":[{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Adjointable\"}]},{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Controllable\"}]}]},\"InferredInformation\":{\"IsSelfAdjoint\":false,\"IsIntrinsic\":false}}},\"Documentation\":[]}")]
-[assembly: SpecializationDeclaration("{\"Kind\":{\"Case\":\"QsBody\"},\"TypeArguments\":{\"Case\":\"Null\"},\"Information\":{\"Characteristics\":{\"Case\":\"Union\",\"Fields\":[{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Adjointable\"}]},{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Controllable\"}]}]},\"InferredInformation\":{\"IsSelfAdjoint\":false,\"IsIntrinsic\":false}},\"Parent\":{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"GroverStateAugmentedOracle\"},\"Attributes\":[],\"SourceFile\":\"/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs\",\"Position\":{\"Item1\":387,\"Item2\":8},\"HeaderRange\":{\"Item1\":{\"Line\":1,\"Column\":1},\"Item2\":{\"Line\":1,\"Column\":5}},\"Documentation\":[]}")]
-[assembly: SpecializationDeclaration("{\"Kind\":{\"Case\":\"QsAdjoint\"},\"TypeArguments\":{\"Case\":\"Null\"},\"Information\":{\"Characteristics\":{\"Case\":\"Union\",\"Fields\":[{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Adjointable\"}]},{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Controllable\"}]}]},\"InferredInformation\":{\"IsSelfAdjoint\":false,\"IsIntrinsic\":false}},\"Parent\":{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"GroverStateAugmentedOracle\"},\"Attributes\":[],\"SourceFile\":\"/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs\",\"Position\":{\"Item1\":395,\"Item2\":8},\"HeaderRange\":{\"Item1\":{\"Line\":1,\"Column\":1},\"Item2\":{\"Line\":1,\"Column\":8}},\"Documentation\":[]}")]
-[assembly: SpecializationDeclaration("{\"Kind\":{\"Case\":\"QsControlled\"},\"TypeArguments\":{\"Case\":\"Null\"},\"Information\":{\"Characteristics\":{\"Case\":\"Union\",\"Fields\":[{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Adjointable\"}]},{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Controllable\"}]}]},\"InferredInformation\":{\"IsSelfAdjoint\":false,\"IsIntrinsic\":false}},\"Parent\":{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"GroverStateAugmentedOracle\"},\"Attributes\":[],\"SourceFile\":\"/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs\",\"Position\":{\"Item1\":396,\"Item2\":8},\"HeaderRange\":{\"Item1\":{\"Line\":1,\"Column\":1},\"Item2\":{\"Line\":1,\"Column\":11}},\"Documentation\":[]}")]
-[assembly: SpecializationDeclaration("{\"Kind\":{\"Case\":\"QsControlledAdjoint\"},\"TypeArguments\":{\"Case\":\"Null\"},\"Information\":{\"Characteristics\":{\"Case\":\"Union\",\"Fields\":[{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Adjointable\"}]},{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Controllable\"}]}]},\"InferredInformation\":{\"IsSelfAdjoint\":false,\"IsIntrinsic\":false}},\"Parent\":{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"GroverStateAugmentedOracle\"},\"Attributes\":[],\"SourceFile\":\"/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs\",\"Position\":{\"Item1\":397,\"Item2\":8},\"HeaderRange\":{\"Item1\":{\"Line\":1,\"Column\":1},\"Item2\":{\"Line\":1,\"Column\":19}},\"Documentation\":[]}")]
 [assembly: CallableDeclaration("{\"Kind\":{\"Case\":\"Operation\"},\"QualifiedName\":{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"GroverPow\"},\"Attributes\":[],\"SourceFile\":\"/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs\",\"Position\":{\"Item1\":400,\"Item2\":4},\"SymbolRange\":{\"Item1\":{\"Line\":1,\"Column\":11},\"Item2\":{\"Line\":1,\"Column\":20}},\"ArgumentTuple\":{\"Case\":\"QsTuple\",\"Fields\":[[{\"Case\":\"QsTupleItem\",\"Fields\":[{\"VariableName\":{\"Case\":\"ValidName\",\"Fields\":[\"power\"]},\"Type\":{\"Case\":\"Int\"},\"InferredInformation\":{\"IsMutable\":false,\"HasLocalQuantumDependency\":false},\"Position\":{\"Case\":\"Null\"},\"Range\":{\"Item1\":{\"Line\":1,\"Column\":21},\"Item2\":{\"Line\":1,\"Column\":26}}}]},{\"Case\":\"QsTupleItem\",\"Fields\":[{\"VariableName\":{\"Case\":\"ValidName\",\"Fields\":[\"qubits\"]},\"Type\":{\"Case\":\"ArrayType\",\"Fields\":[{\"Case\":\"Qubit\"}]},\"InferredInformation\":{\"IsMutable\":false,\"HasLocalQuantumDependency\":false},\"Position\":{\"Case\":\"Null\"},\"Range\":{\"Item1\":{\"Line\":1,\"Column\":33},\"Item2\":{\"Line\":1,\"Column\":39}}}]},{\"Case\":\"QsTupleItem\",\"Fields\":[{\"VariableName\":{\"Case\":\"ValidName\",\"Fields\":[\"database\"]},\"Type\":{\"Case\":\"UserDefinedType\",\"Fields\":[{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"Database\",\"Range\":{\"Case\":\"Value\",\"Fields\":[{\"Item1\":{\"Line\":1,\"Column\":60},\"Item2\":{\"Line\":1,\"Column\":68}}]}}]},\"InferredInformation\":{\"IsMutable\":false,\"HasLocalQuantumDependency\":false},\"Position\":{\"Case\":\"Null\"},\"Range\":{\"Item1\":{\"Line\":1,\"Column\":50},\"Item2\":{\"Line\":1,\"Column\":58}}}]}]]},\"Signature\":{\"TypeParameters\":[],\"ArgumentType\":{\"Case\":\"TupleType\",\"Fields\":[[{\"Case\":\"Int\"},{\"Case\":\"ArrayType\",\"Fields\":[{\"Case\":\"Qubit\"}]},{\"Case\":\"UserDefinedType\",\"Fields\":[{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"Database\",\"Range\":{\"Case\":\"Null\"}}]}]]},\"ReturnType\":{\"Case\":\"UnitType\"},\"Information\":{\"Characteristics\":{\"Case\":\"Union\",\"Fields\":[{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Adjointable\"}]},{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Controllable\"}]}]},\"InferredInformation\":{\"IsSelfAdjoint\":false,\"IsIntrinsic\":false}}},\"Documentation\":[]}")]
 [assembly: SpecializationDeclaration("{\"Kind\":{\"Case\":\"QsBody\"},\"TypeArguments\":{\"Case\":\"Null\"},\"Information\":{\"Characteristics\":{\"Case\":\"Union\",\"Fields\":[{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Adjointable\"}]},{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Controllable\"}]}]},\"InferredInformation\":{\"IsSelfAdjoint\":false,\"IsIntrinsic\":false}},\"Parent\":{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"GroverPow\"},\"Attributes\":[],\"SourceFile\":\"/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs\",\"Position\":{\"Item1\":401,\"Item2\":8},\"HeaderRange\":{\"Item1\":{\"Line\":1,\"Column\":1},\"Item2\":{\"Line\":1,\"Column\":5}},\"Documentation\":[]}")]
 [assembly: SpecializationDeclaration("{\"Kind\":{\"Case\":\"QsAdjoint\"},\"TypeArguments\":{\"Case\":\"Null\"},\"Information\":{\"Characteristics\":{\"Case\":\"Union\",\"Fields\":[{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Adjointable\"}]},{\"Case\":\"SimpleSet\",\"Fields\":[{\"Case\":\"Controllable\"}]}]},\"InferredInformation\":{\"IsSelfAdjoint\":false,\"IsIntrinsic\":false}},\"Parent\":{\"Namespace\":\"ShipmentsAssigner\",\"Name\":\"GroverPow\"},\"Attributes\":[],\"SourceFile\":\"/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs\",\"Position\":{\"Item1\":442,\"Item2\":8},\"HeaderRange\":{\"Item1\":{\"Line\":1,\"Column\":1},\"Item2\":{\"Line\":1,\"Column\":8}},\"Documentation\":[]}")]
@@ -1950,141 +1945,6 @@ namespace ShipmentsAssigner
         }
     }
 
-    public partial class GroverStateAugmentedOracle : Unitary<(Int64,IQArray<Qubit>,Database)>, ICallable
-    {
-        public GroverStateAugmentedOracle(IOperationFactory m) : base(m)
-        {
-        }
-
-        public class In : QTuple<(Int64,IQArray<Qubit>,Database)>, IApplyData
-        {
-            public In((Int64,IQArray<Qubit>,Database) data) : base(data)
-            {
-            }
-
-            System.Collections.Generic.IEnumerable<Qubit> IApplyData.Qubits => ((IApplyData)Data.Item2)?.Qubits;
-        }
-
-        String ICallable.Name => "GroverStateAugmentedOracle";
-        String ICallable.FullName => "ShipmentsAssigner.GroverStateAugmentedOracle";
-        protected ICallable MicrosoftQuantumArraysExclude
-        {
-            get;
-            set;
-        }
-
-        protected ICallable MicrosoftQuantumArraysMost
-        {
-            get;
-            set;
-        }
-
-        protected ICallable MicrosoftQuantumArraysTail
-        {
-            get;
-            set;
-        }
-
-        protected IUnitary MicrosoftQuantumCanonApplyToEachCA
-        {
-            get;
-            set;
-        }
-
-        protected IUnitary<Qubit> MicrosoftQuantumIntrinsicH
-        {
-            get;
-            set;
-        }
-
-        protected IUnitary<(IQArray<Qubit>,Database,Qubit,Qubit)> OracleAugmented
-        {
-            get;
-            set;
-        }
-
-        public override Func<(Int64,IQArray<Qubit>,Database), QVoid> Body => (__in__) =>
-        {
-            var (flagIndex,qubits,database) = __in__;
-#line 389 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-            var flag = qubits[flagIndex];
-#line 390 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-            var stateQubits = (IQArray<Qubit>)MicrosoftQuantumArraysExclude.Apply<IQArray<Qubit>>((new QArray<Int64>(flagIndex), qubits));
-#line 392 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-            MicrosoftQuantumCanonApplyToEachCA.Apply((MicrosoftQuantumIntrinsicH, stateQubits));
-#line 393 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-            OracleAugmented.Apply((MicrosoftQuantumArraysMost.Apply<IQArray<Qubit>>(stateQubits), database, flag, MicrosoftQuantumArraysTail.Apply<Qubit>(stateQubits)));
-#line hidden
-            return QVoid.Instance;
-        }
-
-        ;
-        public override Func<(Int64,IQArray<Qubit>,Database), QVoid> AdjointBody => (__in__) =>
-        {
-            var (flagIndex,qubits,database) = __in__;
-#line hidden
-            var __qsVar0__flag__ = qubits[flagIndex];
-#line hidden
-            var __qsVar1__stateQubits__ = (IQArray<Qubit>)MicrosoftQuantumArraysExclude.Apply<IQArray<Qubit>>((new QArray<Int64>(flagIndex), qubits));
-#line hidden
-            OracleAugmented.Adjoint.Apply((MicrosoftQuantumArraysMost.Apply<IQArray<Qubit>>(__qsVar1__stateQubits__), database, __qsVar0__flag__, MicrosoftQuantumArraysTail.Apply<Qubit>(__qsVar1__stateQubits__)));
-#line hidden
-            MicrosoftQuantumCanonApplyToEachCA.Adjoint.Apply((MicrosoftQuantumIntrinsicH, __qsVar1__stateQubits__));
-#line hidden
-            return QVoid.Instance;
-        }
-
-        ;
-        public override Func<(IQArray<Qubit>,(Int64,IQArray<Qubit>,Database)), QVoid> ControlledBody => (__in__) =>
-        {
-            var (__controlQubits__,(flagIndex,qubits,database)) = __in__;
-#line hidden
-            var flag = qubits[flagIndex];
-#line hidden
-            var stateQubits = (IQArray<Qubit>)MicrosoftQuantumArraysExclude.Apply<IQArray<Qubit>>((new QArray<Int64>(flagIndex), qubits));
-#line hidden
-            MicrosoftQuantumCanonApplyToEachCA.Controlled.Apply((__controlQubits__, (MicrosoftQuantumIntrinsicH, stateQubits)));
-#line hidden
-            OracleAugmented.Controlled.Apply((__controlQubits__, (MicrosoftQuantumArraysMost.Apply<IQArray<Qubit>>(stateQubits), database, flag, MicrosoftQuantumArraysTail.Apply<Qubit>(stateQubits))));
-#line hidden
-            return QVoid.Instance;
-        }
-
-        ;
-        public override Func<(IQArray<Qubit>,(Int64,IQArray<Qubit>,Database)), QVoid> ControlledAdjointBody => (__in__) =>
-        {
-            var (__controlQubits__,(flagIndex,qubits,database)) = __in__;
-#line hidden
-            var __qsVar0__flag__ = qubits[flagIndex];
-#line hidden
-            var __qsVar1__stateQubits__ = (IQArray<Qubit>)MicrosoftQuantumArraysExclude.Apply<IQArray<Qubit>>((new QArray<Int64>(flagIndex), qubits));
-#line hidden
-            OracleAugmented.Adjoint.Controlled.Apply((__controlQubits__, (MicrosoftQuantumArraysMost.Apply<IQArray<Qubit>>(__qsVar1__stateQubits__), database, __qsVar0__flag__, MicrosoftQuantumArraysTail.Apply<Qubit>(__qsVar1__stateQubits__))));
-#line hidden
-            MicrosoftQuantumCanonApplyToEachCA.Adjoint.Controlled.Apply((__controlQubits__, (MicrosoftQuantumIntrinsicH, __qsVar1__stateQubits__)));
-#line hidden
-            return QVoid.Instance;
-        }
-
-        ;
-        public override void Init()
-        {
-            this.MicrosoftQuantumArraysExclude = this.Factory.Get<ICallable>(typeof(Microsoft.Quantum.Arrays.Exclude<>));
-            this.MicrosoftQuantumArraysMost = this.Factory.Get<ICallable>(typeof(Microsoft.Quantum.Arrays.Most<>));
-            this.MicrosoftQuantumArraysTail = this.Factory.Get<ICallable>(typeof(Microsoft.Quantum.Arrays.Tail<>));
-            this.MicrosoftQuantumCanonApplyToEachCA = this.Factory.Get<IUnitary>(typeof(Microsoft.Quantum.Canon.ApplyToEachCA<>));
-            this.MicrosoftQuantumIntrinsicH = this.Factory.Get<IUnitary<Qubit>>(typeof(Microsoft.Quantum.Intrinsic.H));
-            this.OracleAugmented = this.Factory.Get<IUnitary<(IQArray<Qubit>,Database,Qubit,Qubit)>>(typeof(OracleAugmented));
-        }
-
-        public override IApplyData __dataIn((Int64,IQArray<Qubit>,Database) data) => new In(data);
-        public override IApplyData __dataOut(QVoid data) => data;
-        public static System.Threading.Tasks.Task<QVoid> Run(IOperationFactory __m__, Int64 flagIndex, IQArray<Qubit> qubits, Database database)
-        {
-            return __m__.Run<GroverStateAugmentedOracle, (Int64,IQArray<Qubit>,Database), QVoid>((flagIndex, qubits, database));
-        }
-    }
-
     public partial class GroverPow : Unitary<(Int64,IQArray<Qubit>,Database)>, ICallable
     {
         public GroverPow(IOperationFactory m) : base(m)
@@ -2162,7 +2022,7 @@ namespace ShipmentsAssigner
             set;
         }
 
-        protected IUnitary<(IQArray<Qubit>,Database,Qubit,Qubit)> OracleAugmented
+        protected IUnitary<(IQArray<Qubit>,Database,Qubit)> Oracle
         {
             get;
             set;
@@ -2184,7 +2044,7 @@ namespace ShipmentsAssigner
 #line hidden
             {
 #line 409 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
-                OracleAugmented.Apply((ans, database, ancilla, aug));
+                Oracle.Apply((ans, database, ancilla));
 #line 410 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
                 MicrosoftQuantumCanonApplyToEachCA.Apply((MicrosoftQuantumIntrinsicH, inputQubits));
 #line 411 "/Users/nicholaspapadopoulos/Box%20Sync/CS/Me/quantum/Boyle/ShipmentsAssigner/Operations.qs"
@@ -2232,7 +2092,7 @@ namespace ShipmentsAssigner
 #line hidden
                 MicrosoftQuantumCanonApplyToEachCA.Adjoint.Apply((MicrosoftQuantumIntrinsicH, __qsVar1__inputQubits__));
 #line hidden
-                OracleAugmented.Adjoint.Apply((__qsVar3__ans__, database, __qsVar0__ancilla__, __qsVar2__aug__));
+                Oracle.Adjoint.Apply((__qsVar3__ans__, database, __qsVar0__ancilla__));
             }
 
 #line hidden
@@ -2256,7 +2116,7 @@ namespace ShipmentsAssigner
 #line hidden
             {
 #line hidden
-                OracleAugmented.Controlled.Apply((__controlQubits__, (ans, database, ancilla, aug)));
+                Oracle.Controlled.Apply((__controlQubits__, (ans, database, ancilla)));
 #line hidden
                 MicrosoftQuantumCanonApplyToEachCA.Controlled.Apply((__controlQubits__, (MicrosoftQuantumIntrinsicH, inputQubits)));
 #line hidden
@@ -2304,7 +2164,7 @@ namespace ShipmentsAssigner
 #line hidden
                 MicrosoftQuantumCanonApplyToEachCA.Adjoint.Controlled.Apply((__controlQubits__, (MicrosoftQuantumIntrinsicH, __qsVar1__inputQubits__)));
 #line hidden
-                OracleAugmented.Adjoint.Controlled.Apply((__controlQubits__, (__qsVar3__ans__, database, __qsVar0__ancilla__, __qsVar2__aug__)));
+                Oracle.Adjoint.Controlled.Apply((__controlQubits__, (__qsVar3__ans__, database, __qsVar0__ancilla__)));
             }
 
 #line hidden
@@ -2324,7 +2184,7 @@ namespace ShipmentsAssigner
             this.MicrosoftQuantumIntrinsicX = this.Factory.Get<IUnitary<Qubit>>(typeof(Microsoft.Quantum.Intrinsic.X));
             this.MicrosoftQuantumIntrinsicZ = this.Factory.Get<IUnitary<Qubit>>(typeof(Microsoft.Quantum.Intrinsic.Z));
             this.MicrosoftQuantumMathPI = this.Factory.Get<ICallable<QVoid, Double>>(typeof(Microsoft.Quantum.Math.PI));
-            this.OracleAugmented = this.Factory.Get<IUnitary<(IQArray<Qubit>,Database,Qubit,Qubit)>>(typeof(OracleAugmented));
+            this.Oracle = this.Factory.Get<IUnitary<(IQArray<Qubit>,Database,Qubit)>>(typeof(Oracle));
         }
 
         public override IApplyData __dataIn((Int64,IQArray<Qubit>,Database) data) => new In(data);

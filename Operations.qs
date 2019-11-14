@@ -24,6 +24,10 @@
         return 1;
     }
 
+    ///
+    /// This function takes qIndex, a qubit array of states indicating the index to load from the
+    /// classical databse, and loads the data from the classical database into the target
+    ///
     operation GetElementUsingQuantumIndex(qIndex: Qubit[], arr: Int[], target: BigEndian): Unit {
         body (...) {
             // Message("qIndex:");
@@ -49,11 +53,19 @@
         controlled adjoint auto;
     }
 
+    ///
+    /// This converts a databse entry from a tuple into an array
+    ///
     function DatabaseEntryToArray(databaseEntry: DatabaseEntry): Int[] {
         let (shipmentId, time, coordinates) = databaseEntry!;
         return [shipmentId, time, coordinates];
     }
 
+    /// 
+    /// This converts the database entries into separate arrays for each property.
+    /// For example, database [[1,2,3], [4,5,6]] would return [[1,4],[2,5],[3,6]]
+    /// I.e. Returns the transpose of the database
+    /// 
     function GetCategorizedEntries(database: Database): Int[][] {
         let databaseEntriesInArr = Mapped(DatabaseEntryToArray, database!);
         let numProperties = Length(databaseEntriesInArr[0]);
@@ -69,6 +81,10 @@
         return categorized;
     }
 
+    ///
+    /// For each property of the database, returns the max number of bits needed to store 
+    /// the max value of all the entries for that property
+    ///
     function GetPropertyLengths(database: Database): Int[] {
         let databaseEntriesInArr = Mapped(DatabaseEntryToArray, database!);
         let numProperties = Length(databaseEntriesInArr[0]);
@@ -83,6 +99,10 @@
         return lengths;
     }
     
+    ///
+    /// Target register contains the qubits for all properties. This function allocates the number
+    /// of qubits needed to contain the max value for that property and loads the qIndex into it 
+    ///
     operation LoadProperty(qIndex: Qubit[], database: Database, target: BigEndian, propertyIndex: Int): Unit {
         body (...) {
             let categorized = GetCategorizedEntries(database);
@@ -135,6 +155,13 @@
     //     controlled adjoint distribute;
     // }
 
+    ///
+    /// This first checks that the time is later than the previous node's time, if it 
+    /// is not the state of all |0>. Flips the isInvalid to |1> if it is invalid.
+    ///
+    /// Then, it unloads `lastTime` by performing the adjoint of the previous note, 
+    /// then stores the current time in `lastTime` to be compared on the next iteration.
+    ///
     operation _ValidTimes(
             qIndices   : Qubit[][],
             database   : Database,
@@ -288,6 +315,9 @@
     //     controlled adjoint distribute;
     // }
 
+    ///
+    /// Allocates the qubits to represent a node
+    ///
     function CreateIndices(
             qubits         : Qubit[],
             numStops       : Int, 
@@ -384,19 +414,19 @@
         controlled adjoint distribute;
     }
 
-    operation GroverStateAugmentedOracle(flagIndex: Int, qubits: Qubit[], database: Database): Unit {  // aug is last qubit
-        body (...) {
-            let flag = qubits[flagIndex];
-            let stateQubits = Exclude([flagIndex], qubits);
+    // operation GroverStateAugmentedOracle(flagIndex: Int, qubits: Qubit[], database: Database): Unit {  // aug is last qubit
+    //     body (...) {
+    //         let flag = qubits[flagIndex];
+    //         let stateQubits = Exclude([flagIndex], qubits);
 
-            ApplyToEachCA(H, stateQubits);
-            OracleAugmented(Most(stateQubits), database, flag, Tail(stateQubits));
-        }
+    //         ApplyToEachCA(H, stateQubits);
+    //         OracleAugmented(Most(stateQubits), database, flag, Tail(stateQubits));
+    //     }
 
-        adjoint invert;
-        controlled distribute;
-        controlled adjoint distribute;
-    }
+    //     adjoint invert;
+    //     controlled distribute;
+    //     controlled adjoint distribute;
+    // }
 
     operation GroverPow(power: Int, qubits: Qubit[], database: Database): Unit {  // set flag index to 0
         body (...) {
@@ -406,7 +436,7 @@
             let ans = Most(inputQubits);
 
             for (i in 1..power) {
-                OracleAugmented(ans, database, ancilla, aug);  // Grover iteration
+                Oracle(ans, database, ancilla);  // Grover iteration
                 ApplyToEachCA(H, inputQubits);
                 ApplyToEachCA(X, inputQubits);
                 Controlled Z(Most(inputQubits), Tail(inputQubits));

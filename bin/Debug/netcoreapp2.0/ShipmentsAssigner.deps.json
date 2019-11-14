@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "8bc3f7cf4bf2383ae57da85ab71e36d8f9e381bb"
+    "signature": "0ea3f2b03595bd0b7de188ce531195e03524c936"
   },
   "compilationOptions": {},
   "targets": {
@@ -10,7 +10,7 @@
         "dependencies": {
           "Microsoft.Quantum.Development.Kit": "0.9.1909.3002",
           "Microsoft.Quantum.Standard": "0.9.1909.3002",
-          "nikojpapa.Quantum.Utils": "0.9.0"
+          "nikojpapa.Quantum.Utils": "0.9.1"
         },
         "runtime": {
           "ShipmentsAssigner.dll": {}
@@ -89,15 +89,15 @@
           }
         }
       },
-      "nikojpapa.Quantum.Utils/0.9.0": {
+      "nikojpapa.Quantum.Utils/0.9.1": {
         "dependencies": {
           "Microsoft.Quantum.Development.Kit": "0.9.1909.3002",
           "Microsoft.Quantum.Standard": "0.9.1909.3002"
         },
         "runtime": {
           "lib/netcoreapp2.0/Utils.dll": {
-            "assemblyVersion": "0.9.0.0",
-            "fileVersion": "0.9.0.0"
+            "assemblyVersion": "0.9.1.0",
+            "fileVersion": "0.9.1.0"
           }
         }
       }
@@ -137,12 +137,12 @@
       "path": "newtonsoft.json/11.0.2",
       "hashPath": "newtonsoft.json.11.0.2.nupkg.sha512"
     },
-    "nikojpapa.Quantum.Utils/0.9.0": {
+    "nikojpapa.Quantum.Utils/0.9.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-47/90oVKPYe3wIouFBDlfXYCw+xLTsfxu4E/ldB+1XxsIIG46J6r01xdHJ41xp0HQcAcooY9KDvS8MNAIXcmFw==",
-      "path": "nikojpapa.quantum.utils/0.9.0",
-      "hashPath": "nikojpapa.quantum.utils.0.9.0.nupkg.sha512"
+      "sha512": "sha512-v66ggoezs64E7atddvJiDfOFwzfJJm4ZcS9OFRp9P6YGDKEBatqxKsuoLPz/+4tT4dW2f7znsPzB0VNqZqPZPw==",
+      "path": "nikojpapa.quantum.utils/0.9.1",
+      "hashPath": "nikojpapa.quantum.utils.0.9.1.nupkg.sha512"
     }
   }
 }

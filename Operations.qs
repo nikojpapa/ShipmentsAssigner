@@ -156,11 +156,14 @@
     // }
 
     ///
-    /// This first checks that the time is later than the previous node's time, if it 
-    /// is not the state of all |0>. Flips the isInvalid to |1> if it is invalid.
+    /// For each stop, this first checks that the time is later than the previous node's time, if it 
+    /// is not the state of all |0>. It increments the `invalid` register if it is not valid.
     ///
     /// Then, it unloads `lastTime` by performing the adjoint of the previous note, 
     /// then stores the current time in `lastTime` to be compared on the next iteration.
+    ///
+    /// Since the  `invalid` register is large enough to contain all the stops, if any of the stops
+    /// are invalid, the whole sequence is invalid if the register is greater than zero.
     ///
     operation _ValidTimes(
             qIndices   : Qubit[][],
@@ -316,7 +319,7 @@
     // }
 
     ///
-    /// Allocates the qubits to represent a node
+    /// Partitions the qubit register into stops
     ///
     function CreateIndices(
             qubits         : Qubit[],
@@ -337,6 +340,9 @@
         return qIndices;
     }
 
+    ///
+    /// Marks the ancilla if all of the stops are valid.
+    ///
     operation Oracle (
             qubits  : Qubit[], 
             database: Database, 
@@ -475,6 +481,20 @@
         controlled adjoint distribute;
     }
 
+    ///
+    /// This allocates a qubit register that is structured as follows:
+    /// The qubit register is composed of the stops, represented in bit form.
+    /// Each stop is allocated the number of bits needed to represent the largest 
+    /// index of the database.
+    ///
+    /// For example, if the database has three entries, each stop will be represented by 
+    /// two qubits, and the qubit register will be six qubits long, because there are three stops
+    /// represented by two qubits each.
+    ///
+    /// This is organized this way to represent both the stop number and sequence. If it were
+    /// represented by a simple array, with each index representing the stop number in the solution,
+    /// we would not know which stop is supposed to come in which order.
+    ///
     operation CountSolutions(bitAccuracy: Int, maxError: Double, database: Database): Int {
         let numElements = Length(database!);
         let maxDbIndex = numElements - 1;

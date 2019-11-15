@@ -26,7 +26,10 @@
 
     ///
     /// This function takes qIndex, a qubit array of states indicating the index to load from the
-    /// classical databse, and loads the data from the classical database into the target
+    /// classical databse, and loads the data from the classical database into the target.
+    /// 
+    /// It iterates through the database entries, and loads the entry into the target if the
+    /// quantum index is equal to the current iteration index.    
     ///
     operation GetElementUsingQuantumIndex(qIndex: Qubit[], arr: Int[], target: BigEndian): Unit {
         body (...) {
